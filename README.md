@@ -25,7 +25,17 @@ Copy `.env.example` to `.env.local`.
 | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | Public address, used for the sitemap and social cards |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | Address shown on the site |
-| `RESEND_API_KEY`, `CONTACT_TO`, `CONTACT_FROM` | Optional. When all three are set, the contact form sends through Resend. Without them it opens the visitor's email app with the message written out |
+| `DATABASE_URL` | Postgres connection string. Contact-form messages are saved here |
+| `ADMIN_PASSWORD` | Opens `/admin`, where the team reads enquiries. 12 characters or more; the page stays closed without it |
+| `RESEND_API_KEY`, `CONTACT_TO`, `CONTACT_FROM` | Optional. When all three are set, each enquiry is also emailed to the team through Resend |
+
+With neither a database nor Resend, the form opens the visitor's email app with the message written out.
+
+## Database
+
+One Postgres table, `enquiries`. Schema changes are numbered SQL files in `db/migrations`; `npm start` applies any new ones before the server starts, and `npm run db:migrate` does the same by hand. Add a new file for every change and never edit one that has already run.
+
+On Railway the database is the `Postgres` service in the same project, and the site reads it over the private network through `DATABASE_URL=${{Postgres.DATABASE_URL}}`.
 
 ## Editing content
 

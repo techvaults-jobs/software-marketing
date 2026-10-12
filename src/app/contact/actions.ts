@@ -1,12 +1,14 @@
 "use server"
 
 import { site } from "@/content/site"
+import { hasDatabase } from "@/lib/db"
+import { saveEnquiry } from "@/lib/enquiries"
 
 export type EnquiryState =
   | { status: "idle" }
   | { status: "sent" }
   | { status: "invalid"; errors: Record<string, string> }
-  /** No mail service is configured: hand the visitor a ready-written email. */
+  /** Nowhere to store or send it: hand the visitor a ready-written email. */
   | { status: "handoff"; mailto: string }
   | { status: "failed"; mailto: string }
 
@@ -41,20 +43,37 @@ export async function sendEnquiry(_previous: EnquiryState, form: FormData): Prom
   ].join("\n")
   const mailto = `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
 
-  const key = process.env.RESEND_API_KEY
-  const to = process.env.CONTACT_TO
-  const from = process.env.CONTACT_FROM
-  if (!key || !to || !from) return { status: "handoff", mailto }
+  // The database is the record. Email is a courtesy on top of it.
+  let saved = false
+  if (hasDatabase()) {
+    try {
+      await saveEnquiry(enquiry)
+      saved = true
+    } catch (error) {
+      console.error("Enquiry could not be saved.", error)
+    }
+  }
 
+  const notified = await notify(subject, body, enquiry.email)
+  if (saved || notified) return { status: "sent" }
+  return hasDatabase() || mailConfigured() ? { status: "failed", mailto } : { status: "handoff", mailto }
+}
+
+function mailConfigured() {
+  return Boolean(process.env.RESEND_API_KEY && process.env.CONTACT_TO && process.env.CONTACT_FROM)
+}
+
+/** Emails the team through Resend when it is set up. Never throws. */
+async function notify(subject: string, body: string, replyTo: string) {
+  if (!mailConfigured()) return false
   try {
     const response = await fetch("https://api.resend.com/emails", {
       method: "POST",
-      headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
-      body: JSON.stringify({ from, to: [to], reply_to: enquiry.email, subject, text: body }),
+      headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
+      body: JSON.stringify({ from: process.env.CONTACT_FROM, to: [process.env.CONTACT_TO], reply_to: replyTo, subject, text: body }),
     })
-    if (!response.ok) return { status: "failed", mailto }
-    return { status: "sent" }
+    return response.ok
   } catch {
-    return { status: "failed", mailto }
+    return false
   }
 }
