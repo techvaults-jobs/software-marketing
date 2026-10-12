@@ -17,7 +17,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<"/industries/[slug]">): Promise<Metadata> {
   const sector = getSector((await params).slug)
   if (!sector) return {}
-  return { title: `Inventory for ${sector.name.toLowerCase()}`, description: sector.summary }
+  return { title: `StockVaults for ${sector.name.toLowerCase()}`, description: sector.summary }
 }
 
 export default async function SectorPage({ params }: PageProps<"/industries/[slug]">) {
@@ -36,7 +36,7 @@ export default async function SectorPage({ params }: PageProps<"/industries/[slu
             </span>
           </ViewTransition>
         }
-        eyebrow={sector.name}
+        eyebrow={`StockVaults for ${sector.name.toLowerCase()}`}
         title={sector.headline}
         actions={
           <>

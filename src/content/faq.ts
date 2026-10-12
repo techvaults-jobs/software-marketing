@@ -1,7 +1,7 @@
 export const faq = [
   {
     q: "Is this a product I sign up for, or do you build it for me?",
-    a: "Both, in that order. Every system starts from an inventory core we have already built and run in production. We then fit it to your sector and workflows, so you get tested foundations without paying for a build from an empty page.",
+    a: "Both, in that order. Every system starts from StockVaults, an inventory core we have already built and run in production. We then fit it to your sector and workflows, so you get tested foundations without paying for a build from an empty page.",
   },
   {
     q: "How long before we can go live?",

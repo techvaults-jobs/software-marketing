@@ -14,8 +14,8 @@ export async function generateMetadata({ params }: PageProps<"/demo/[slug]">): P
   const sector = getSector((await params).slug)
   if (!sector) return {}
   return {
-    title: `Demo: ${sector.name.toLowerCase()}`,
-    description: `A working inventory demo for ${sector.name.toLowerCase()}, with made-up stock you can sell, receive and transfer.`,
+    title: `StockVaults demo: ${sector.name.toLowerCase()}`,
+    description: `A working StockVaults demo for ${sector.name.toLowerCase()}, with made-up stock you can sell, receive and transfer.`,
   }
 }
 
@@ -32,7 +32,7 @@ export default async function DemoPage({ params }: PageProps<"/demo/[slug]">) {
             All demos
           </Link>
           <h1 className="text-sm font-medium">
-            {sector.name} <span className="text-muted-foreground">demo</span>
+            StockVaults <span className="text-muted-foreground">for {sector.name.toLowerCase()}</span>
           </h1>
           <div className="ml-auto flex items-center gap-2">
             <Link href={`/industries/${sector.slug}`} className="btn btn-sm btn-outline hidden sm:inline-flex">

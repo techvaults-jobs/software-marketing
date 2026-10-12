@@ -19,7 +19,7 @@ import { MovesScreen, OutScreen, OverviewScreen, ReportsScreen, StockScreen, typ
 type Screen = "overview" | "stock" | "out" | "moves" | "reports"
 
 /**
- * A working copy of the inventory system, loaded with made-up data for one
+ * A working copy of StockVaults, loaded with made-up data for one
  * sector. Everything happens in the browser: selling takes stock off the
  * shelf, transfers move it, the reports follow. Nothing is saved.
  */
@@ -65,7 +65,7 @@ function DemoWorkspace({ config, compact }: { config: DemoConfig; compact: boole
         </span>
         <span className="truncate font-medium">{config.business}</span>
         <span className="hidden rounded-full border border-line px-2 py-0.5 font-mono text-[10px] tracking-wide text-muted-foreground uppercase sm:inline">
-          Sample data
+          StockVaults · sample data
         </span>
         <div className="ml-auto flex items-center gap-2">
           <label className="sr-only" htmlFor="demo-location">

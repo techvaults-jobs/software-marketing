@@ -1,6 +1,6 @@
 # TechVaults software marketing site
 
-The public website for TechVaults' software business. It leads with inventory systems, shows the sectors they are built for, and lets a visitor use a working demo before getting in touch.
+The public website for TechVaults' software business. It leads with StockVaults, the inventory system, shows the sectors they are built for, and lets a visitor use a working demo before getting in touch.
 
 ## Run it
 
@@ -13,7 +13,7 @@ npm run dev
 
 ## What is here
 
-- **Home, Inventory, Industries, Services, Other systems, Customers, Contact**
+- **Home, StockVaults, Industries, Services, Other systems, Customers, Contact**
 - **Live demo** at `/demo/<sector>`: a working inventory app with made-up data for nine sectors. It runs entirely in the browser and saves nothing.
 - **Route transitions** with React view transitions, and a framed layout in the TechVaults colours.
 

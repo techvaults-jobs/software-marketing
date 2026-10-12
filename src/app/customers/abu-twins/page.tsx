@@ -9,14 +9,14 @@ import { Section, SectionIntro } from "@/components/site/section"
 
 export const metadata: Metadata = {
   title: "Abu Twins",
-  description: "How a multi-shop phone and electronics retailer in Ibadan runs sales, stock and suppliers on a TechVaults inventory system.",
+  description: "How a multi-shop phone and electronics retailer in Ibadan runs sales, stock and suppliers on StockVaults, the TechVaults inventory system.",
 }
 
 const facts = [
   ["Business", "Phones, laptops and power products"],
   ["Where", "Ibadan, Nigeria"],
   ["Set-up", "Several shops and a central vault"],
-  ["System", "Phones and electronics inventory"],
+  ["System", "StockVaults for phones and electronics"],
 ]
 
 const built = [
@@ -67,7 +67,7 @@ export default function AbuTwinsPage() {
           </span>
         }
       >
-        Abu Twins sells phones, laptops and power products from several shops in Ibadan. Their staff run each trading day on an inventory system TechVaults built around the way they already worked.
+        Abu Twins sells phones, laptops and power products from several shops in Ibadan. Their staff run each trading day on StockVaults, fitted by TechVaults around the way they already worked.
       </PageHero>
 
       <section className="border-t border-line">

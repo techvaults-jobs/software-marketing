@@ -9,7 +9,7 @@ import { sectors } from "@/content/sectors"
 
 export const metadata: Metadata = {
   title: "Industries",
-  description: "Inventory systems for retail, pharmacy, grocery, distribution, manufacturing, hospitality, fashion, auto parts and building materials.",
+  description: "StockVaults inventory systems for retail, pharmacy, grocery, distribution, manufacturing, hospitality, fashion, auto parts and building materials.",
 }
 
 export default function IndustriesPage() {

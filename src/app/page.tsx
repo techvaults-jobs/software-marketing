@@ -22,11 +22,11 @@ export default function HomePage() {
           <div className="pad pt-16 pb-12 sm:pt-24 sm:pb-16">
             <p className="eyebrow mb-5 flex items-center gap-2.5">
               <span className="size-1.5 rounded-full bg-brand" aria-hidden />
-              Inventory software, built to order
+              StockVaults · inventory software, built to order
             </p>
             <h1 className="display max-w-[15ch]">Know what you have, where it is and what it is worth.</h1>
             <p className="lede mt-6 max-w-[58ch]">
-              TechVaults builds inventory systems around the way your business already runs. We train your staff on it and we look after it once it is live. Try a working demo for your sector before you speak to anyone.
+              StockVaults is the inventory system TechVaults fits around the way your business already runs. We train your staff on it and we look after it once it is live. Try a working demo for your sector before you speak to anyone.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/demo" transitionTypes={["nav-forward"]} className="btn btn-primary">
@@ -82,8 +82,8 @@ export default function HomePage() {
       </Section>
 
       <Section tone="subtle">
-        <SectionIntro eyebrow="The inventory core" title="Everything a stock-holding business needs to keep count." className="reveal">
-          These are in every system we deliver, whatever the sector. They have been through real trading days, month ends and stock counts.
+        <SectionIntro eyebrow="Inside StockVaults" title="Everything a stock-holding business needs to keep count." className="reveal">
+          These are in every StockVaults system we deliver, whatever the sector. They have been through real trading days, month ends and stock counts.
         </SectionIntro>
         <ul className="reveal mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => (
@@ -95,8 +95,8 @@ export default function HomePage() {
           ))}
         </ul>
         <div className="reveal mt-12">
-          <Link href="/inventory" className="inline-flex items-center gap-1.5 text-[15px] font-medium hover:text-brand">
-            See the inventory system in detail <ArrowRight className="size-4" aria-hidden />
+          <Link href="/stockvaults" className="inline-flex items-center gap-1.5 text-[15px] font-medium hover:text-brand">
+            See StockVaults in detail <ArrowRight className="size-4" aria-hidden />
           </Link>
         </div>
       </Section>
@@ -141,7 +141,7 @@ export default function HomePage() {
       <Section>
         <div className="reveal flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionIntro eyebrow="Beyond inventory" title="Software for the rest of the business.">
-            Stock is where most of our customers start. The same team builds the systems that sit around it, for any sector.
+            StockVaults is where most of our customers start. The same team builds the systems that sit around it, for any sector.
           </SectionIntro>
           <Link href="/systems" className="btn btn-outline shrink-0 self-start lg:self-auto">
             All systems

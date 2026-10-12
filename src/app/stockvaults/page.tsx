@@ -10,7 +10,7 @@ import { Section, SectionIntro } from "@/components/site/section"
 import { features } from "@/content/features"
 
 export const metadata: Metadata = {
-  title: "Inventory system",
+  title: "StockVaults inventory system",
   description: "Stock by location, unit-level tracking, sales, purchasing, transfers, returns, roles, reports and a tamper-evident audit trail.",
 }
 
@@ -48,11 +48,11 @@ const included = [
   "Integrations with accounting, payments and messaging on request",
 ]
 
-export default function InventoryPage() {
+export default function StockVaultsPage() {
   return (
     <Page>
       <PageHero
-        eyebrow="Inventory system"
+        eyebrow="StockVaults"
         title="One count that everybody trusts."
         actions={
           <>
@@ -65,7 +65,7 @@ export default function InventoryPage() {
           </>
         }
       >
-        When the shop floor, the store room and the accounts all read from the same numbers, arguments about stock stop. This is the core every TechVaults inventory system is built on.
+        When the shop floor, the store room and the accounts all read from the same numbers, arguments about stock stop. StockVaults is the inventory system TechVaults builds, fits to your trade and looks after.
       </PageHero>
 
       <Section tone="subtle">

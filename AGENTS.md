@@ -24,6 +24,8 @@ These rules apply to everyone who changes this repository, people and coding age
 
 ## Copy
 
+- The inventory system is called **StockVaults**, one word, capital S and V. TechVaults is the company. Write "StockVaults by TechVaults" on first mention where the company is not already clear, then "StockVaults".
+
 - Write the way a senior person at the company would explain it across a table. Short sentences. Concrete nouns.
 - Say what the software does, with an example. "A return can never be worth more than the item sold for" beats "robust returns management".
 - Banned: seamless, robust, powerful, cutting-edge, next-generation, revolutionary, unlock, unleash, elevate, empower, supercharge, leverage, game-changing, world-class, "in today's fast-paced world", "take your business to the next level".

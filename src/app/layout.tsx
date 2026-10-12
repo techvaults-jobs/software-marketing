@@ -10,9 +10,9 @@ const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"]
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: "TechVaults: inventory software built around your business", template: "%s · TechVaults" },
+  title: { default: "StockVaults by TechVaults: inventory software built around your business", template: "%s · TechVaults" },
   description: site.description,
-  openGraph: { type: "website", siteName: site.name, title: "TechVaults", description: site.description },
+  openGraph: { type: "website", siteName: site.name, title: "StockVaults by TechVaults", description: site.description },
 }
 
 export const viewport: Viewport = { themeColor: "#ffffff" }

@@ -8,14 +8,14 @@ import { sectors } from "@/content/sectors"
 
 export const metadata: Metadata = {
   title: "Live demo",
-  description: "Use a working copy of the inventory system for your sector. No sign-up, nothing to install.",
+  description: "Use a working copy of StockVaults for your sector. No sign-up, nothing to install.",
 }
 
 export default function DemoIndexPage() {
   return (
     <Page>
       <PageHero eyebrow="Live demo" title="Pick a business. Run it for five minutes.">
-        Each demo is a working copy of the system with made-up stock for that sector. Sell, receive and transfer, then open the reports. No sign-up, and nothing you do is saved.
+        Each demo is a working copy of StockVaults with made-up stock for that sector. Sell, receive and transfer, then open the reports. No sign-up, and nothing you do is saved.
       </PageHero>
       <Section tone="subtle" className="py-12 sm:py-16">
         <ul className="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">

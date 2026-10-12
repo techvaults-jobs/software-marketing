@@ -7,7 +7,7 @@ const columns = [
   {
     title: "Product",
     links: [
-      { href: "/inventory", label: "Inventory system" },
+      { href: "/stockvaults", label: "StockVaults" },
       { href: "/demo", label: "Live demo" },
       { href: "/industries", label: "Industries" },
       { href: "/systems", label: "Other systems" },
@@ -38,7 +38,7 @@ export async function Footer() {
           <div>
             <Logo className="h-8 w-auto" />
             <p className="mt-4 max-w-[30ch] text-sm leading-relaxed text-muted-foreground">
-              Inventory software built around your business, with the training and care to keep it working.
+              StockVaults is inventory software built around your business, with the training and care to keep it working.
             </p>
             <a href={`mailto:${site.email}`} className="link mt-4 inline-block text-sm">
               {site.email}
