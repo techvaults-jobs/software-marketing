@@ -1,0 +1,53 @@
+import type { Metadata } from "next"
+import Link from "next/link"
+import { notFound } from "next/navigation"
+import { ArrowLeft } from "lucide-react"
+import { DemoApp } from "@/components/demo/demo-app"
+import { Page } from "@/components/site/page"
+import { getSector, sectors } from "@/content/sectors"
+
+export function generateStaticParams() {
+  return sectors.map((sector) => ({ slug: sector.slug }))
+}
+
+export async function generateMetadata({ params }: PageProps<"/demo/[slug]">): Promise<Metadata> {
+  const sector = getSector((await params).slug)
+  if (!sector) return {}
+  return {
+    title: `Demo: ${sector.name.toLowerCase()}`,
+    description: `A working inventory demo for ${sector.name.toLowerCase()}, with made-up stock you can sell, receive and transfer.`,
+  }
+}
+
+export default async function DemoPage({ params }: PageProps<"/demo/[slug]">) {
+  const sector = getSector((await params).slug)
+  if (!sector) notFound()
+
+  return (
+    <Page>
+      <div className="mx-auto w-full max-w-[1440px] px-4 pt-4 pb-10 sm:px-6">
+        <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2">
+          <Link href="/demo" transitionTypes={["nav-back"]} className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-ink">
+            <ArrowLeft className="size-4" aria-hidden />
+            All demos
+          </Link>
+          <h1 className="text-sm font-medium">
+            {sector.name} <span className="text-muted-foreground">demo</span>
+          </h1>
+          <div className="ml-auto flex items-center gap-2">
+            <Link href={`/industries/${sector.slug}`} className="btn btn-sm btn-outline hidden sm:inline-flex">
+              About this system
+            </Link>
+            <Link href="/contact" className="btn btn-sm btn-brand">
+              Get this for my business
+            </Link>
+          </div>
+        </div>
+        <DemoApp slug={sector.slug} />
+        <p className="mt-4 text-sm text-muted-foreground">
+          {sector.demo.business} is a made-up business. The demo shows the core screens; your system is fitted with the workflows, roles and reports your business needs.
+        </p>
+      </div>
+    </Page>
+  )
+}

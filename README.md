@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TechVaults software marketing site
 
-## Getting Started
+The public website for TechVaults' software business. It leads with inventory systems, shows the sectors they are built for, and lets a visitor use a working demo before getting in touch.
 
-First, run the development server:
+## Run it
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`npm run check` runs the typecheck, lint and a production build.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## What is here
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Home, Inventory, Industries, Services, Other systems, Customers, Contact**
+- **Live demo** at `/demo/<sector>`: a working inventory app with made-up data for nine sectors. It runs entirely in the browser and saves nothing.
+- **Route transitions** with React view transitions, and a framed layout in the TechVaults colours.
 
-## Learn More
+## Configuration
 
-To learn more about Next.js, take a look at the following resources:
+Copy `.env.example` to `.env.local`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Variable | Purpose |
+| --- | --- |
+| `NEXT_PUBLIC_SITE_URL` | Public address, used for the sitemap and social cards |
+| `NEXT_PUBLIC_CONTACT_EMAIL` | Address shown on the site |
+| `RESEND_API_KEY`, `CONTACT_TO`, `CONTACT_FROM` | Optional. When all three are set, the contact form sends through Resend. Without them it opens the visitor's email app with the message written out |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Editing content
 
-## Deploy on Vercel
+All text and demo data is in `src/content`. See `CONTRIBUTING.md` for how to add a sector or a customer, and `AGENTS.md` for the writing and design rules.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Next.js 16 (App Router), React 19, Tailwind CSS 4, shadcn/ui on Base UI, lucide-react, motion.

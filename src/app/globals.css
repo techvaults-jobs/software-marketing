@@ -1,26 +1,345 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-subtle: var(--subtle);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  /* TechVaults: red, black and white. Greys are neutral, never tinted. */
+  --brand: #bc0004;
+  --brand-dark: #a00003;
+  --ink: #0a0a0a;
+  --subtle: #fafafa;
+  --line: #eaeaea;
+
+  --background: #ffffff;
+  --foreground: var(--ink);
+  --card: #ffffff;
+  --card-foreground: var(--ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: #ffffff;
+  --secondary: #f5f5f5;
+  --secondary-foreground: var(--ink);
+  --muted: #f5f5f5;
+  --muted-foreground: #666666;
+  --accent: #f5f5f5;
+  --accent-foreground: var(--ink);
+  --destructive: var(--brand);
+  --border: var(--line);
+  --input: #e0e0e0;
+  --ring: #8f8f8f;
+  --chart-1: #0a0a0a;
+  --chart-2: #666666;
+  --chart-3: #a3a3a3;
+  --chart-4: #d4d4d4;
+  --chart-5: var(--brand);
+  --radius: 0.5rem;
+  --sidebar: #fafafa;
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--ink);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f5f5f5;
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--line);
+  --sidebar-ring: #8f8f8f;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-exit: 140ms;
+  --duration-enter: 220ms;
+  --duration-move: 380ms;
+}
+
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01", "cv11";
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: var(--brand);
+    color: #fff;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 2px;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  /* Page column. Sections draw their own hairlines against it. */
+  .shell {
+    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+  }
+  .eyebrow {
+    @apply font-mono text-[12px] tracking-[0.08em] text-muted-foreground uppercase;
+  }
+  .display {
+    @apply text-[40px] leading-[1.02] font-semibold tracking-[-0.045em] sm:text-[56px] lg:text-[72px];
+  }
+  .title {
+    @apply text-[30px] leading-[1.08] font-semibold tracking-[-0.035em] sm:text-[40px];
+  }
+  .lede {
+    @apply text-[17px] leading-[1.6] text-muted-foreground sm:text-[19px];
+  }
+  .btn {
+    @apply inline-flex h-11 items-center justify-center gap-2 rounded-full px-5 text-[15px] font-medium whitespace-nowrap transition-[background-color,border-color,color,transform] duration-150 select-none active:translate-y-px;
+  }
+  .btn-sm {
+    @apply h-9 px-4 text-sm;
+  }
+  .btn-primary {
+    @apply bg-ink text-white hover:bg-[#2b2b2b];
+  }
+  .btn-brand {
+    @apply bg-brand text-white hover:bg-brand-dark;
+  }
+  .btn-outline {
+    @apply border border-[#d9d9d9] bg-white text-ink hover:border-ink;
+  }
+  .btn-inverse {
+    @apply bg-white text-ink hover:bg-[#e6e6e6];
+  }
+  .btn-ghost-inverse {
+    @apply border border-white/25 text-white hover:border-white;
+  }
+  .link {
+    @apply underline decoration-[#c9c9c9] underline-offset-4 transition-colors hover:decoration-ink;
+  }
+}
+
+/* Faint dot grid behind the hero. One texture, used once. */
+.dot-grid {
+  background-image: radial-gradient(#d4d4d4 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+}
+
+/* ---------------------------------------------------------------
+   Route transitions. Old content leaves fast, new content arrives
+   a beat later, and the header never moves.
+---------------------------------------------------------------- */
+::view-transition {
+  pointer-events: none;
+}
+
+::view-transition-old(.page) {
+  animation: var(--duration-exit) ease-in both vt-fade reverse;
+}
+::view-transition-new(.page) {
+  animation:
+    var(--duration-enter) ease-out var(--duration-exit) both vt-fade,
+    var(--duration-move) var(--ease-out) var(--duration-exit) both vt-rise;
+}
+
+::view-transition-old(.page-forward) {
+  --vt-offset: -32px;
+  animation:
+    var(--duration-exit) ease-in both vt-fade reverse,
+    var(--duration-move) ease-in-out both vt-slide reverse;
+}
+::view-transition-new(.page-forward) {
+  --vt-offset: 32px;
+  animation:
+    var(--duration-enter) ease-out var(--duration-exit) both vt-fade,
+    var(--duration-move) var(--ease-out) both vt-slide;
+}
+::view-transition-old(.page-back) {
+  --vt-offset: 32px;
+  animation:
+    var(--duration-exit) ease-in both vt-fade reverse,
+    var(--duration-move) ease-in-out both vt-slide reverse;
+}
+::view-transition-new(.page-back) {
+  --vt-offset: -32px;
+  animation:
+    var(--duration-enter) ease-out var(--duration-exit) both vt-fade,
+    var(--duration-move) var(--ease-out) both vt-slide;
+}
+
+::view-transition-group(.morph) {
+  animation-duration: var(--duration-move);
+  animation-timing-function: var(--ease-out);
+}
+
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header) {
+  display: none;
+}
+::view-transition-new(site-header) {
+  animation: none;
+}
+
+@keyframes vt-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes vt-rise {
+  from {
+    translate: 0 8px;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+@keyframes vt-slide {
+  from {
+    translate: var(--vt-offset) 0;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
+
+/* The framed column every section sits in. The side rules only show on
+   screens wide enough to have margins. */
+.frame {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1200px;
+}
+.pad {
+  padding-inline: 1.25rem;
+}
+@media (min-width: 640px) {
+  .pad {
+    padding-inline: 2rem;
+  }
+}
+@media (min-width: 1024px) {
+  .frame {
+    border-inline: 1px solid var(--line);
+  }
+  .frame-dark {
+    border-color: rgb(255 255 255 / 0.1);
+  }
+  .pad {
+    padding-inline: 3rem;
+  }
+}
+
+/* Sections ease in as they scroll into view. Browsers without scroll
+   timelines, and anyone who asks for less motion, see them in place. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 32%;
+    }
+  }
+}
+@keyframes reveal {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* A demo screen settling in after a tab change. */
+.demo-enter {
+  animation: demo-enter 180ms ease-out both;
+}
+@keyframes demo-enter {
+  from {
+    opacity: 0;
+    translate: 0 6px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .demo-enter {
+    animation: none;
+  }
 }
