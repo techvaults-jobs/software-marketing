@@ -306,26 +306,128 @@
   }
 }
 
-/* Sections ease in as they scroll into view. Browsers without scroll
-   timelines, and anyone who asks for less motion, see them in place. */
-@supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .reveal {
-      animation: reveal linear both;
-      animation-timeline: view();
-      animation-range: entry 0% entry 32%;
-    }
+/* Scroll reveals. Off until RevealObserver switches them on, so content is
+   never hidden from someone without JavaScript or with reduced motion. */
+html[data-reveal="on"] .reveal {
+  opacity: 0;
+  translate: 0 18px;
+  transition:
+    opacity 600ms var(--ease-out),
+    translate 700ms var(--ease-out);
+}
+html[data-reveal="on"] .reveal.is-in {
+  opacity: 1;
+  translate: 0 0;
+}
+html.reveal-snap .reveal,
+html.reveal-snap .reveal-children > * {
+  transition: none !important;
+}
+/* Children of a revealed grid follow one another in. */
+html[data-reveal="on"] .reveal-children > * {
+  opacity: 0;
+  translate: 0 14px;
+  transition:
+    opacity 500ms var(--ease-out),
+    translate 600ms var(--ease-out);
+}
+html[data-reveal="on"] .reveal-children.is-in > * {
+  opacity: 1;
+  translate: 0 0;
+}
+html[data-reveal="on"] .reveal-children.reveal {
+  opacity: 1;
+  translate: 0 0;
+}
+.reveal-children > *:nth-child(2) { transition-delay: 60ms; }
+.reveal-children > *:nth-child(3) { transition-delay: 120ms; }
+.reveal-children > *:nth-child(4) { transition-delay: 180ms; }
+.reveal-children > *:nth-child(5) { transition-delay: 240ms; }
+.reveal-children > *:nth-child(6) { transition-delay: 300ms; }
+.reveal-children > *:nth-child(7) { transition-delay: 360ms; }
+.reveal-children > *:nth-child(8) { transition-delay: 420ms; }
+.reveal-children > *:nth-child(n + 9) { transition-delay: 480ms; }
+
+/* The hero arrives in order: label, headline, text, buttons, product. */
+@media (prefers-reduced-motion: no-preference) {
+  .rise {
+    animation: rise 800ms var(--ease-out) both;
+    animation-delay: calc(var(--i, 0) * 80ms);
   }
 }
-@keyframes reveal {
+@keyframes rise {
   from {
     opacity: 0;
-    translate: 0 16px;
+    translate: 0 20px;
   }
-  to {
-    opacity: 1;
+}
+
+/* An arrow inside a button or link leans forward on hover. */
+.btn svg,
+.nudge svg {
+  transition: translate 200ms var(--ease-out);
+}
+.btn:hover svg,
+.nudge:hover svg {
+  translate: 3px 0;
+}
+
+/* A red rule that draws across the top of a card on hover. */
+.card-line {
+  position: relative;
+}
+.card-line::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: var(--brand);
+  scale: 0 1;
+  transform-origin: left;
+  transition: scale 350ms var(--ease-out);
+}
+.card-line:hover::before,
+.card-line:focus-visible::before {
+  scale: 1 1;
+}
+
+/* The scan line in the unit-tracking illustration. */
+@media (prefers-reduced-motion: no-preference) {
+  .scan-line {
+    animation: scan 2.6s ease-in-out infinite;
+  }
+  .pulse-dot {
+    animation: pulse-dot 2s ease-out infinite;
+  }
+}
+@keyframes scan {
+  0%,
+  100% {
     translate: 0 0;
   }
+  50% {
+    translate: 0 44px;
+  }
+}
+@keyframes pulse-dot {
+  0% {
+    box-shadow: 0 0 0 0 rgb(188 0 4 / 0.45);
+  }
+  70%,
+  100% {
+    box-shadow: 0 0 0 7px rgb(188 0 4 / 0);
+  }
+}
+
+/* The outlined product name that closes the page. */
+.wordmark {
+  font-size: clamp(3.5rem, 15.5vw, 12.5rem);
+  line-height: 0.82;
+  font-weight: 600;
+  letter-spacing: -0.06em;
+  color: transparent;
+  -webkit-text-stroke: 1px #d6d6d6;
+  user-select: none;
 }
 
 /* A demo screen settling in after a tab change. */

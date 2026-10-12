@@ -1,14 +1,14 @@
 import Link from "next/link"
-import { ArrowRight, ArrowUpRight } from "lucide-react"
+import { ArrowRight, ArrowUpRight, Check } from "lucide-react"
 import { DemoSwitcher } from "@/components/demo/demo-switcher"
 import { CtaBand } from "@/components/site/cta-band"
 import { AbuTwinsMark } from "@/components/site/customer"
 import { Faq } from "@/components/site/faq"
+import { FeatureBento } from "@/components/site/feature-bento"
 import { Page } from "@/components/site/page"
 import { Rules } from "@/components/site/rules"
 import { SectorGrid } from "@/components/site/sector-card"
 import { Section, SectionIntro } from "@/components/site/section"
-import { features } from "@/content/features"
 import { sectors } from "@/content/sectors"
 import { services } from "@/content/services"
 import { systems } from "@/content/systems"
@@ -20,15 +20,17 @@ export default function HomePage() {
         <div className="dot-grid pointer-events-none absolute inset-x-0 top-0 h-[520px]" aria-hidden />
         <div className="frame relative">
           <div className="pad pt-16 pb-12 sm:pt-24 sm:pb-16">
-            <p className="eyebrow mb-5 flex items-center gap-2.5">
-              <span className="size-1.5 rounded-full bg-brand" aria-hidden />
-              StockVaults · inventory software, built to order
+            <p className="rise mb-6 inline-flex items-center gap-2.5 rounded-full border border-line bg-white py-1 pr-3.5 pl-1 text-[13px]">
+              <span className="rounded-full bg-ink px-2 py-0.5 font-medium text-white">StockVaults</span>
+              <span className="text-muted-foreground">Inventory software, built to order</span>
             </p>
-            <h1 className="display max-w-[15ch]">Know what you have, where it is and what it is worth.</h1>
-            <p className="lede mt-6 max-w-[58ch]">
+            <h1 className="display rise max-w-[15ch]" style={{ "--i": 1 } as React.CSSProperties}>
+              Know what you have, where it is and what it is worth<span className="text-brand">.</span>
+            </h1>
+            <p className="lede rise mt-6 max-w-[58ch]" style={{ "--i": 2 } as React.CSSProperties}>
               StockVaults is the inventory system TechVaults fits around the way your business already runs. We train your staff on it and we look after it once it is live. Try a working demo for your sector before you speak to anyone.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="rise mt-8 flex flex-wrap gap-3" style={{ "--i": 3 } as React.CSSProperties}>
               <Link href="/demo" transitionTypes={["nav-forward"]} className="btn btn-primary">
                 Try the demo
                 <ArrowRight className="size-4" aria-hidden />
@@ -37,8 +39,16 @@ export default function HomePage() {
                 Book a walkthrough
               </Link>
             </div>
+            <ul className="rise mt-7 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground" style={{ "--i": 4 } as React.CSSProperties}>
+              {["No sign-up to try it", `${sectors.length} sector demos`, "Fitted to your workflows", "Staff trained by role"].map((point) => (
+                <li key={point} className="flex items-center gap-2">
+                  <Check className="size-3.5 text-brand" aria-hidden />
+                  {point}
+                </li>
+              ))}
+            </ul>
           </div>
-          <div className="pad pb-16 sm:pb-20">
+          <div className="pad rise pb-16 sm:pb-20" style={{ "--i": 5 } as React.CSSProperties}>
             <DemoSwitcher compact />
           </div>
         </div>
@@ -76,26 +86,41 @@ export default function HomePage() {
             All industries
           </Link>
         </div>
-        <div className="reveal mt-12">
+        <div className="mt-12">
           <SectorGrid sectors={sectors} />
         </div>
       </Section>
+
+      <section className="border-t border-line">
+        <div className="frame">
+          <dl className="reveal reveal-children grid grid-cols-2 lg:grid-cols-4">
+            {[
+              [String(sectors.length), "sectors with a working demo"],
+              ["5", "staff roles, each trained on its own screens"],
+              ["6", "steps from first call to go-live"],
+              ["1", "team for the build and the years after"],
+            ].map(([figure, label], index) => (
+              <div key={label} className={`border-line px-5 py-8 sm:px-8 lg:px-12 ${index % 2 ? "border-l" : ""} ${index > 1 ? "border-t lg:border-t-0" : ""} ${index === 2 ? "lg:border-l" : ""}`}>
+                <dt className="sr-only">{label}</dt>
+                <dd>
+                  <span className="block text-[44px] leading-none font-semibold tracking-[-0.05em] tabular-nums sm:text-[56px]">{figure}</span>
+                  <span className="mt-3 block max-w-[22ch] text-sm leading-snug text-muted-foreground">{label}</span>
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </div>
+      </section>
 
       <Section tone="subtle">
         <SectionIntro eyebrow="Inside StockVaults" title="Everything a stock-holding business needs to keep count." className="reveal">
           These are in every StockVaults system we deliver, whatever the sector. They have been through real trading days, month ends and stock counts.
         </SectionIntro>
-        <ul className="reveal mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature) => (
-            <li key={feature.name}>
-              <feature.icon className="size-5" strokeWidth={1.75} aria-hidden />
-              <h3 className="mt-4 text-[17px] font-semibold tracking-tight">{feature.name}</h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{feature.body}</p>
-            </li>
-          ))}
-        </ul>
-        <div className="reveal mt-12">
-          <Link href="/stockvaults" className="inline-flex items-center gap-1.5 text-[15px] font-medium hover:text-brand">
+        <div className="mt-12">
+          <FeatureBento />
+        </div>
+        <div className="reveal mt-10">
+          <Link href="/stockvaults" className="nudge inline-flex items-center gap-1.5 text-[15px] font-medium hover:text-brand">
             See StockVaults in detail <ArrowRight className="size-4" aria-hidden />
           </Link>
         </div>
@@ -105,7 +130,7 @@ export default function HomePage() {
         <SectionIntro eyebrow="Built-in discipline" title="Rules the system keeps, so your staff do not have to remember them." className="reveal">
           Most stock losses are small mistakes that nobody caught. We write your rules into the software.
         </SectionIntro>
-        <div className="reveal mt-12">
+        <div className="mt-12">
           <Rules />
         </div>
       </Section>
@@ -123,7 +148,7 @@ export default function HomePage() {
               <ArrowRight className="size-4" aria-hidden />
             </Link>
           </div>
-          <ol className="reveal grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 sm:grid-cols-2">
+          <ol className="reveal reveal-children grid gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10 sm:grid-cols-2">
             {services.map((service, index) => (
               <li key={service.id} className="bg-ink p-6 sm:p-7">
                 <div className="flex items-center justify-between">
@@ -147,12 +172,16 @@ export default function HomePage() {
             All systems
           </Link>
         </div>
-        <ul className="reveal mt-12 grid border-t border-line sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="reveal reveal-children mt-12 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
           {systems.slice(0, 9).map((system) => (
-            <li key={system.name} className="flex items-center gap-3 border-b border-line py-4 sm:pr-6">
-              <system.icon className="size-[18px] shrink-0 text-muted-foreground" strokeWidth={1.75} aria-hidden />
-              <span className="text-[15px] font-medium">{system.name}</span>
-              <span className="ml-auto truncate text-sm text-muted-foreground">{system.for}</span>
+            <li key={system.name} className="flex items-center gap-4 bg-white p-5">
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-lg border border-line">
+                <system.icon className="size-4" strokeWidth={1.75} aria-hidden />
+              </span>
+              <span className="min-w-0">
+                <span className="block text-[15px] font-medium">{system.name}</span>
+                <span className="block text-sm text-muted-foreground">{system.for}</span>
+              </span>
             </li>
           ))}
         </ul>

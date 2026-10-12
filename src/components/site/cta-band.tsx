@@ -11,7 +11,7 @@ export function CtaBand({
 }) {
   return (
     <Section tone="dark">
-      <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+      <div className="reveal flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
         <div className="max-w-[640px]">
           <h2 className="title">{title}</h2>
           <p className="mt-5 text-[17px] leading-[1.6] text-white/65 sm:text-[19px]">{body}</p>

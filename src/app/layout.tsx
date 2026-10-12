@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Footer } from "@/components/site/footer"
 import { Header } from "@/components/site/header"
+import { RevealObserver } from "@/components/site/reveal-observer"
 import { site } from "@/content/site"
 import "./globals.css"
 
@@ -27,6 +28,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Header />
         {children}
         <Footer />
+        <RevealObserver />
       </body>
     </html>
   )

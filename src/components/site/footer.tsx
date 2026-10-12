@@ -71,6 +71,9 @@ export async function Footer() {
             </ul>
           </nav>
         </div>
+        <div className="overflow-hidden border-t border-line px-3 pt-8 text-center sm:pt-10" aria-hidden>
+          <p className="wordmark translate-y-[0.14em]">{site.product}</p>
+        </div>
         <div className="pad flex flex-col gap-2 border-t border-line py-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {site.legalName}

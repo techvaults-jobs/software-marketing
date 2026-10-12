@@ -20,8 +20,9 @@ export function PageHero({
   lead?: ReactNode
 }) {
   return (
-    <section>
-      <div className="frame">
+    <section className="relative overflow-hidden">
+      <div className="dot-grid pointer-events-none absolute inset-x-0 top-0 h-[360px]" aria-hidden />
+      <div className="frame relative">
         <div className="pad pt-12 pb-14 sm:pt-16 sm:pb-20">
           {back ? (
             <Link
@@ -33,11 +34,21 @@ export function PageHero({
               {back.label}
             </Link>
           ) : null}
-          {lead ? <div className="mb-6">{lead}</div> : null}
-          {eyebrow ? <p className="eyebrow mb-4">{eyebrow}</p> : null}
-          <h1 className="display max-w-[18ch]">{title}</h1>
-          {children ? <p className="lede mt-6 max-w-[60ch]">{children}</p> : null}
-          {actions ? <div className="mt-8 flex flex-wrap gap-3">{actions}</div> : null}
+          {lead ? <div className="rise mb-6">{lead}</div> : null}
+          {eyebrow ? <p className="eyebrow rise mb-4">{eyebrow}</p> : null}
+          <h1 className="display rise max-w-[18ch]" style={{ "--i": 1 } as React.CSSProperties}>
+            {title}
+          </h1>
+          {children ? (
+            <p className="lede rise mt-6 max-w-[60ch]" style={{ "--i": 2 } as React.CSSProperties}>
+              {children}
+            </p>
+          ) : null}
+          {actions ? (
+            <div className="rise mt-8 flex flex-wrap gap-3" style={{ "--i": 3 } as React.CSSProperties}>
+              {actions}
+            </div>
+          ) : null}
         </div>
       </div>
     </section>

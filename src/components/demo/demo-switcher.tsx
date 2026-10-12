@@ -16,7 +16,7 @@ export function DemoSwitcher({ initial = sectors[0].slug, compact = false }: { i
   return (
     <div>
       <div className="-mx-5 mb-4 overflow-x-auto px-5 [scrollbar-width:none] sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden">
-        <div role="tablist" aria-label="Choose a sector" className="flex w-max gap-1 sm:w-auto sm:flex-wrap">
+        <div role="tablist" aria-label="Choose a sector" className="flex w-max gap-1 rounded-full border border-line bg-white p-1 sm:w-fit sm:flex-wrap sm:rounded-3xl">
           {sectors.map((sector) => {
             const active = sector.slug === slug
             return (
@@ -25,9 +25,10 @@ export function DemoSwitcher({ initial = sectors[0].slug, compact = false }: { i
                 type="button"
                 role="tab"
                 aria-selected={active}
+                aria-label={sector.name}
                 onClick={() => setSlug(sector.slug)}
                 className={cn(
-                  "relative flex h-9 items-center gap-2 rounded-full px-3.5 text-sm whitespace-nowrap transition-colors",
+                  "relative flex h-8 items-center gap-2 rounded-full px-3 text-sm whitespace-nowrap transition-colors",
                   active ? "text-white" : "text-muted-foreground hover:text-ink"
                 )}
               >
@@ -39,7 +40,7 @@ export function DemoSwitcher({ initial = sectors[0].slug, compact = false }: { i
                   />
                 ) : null}
                 <sector.icon className="relative size-4" strokeWidth={1.75} aria-hidden />
-                <span className="relative font-medium">{sector.name}</span>
+                <span className="relative font-medium">{sector.short}</span>
               </button>
             )
           })}

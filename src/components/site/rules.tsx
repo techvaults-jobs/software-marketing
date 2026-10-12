@@ -6,7 +6,7 @@ import { ArrowRight, Eye, EyeOff, Lock } from "lucide-react"
  */
 export function Rules() {
   return (
-    <ul className="grid gap-px overflow-hidden rounded-xl border border-line bg-line lg:grid-cols-3">
+    <ul className="reveal-children reveal grid gap-px overflow-hidden rounded-xl border border-line bg-line lg:grid-cols-3">
       <li className="flex flex-col bg-white p-6 sm:p-7">
         <div className="rounded-lg border border-line p-4 text-[13px]">
           <div className="flex items-baseline justify-between">

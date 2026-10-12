@@ -12,11 +12,11 @@ export function SectorCard({ sector }: { sector: Sector }) {
     <Link
       href={`/industries/${sector.slug}`}
       transitionTypes={["nav-forward"]}
-      className="group relative flex h-full flex-col bg-white p-6 transition-colors hover:bg-subtle sm:p-7"
+      className="card-line group flex h-full flex-col bg-white p-6 transition-colors hover:bg-subtle sm:p-7"
     >
       <div className="flex items-start justify-between">
         <ViewTransition name={`sector-${sector.slug}`} share="morph" default="none">
-          <span className="flex size-10 items-center justify-center rounded-lg border border-line bg-white">
+          <span className="flex size-10 items-center justify-center rounded-lg border border-line bg-white transition-colors duration-200 group-hover:border-ink group-hover:bg-ink group-hover:text-white">
             <sector.icon className="size-[18px]" strokeWidth={1.75} aria-hidden />
           </span>
         </ViewTransition>
@@ -33,7 +33,7 @@ export function SectorCard({ sector }: { sector: Sector }) {
 
 export function SectorGrid({ sectors }: { sectors: Sector[] }) {
   return (
-    <ul className="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+    <ul className="reveal reveal-children grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
       {sectors.map((sector) => (
         <li key={sector.slug}>
           <SectorCard sector={sector} />

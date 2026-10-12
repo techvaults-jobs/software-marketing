@@ -3,11 +3,11 @@ import Link from "next/link"
 import { ArrowRight, Check } from "lucide-react"
 import { DemoSwitcher } from "@/components/demo/demo-switcher"
 import { CtaBand } from "@/components/site/cta-band"
+import { FeatureBento } from "@/components/site/feature-bento"
 import { Page } from "@/components/site/page"
 import { PageHero } from "@/components/site/page-hero"
 import { Rules } from "@/components/site/rules"
 import { Section, SectionIntro } from "@/components/site/section"
-import { features } from "@/content/features"
 
 export const metadata: Metadata = {
   title: "StockVaults inventory system",
@@ -70,20 +70,14 @@ export default function StockVaultsPage() {
 
       <Section tone="subtle">
         <SectionIntro eyebrow="What is in it" title="Nine parts, working from one set of numbers." className="reveal" />
-        <ul className="reveal mt-12 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
-          {features.map((feature) => (
-            <li key={feature.name} className="bg-white p-6 sm:p-7">
-              <feature.icon className="size-5" strokeWidth={1.75} aria-hidden />
-              <h3 className="mt-5 text-[17px] font-semibold tracking-tight">{feature.name}</h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{feature.body}</p>
-            </li>
-          ))}
-        </ul>
+        <div className="mt-12">
+          <FeatureBento />
+        </div>
       </Section>
 
       <Section>
         <SectionIntro eyebrow="A trading day" title="How it fits into the day." className="reveal" />
-        <ol className="reveal mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+        <ol className="reveal reveal-children mt-12 grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {days.map((day) => (
             <li key={day.time} className="border-t border-ink pt-5">
               <p className="eyebrow">{day.time}</p>
@@ -98,7 +92,7 @@ export default function StockVaultsPage() {
         <SectionIntro eyebrow="Built-in discipline" title="Your rules, applied every time." className="reveal">
           These three come from problems our customers brought us. Your system carries the rules your business needs.
         </SectionIntro>
-        <div className="reveal mt-12">
+        <div className="mt-12">
           <Rules />
         </div>
       </Section>
