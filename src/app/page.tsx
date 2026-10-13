@@ -5,6 +5,7 @@ import { CtaBand } from "@/components/site/cta-band"
 import { AbuTwinsMark } from "@/components/site/customer"
 import { Faq } from "@/components/site/faq"
 import { FeatureBento } from "@/components/site/feature-bento"
+import { HeroFilm } from "@/components/site/hero-film"
 import { Page } from "@/components/site/page"
 import { Rules } from "@/components/site/rules"
 import { SectorGrid } from "@/components/site/sector-card"
@@ -19,36 +20,42 @@ export default function HomePage() {
       <section className="relative overflow-hidden">
         <div className="dot-grid pointer-events-none absolute inset-x-0 top-0 h-[520px]" aria-hidden />
         <div className="frame relative">
-          <div className="pad pt-16 pb-12 sm:pt-24 sm:pb-16">
-            <p className="rise mb-6 inline-flex items-center gap-2.5 rounded-full border border-line bg-white py-1 pr-3.5 pl-1 text-[13px]">
-              <span className="rounded-full bg-ink px-2 py-0.5 font-medium text-white">StockVaults</span>
-              <span className="text-muted-foreground">Inventory software, built to order</span>
-            </p>
-            <h1 className="display rise max-w-[15ch]" style={{ "--i": 1 } as React.CSSProperties}>
-              Know what you have, where it is and what it is worth<span className="text-brand">.</span>
-            </h1>
-            <p className="lede rise mt-6 max-w-[58ch]" style={{ "--i": 2 } as React.CSSProperties}>
-              StockVaults is the inventory system TechVaults fits around the way your business already runs. We train your staff on it and we look after it once it is live. Try a working demo for your sector before you speak to anyone.
-            </p>
-            <div className="rise mt-8 flex flex-wrap gap-3" style={{ "--i": 3 } as React.CSSProperties}>
-              <Link href="/demo" transitionTypes={["nav-forward"]} className="btn btn-primary">
-                Try the demo
-                <ArrowRight className="size-4" aria-hidden />
-              </Link>
-              <Link href="/contact" className="btn btn-outline">
-                Book a walkthrough
-              </Link>
+          <div className="pad grid grid-cols-1 gap-12 pt-16 pb-12 sm:pt-24 sm:pb-16 lg:grid-cols-[minmax(0,1fr)_minmax(0,440px)] lg:items-center lg:gap-10 xl:grid-cols-[minmax(0,1fr)_minmax(0,480px)]">
+            <div>
+              <p className="rise mb-6 inline-flex items-center gap-2.5 rounded-full border border-line bg-white py-1 pr-3.5 pl-1 text-[13px]">
+                <span className="rounded-full bg-ink px-2 py-0.5 font-medium text-white">StockVaults</span>
+                <span className="text-muted-foreground">Inventory software, built to order</span>
+              </p>
+              <h1 className="display rise max-w-[15ch] lg:text-[56px] xl:text-[64px]" style={{ "--i": 1 } as React.CSSProperties}>
+                Know what you have, where it is and what it is worth<span className="text-brand">.</span>
+              </h1>
+              <p className="lede rise mt-6 max-w-[58ch]" style={{ "--i": 2 } as React.CSSProperties}>
+                StockVaults is the inventory system TechVaults fits around the way your business already runs. We train your staff on it and we look after it once it is live. Try a working demo for your sector before you speak to anyone.
+              </p>
+              <div className="rise mt-8 flex flex-wrap gap-3" style={{ "--i": 3 } as React.CSSProperties}>
+                <Link href="/demo" transitionTypes={["nav-forward"]} className="btn btn-primary">
+                  Try the demo
+                  <ArrowRight className="size-4" aria-hidden />
+                </Link>
+                <Link href="/contact" className="btn btn-outline">
+                  Book a walkthrough
+                </Link>
+              </div>
+              <ul className="rise mt-7 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground" style={{ "--i": 4 } as React.CSSProperties}>
+                {["No sign-up to try it", `${sectors.length} sector demos`, "Fitted to your workflows", "Staff trained by role"].map((point) => (
+                  <li key={point} className="flex items-center gap-2">
+                    <Check className="size-3.5 text-brand" aria-hidden />
+                    {point}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <ul className="rise mt-7 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground" style={{ "--i": 4 } as React.CSSProperties}>
-              {["No sign-up to try it", `${sectors.length} sector demos`, "Fitted to your workflows", "Staff trained by role"].map((point) => (
-                <li key={point} className="flex items-center gap-2">
-                  <Check className="size-3.5 text-brand" aria-hidden />
-                  {point}
-                </li>
-              ))}
-            </ul>
+            <div className="rise" style={{ "--i": 3 } as React.CSSProperties}>
+              <HeroFilm />
+            </div>
           </div>
           <div className="pad rise pb-16 sm:pb-20" style={{ "--i": 5 } as React.CSSProperties}>
+            <p className="eyebrow mb-4">Now try it yourself</p>
             <DemoSwitcher compact />
           </div>
         </div>

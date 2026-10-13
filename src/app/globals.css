@@ -445,3 +445,101 @@ html[data-reveal="on"] .reveal-children.reveal {
     animation: none;
   }
 }
+
+/* The banner film. Every resting style is the finished state, so with reduced
+   motion each scene is shown complete and nothing plays by itself. */
+.film-progress {
+  transform-origin: left;
+}
+.film-scan {
+  left: 100%;
+  opacity: 0;
+}
+.film-travel {
+  left: 100%;
+}
+.film-drain {
+  transform-origin: left;
+}
+.tick {
+  display: inline-flex;
+  height: 1.25em;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.tick-reel {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  align-self: flex-start;
+  translate: 0 -1.25em;
+}
+.tick-reel > * {
+  flex: none;
+  height: 1.25em;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .film-in {
+    animation: film-in 360ms var(--ease-out) var(--d, 0ms) both;
+  }
+  .tick-reel {
+    animation: tick 380ms var(--ease-out) var(--d, 0ms) both;
+  }
+  .film-scan {
+    animation: film-scan 900ms ease-in-out var(--d, 0ms) both;
+  }
+  .film-travel {
+    animation: film-travel 900ms ease-in-out var(--d, 0ms) both;
+  }
+  .film-drain {
+    animation: film-drain 380ms var(--ease-out) var(--d, 0ms) both;
+  }
+  .film-progress {
+    animation: film-progress linear both;
+  }
+  .film[data-running="false"] .film-progress {
+    animation-play-state: paused;
+  }
+  @media (hover: hover) {
+    .film:hover .film-progress {
+      animation-play-state: paused;
+    }
+  }
+}
+@keyframes film-in {
+  from {
+    opacity: 0;
+    translate: 0 8px;
+  }
+}
+@keyframes tick {
+  from {
+    translate: 0 0;
+  }
+}
+@keyframes film-scan {
+  from {
+    left: 0;
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+}
+@keyframes film-travel {
+  from {
+    left: 0;
+  }
+}
+@keyframes film-drain {
+  from {
+    scale: var(--from, 1) 1;
+  }
+}
+@keyframes film-progress {
+  from {
+    scale: 0 1;
+  }
+}

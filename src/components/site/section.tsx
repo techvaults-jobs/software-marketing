@@ -17,7 +17,8 @@ export function Section({
     <section
       id={id}
       className={cn(
-        "border-t",
+        // The crosses sit 4px outside the frame, which at laptop widths is the page edge.
+        "overflow-x-clip border-t",
         tone === "dark" ? "border-white/10 bg-ink text-white" : "border-line",
         tone === "subtle" && "bg-subtle"
       )}
