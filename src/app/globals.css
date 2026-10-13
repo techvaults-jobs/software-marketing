@@ -543,3 +543,8 @@ html[data-reveal="on"] .reveal-children.reveal {
     scale: 0 1;
   }
 }
+
+/* An in-page link lands below the sticky header, not under it. */
+section[id] {
+  scroll-margin-top: 4.5rem;
+}

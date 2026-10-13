@@ -4,11 +4,11 @@ import { DemoSwitcher } from "@/components/demo/demo-switcher"
 import { CtaBand } from "@/components/site/cta-band"
 import { AbuTwinsMark } from "@/components/site/customer"
 import { Faq } from "@/components/site/faq"
-import { FeatureBento } from "@/components/site/feature-bento"
+import { Alternatives } from "@/components/site/alternatives"
 import { HeroFilm } from "@/components/site/hero-film"
+import { ItemJourney } from "@/components/site/item-journey"
 import { Page } from "@/components/site/page"
 import { Rules } from "@/components/site/rules"
-import { SectorGrid } from "@/components/site/sector-card"
 import { Section, SectionIntro } from "@/components/site/section"
 import { sectors } from "@/content/sectors"
 import { services } from "@/content/services"
@@ -33,7 +33,7 @@ export default function HomePage() {
                 StockVaults is the inventory system TechVaults fits around the way your business already runs. We train your staff on it and we look after it once it is live. Try a working demo for your sector before you speak to anyone.
               </p>
               <div className="rise mt-8 flex flex-wrap gap-3" style={{ "--i": 3 } as React.CSSProperties}>
-                <Link href="/demo" transitionTypes={["nav-forward"]} className="btn btn-primary">
+                <Link href="#demo" className="btn btn-primary">
                   Try the demo
                   <ArrowRight className="size-4" aria-hidden />
                 </Link>
@@ -53,10 +53,6 @@ export default function HomePage() {
             <div className="rise" style={{ "--i": 3 } as React.CSSProperties}>
               <HeroFilm />
             </div>
-          </div>
-          <div className="pad rise pb-16 sm:pb-20" style={{ "--i": 5 } as React.CSSProperties}>
-            <p className="eyebrow mb-4">Now try it yourself</p>
-            <DemoSwitcher compact />
           </div>
         </div>
       </section>
@@ -85,56 +81,44 @@ export default function HomePage() {
       </section>
 
       <Section>
+        <SectionIntro eyebrow="01 · What it replaces" title="Most stock is still counted in a book, a spreadsheet or software built for somebody else." className="reveal">
+          Each of them works on a quiet day. This is what happens on the other days.
+        </SectionIntro>
+        <div className="mt-12">
+          <Alternatives />
+        </div>
+      </Section>
+
+      <Section tone="subtle">
+        <SectionIntro eyebrow="02 · How it works" title="Follow one phone from the supplier to a customer." className="reveal">
+          Every item in StockVaults is in one known place at a time, and every move has a name on it. Step through it.
+        </SectionIntro>
+        <div className="mt-12">
+          <ItemJourney />
+        </div>
+        <div className="reveal mt-8">
+          <Link href="/stockvaults" className="nudge inline-flex items-center gap-1.5 text-[15px] font-medium hover:text-brand">
+            Everything StockVaults does <ArrowRight className="size-4" aria-hidden />
+          </Link>
+        </div>
+      </Section>
+
+      <Section id="demo">
         <div className="reveal flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-          <SectionIntro eyebrow="Industries" title="One core. Fitted to the stock you hold.">
-            A phone has a serial number. A box of tablets has an expiry date. A tonne of sand has neither. Each sector gets the tracking it needs and none of what it does not.
+          <SectionIntro eyebrow="03 · Your trade" title="A phone has a serial number. A tonne of sand does not.">
+            Each sector gets the tracking it needs and none of what it does not. Pick yours and use it: sell something, move stock, then check the count.
           </SectionIntro>
           <Link href="/industries" className="btn btn-outline shrink-0 self-start lg:self-auto">
             All industries
           </Link>
         </div>
-        <div className="mt-12">
-          <SectorGrid sectors={sectors} />
+        <div className="reveal mt-10">
+          <DemoSwitcher compact />
         </div>
       </Section>
-
-      <section className="border-t border-line">
-        <div className="frame">
-          <dl className="reveal reveal-children grid grid-cols-2 lg:grid-cols-4">
-            {[
-              [String(sectors.length), "sectors with a working demo"],
-              ["5", "staff roles, each trained on its own screens"],
-              ["6", "steps from first call to go-live"],
-              ["1", "team for the build and the years after"],
-            ].map(([figure, label], index) => (
-              <div key={label} className={`border-line px-5 py-8 sm:px-8 lg:px-12 ${index % 2 ? "border-l" : ""} ${index > 1 ? "border-t lg:border-t-0" : ""} ${index === 2 ? "lg:border-l" : ""}`}>
-                <dt className="sr-only">{label}</dt>
-                <dd>
-                  <span className="block text-[44px] leading-none font-semibold tracking-[-0.05em] tabular-nums sm:text-[56px]">{figure}</span>
-                  <span className="mt-3 block max-w-[22ch] text-sm leading-snug text-muted-foreground">{label}</span>
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </div>
-      </section>
 
       <Section tone="subtle">
-        <SectionIntro eyebrow="Inside StockVaults" title="Everything a stock-holding business needs to keep count." className="reveal">
-          These are in every StockVaults system we deliver, whatever the sector. They have been through real trading days, month ends and stock counts.
-        </SectionIntro>
-        <div className="mt-12">
-          <FeatureBento />
-        </div>
-        <div className="reveal mt-10">
-          <Link href="/stockvaults" className="nudge inline-flex items-center gap-1.5 text-[15px] font-medium hover:text-brand">
-            See StockVaults in detail <ArrowRight className="size-4" aria-hidden />
-          </Link>
-        </div>
-      </Section>
-
-      <Section>
-        <SectionIntro eyebrow="Built-in discipline" title="Rules the system keeps, so your staff do not have to remember them." className="reveal">
+        <SectionIntro eyebrow="04 · Built-in discipline" title="Rules the system keeps, so your staff do not have to remember them." className="reveal">
           Most stock losses are small mistakes that nobody caught. We write your rules into the software.
         </SectionIntro>
         <div className="mt-12">
@@ -145,7 +129,7 @@ export default function HomePage() {
       <Section tone="dark">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.25fr] lg:gap-16">
           <div className="reveal">
-            <p className="eyebrow mb-4 text-white/50">More than software</p>
+            <p className="eyebrow mb-4 text-white/50">05 · More than software</p>
             <h2 className="title">We build it, train your people and stay.</h2>
             <p className="mt-5 text-[17px] leading-[1.6] text-white/65 sm:text-[19px]">
               A system nobody was trained on gets abandoned within a month. Building is one part of the job. The rest is getting every member of staff comfortable with it and being there when the business changes.
