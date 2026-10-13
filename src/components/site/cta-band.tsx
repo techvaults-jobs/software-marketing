@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, MessageCircle } from "lucide-react"
+import { whatsappLink } from "@/content/site"
 import { Section } from "./section"
 
 export function CtaBand({
@@ -21,9 +22,10 @@ export function CtaBand({
             Book a walkthrough
             <ArrowRight className="size-4" aria-hidden />
           </Link>
-          <Link href="/demo" className="btn btn-ghost-inverse">
-            Try the demo
-          </Link>
+          <a href={whatsappLink()} target="_blank" rel="noreferrer" className="btn btn-ghost-inverse">
+            <MessageCircle className="size-4" aria-hidden />
+            Chat on WhatsApp
+          </a>
         </div>
       </div>
     </Section>

@@ -10,7 +10,6 @@ import { ItemJourney } from "@/components/site/item-journey"
 import { Page } from "@/components/site/page"
 import { Rules } from "@/components/site/rules"
 import { Section, SectionIntro } from "@/components/site/section"
-import { sectors } from "@/content/sectors"
 import { services } from "@/content/services"
 import { systems } from "@/content/systems"
 
@@ -42,7 +41,7 @@ export default function HomePage() {
                 </Link>
               </div>
               <ul className="rise mt-7 flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground" style={{ "--i": 4 } as React.CSSProperties}>
-                {["No sign-up to try it", `${sectors.length} sector demos`, "Fitted to your workflows", "Staff trained by role"].map((point) => (
+                {["No sign-up to try it", "One payment, no monthly licence", "Fitted to your workflows", "Staff trained by role"].map((point) => (
                   <li key={point} className="flex items-center gap-2">
                     <Check className="size-3.5 text-brand" aria-hidden />
                     {point}

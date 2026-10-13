@@ -9,7 +9,7 @@ export const faq = [
   },
   {
     q: "How is it priced?",
-    a: "We quote after a discovery call, because the price follows the scope: how many locations you run, the workflows you need and how you want it hosted. You get the full price in writing before any work starts.",
+    a: "One payment, and the system is yours to keep. There is no monthly licence. The price depends on how many locations you run, and the standard prices are on the pricing page. The first twelve months of hosting, support and updates are included. After that a yearly care plan is optional.",
   },
   {
     q: "Can you move our existing stock and records across?",

@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { sectors } from "@/content/sectors"
-import { site } from "@/content/site"
+import { site, whatsappLink } from "@/content/site"
 import { Logo } from "./logo"
 
 const columns = [
@@ -9,6 +9,7 @@ const columns = [
     links: [
       { href: "/stockvaults", label: "StockVaults" },
       { href: "/demo", label: "Live demo" },
+      { href: "/pricing", label: "Pricing" },
       { href: "/industries", label: "Industries" },
       { href: "/systems", label: "Other systems" },
     ],
@@ -40,9 +41,25 @@ export async function Footer() {
             <p className="mt-4 max-w-[30ch] text-sm leading-relaxed text-muted-foreground">
               StockVaults is inventory software built around your business, with the training and care to keep it working.
             </p>
-            <a href={`mailto:${site.email}`} className="link mt-4 inline-block text-sm">
-              {site.email}
-            </a>
+            <ul className="mt-4 space-y-1.5 text-sm">
+              <li>
+                <a href={whatsappLink()} target="_blank" rel="noreferrer" className="link">
+                  WhatsApp {site.phone.display}
+                </a>
+              </li>
+              <li>
+                <a href={`mailto:${site.email}`} className="link">
+                  {site.email}
+                </a>
+              </li>
+            </ul>
+            <address className="mt-4 text-sm leading-relaxed text-muted-foreground not-italic">
+              {site.address.map((line) => (
+                <span key={line} className="block">
+                  {line}
+                </span>
+              ))}
+            </address>
           </div>
           {columns.map((column) => (
             <nav key={column.title} aria-label={column.title}>

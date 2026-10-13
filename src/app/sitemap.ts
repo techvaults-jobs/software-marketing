@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/industries",
     "/demo",
     "/services",
+    "/pricing",
     "/systems",
     "/customers/abu-twins",
     "/contact",

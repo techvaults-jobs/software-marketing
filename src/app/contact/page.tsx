@@ -1,8 +1,9 @@
 import type { Metadata } from "next"
+import { MessageCircle, Phone } from "lucide-react"
 import { ContactForm } from "@/components/contact/contact-form"
 import { Page } from "@/components/site/page"
 import { sectors } from "@/content/sectors"
-import { site } from "@/content/site"
+import { site, whatsappLink } from "@/content/site"
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -38,12 +39,25 @@ export default function ContactPage() {
                   </li>
                 ))}
               </ol>
-              <p className="mt-10 text-[15px] text-muted-foreground">
-                Prefer email?{" "}
-                <a href={`mailto:${site.email}`} className="link text-ink">
-                  {site.email}
-                </a>
-              </p>
+              <div className="mt-10 border-t border-line pt-8">
+                <p className="font-medium">Quicker by phone</p>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <a href={whatsappLink()} target="_blank" rel="noreferrer" className="btn btn-primary">
+                    <MessageCircle className="size-4" aria-hidden />
+                    Chat on WhatsApp
+                  </a>
+                  <a href={`tel:${site.phone.e164}`} className="btn btn-outline">
+                    <Phone className="size-4" aria-hidden />
+                    {site.phone.display}
+                  </a>
+                </div>
+                <p className="mt-6 text-[15px] text-muted-foreground">
+                  <a href={`mailto:${site.email}`} className="link text-ink">
+                    {site.email}
+                  </a>
+                </p>
+                <address className="mt-2 text-[15px] leading-relaxed text-muted-foreground not-italic">{site.address.join(", ")}</address>
+              </div>
             </div>
             <ContactForm sectors={sectors.map((sector) => sector.name)} />
           </div>

@@ -48,7 +48,7 @@ export function Header() {
               onBlur={() => setHovered(null)}
               aria-current={isActive(item.href) ? "page" : undefined}
               className={cn(
-                "relative rounded-full px-3.5 py-2 text-sm transition-colors",
+                "relative rounded-full px-2.5 py-2 text-sm whitespace-nowrap transition-colors xl:px-3.5",
                 isActive(item.href) ? "text-ink" : "text-muted-foreground hover:text-ink"
               )}
             >
