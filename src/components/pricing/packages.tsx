@@ -14,7 +14,7 @@ export function Packages() {
           <span className={cn("self-start rounded-full px-2.5 py-1 font-mono text-[11px] whitespace-nowrap uppercase", plan.featured ? "bg-ink text-white" : "border border-line text-muted-foreground")}>{plan.locations}</span>
           <h2 className="mt-5 text-[22px] font-semibold tracking-[-0.03em]">{plan.name}</h2>
           <p className="mt-2 min-h-[3em] text-[15px] leading-relaxed text-muted-foreground">{plan.for}</p>
-          <Price money={plan.price} from={plan.from} className="mt-6 block" />
+          <Price naira={plan.price} from={plan.from} className="mt-6 block" />
           <ul className="mt-7 flex-1 space-y-3 border-t border-line pt-6">
             {plan.highlights.map((highlight) => (
               <li key={highlight} className="flex gap-3 text-[15px] leading-snug">
@@ -28,7 +28,7 @@ export function Packages() {
               <>
                 First year of care included. After that, optional at{" "}
                 <span className="font-medium text-ink">
-                  <Amount money={plan.care} />
+                  <Amount naira={plan.care} />
                 </span>{" "}
                 a year.
               </>

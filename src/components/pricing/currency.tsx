@@ -2,20 +2,27 @@
 
 import { createContext, use, useState, type ReactNode } from "react"
 import { motion, useReducedMotion } from "motion/react"
-import type { Money } from "@/content/pricing"
 import { cn } from "@/lib/utils"
 
 type Currency = "ngn" | "usd"
 
-const CurrencyContext = createContext<{ currency: Currency; setCurrency: (currency: Currency) => void }>({ currency: "ngn", setCurrency: () => {} })
+const CurrencyContext = createContext<{ currency: Currency; setCurrency: (currency: Currency) => void; rate: number }>({ currency: "ngn", setCurrency: () => {}, rate: 1 })
 
-/** Holds the currency the visitor is reading prices in. Naira first: it is what we charge. */
-export function CurrencyProvider({ children }: { children: ReactNode }) {
+/**
+ * Holds the currency the visitor is reading prices in, and the day's rate.
+ * Naira first: it is what we charge.
+ */
+export function CurrencyProvider({ rate, children }: { rate: number; children: ReactNode }) {
   const [currency, setCurrency] = useState<Currency>("ngn")
-  return <CurrencyContext value={{ currency, setCurrency }}>{children}</CurrencyContext>
+  return <CurrencyContext value={{ currency, setCurrency, rate }}>{children}</CurrencyContext>
 }
 
 export const useCurrency = () => use(CurrencyContext)
+
+/** A naira price in dollars, to the nearest ten so it reads as a price and not a conversion. */
+export function toDollars(naira: number, rate: number) {
+  return Math.round(naira / rate / 10) * 10
+}
 
 export function formatMoney(amount: number, currency: Currency) {
   return `${currency === "ngn" ? "₦" : "$"}${Math.round(amount).toLocaleString("en-US")}`
@@ -52,25 +59,26 @@ export function CurrencyToggle() {
   )
 }
 
-/** A price in the chosen currency, with the other one underneath. */
-export function Price({ money, from, className }: { money: Money; from?: boolean; className?: string }) {
-  const { currency } = useCurrency()
+/** A naira price in the chosen currency, with the other one underneath. */
+export function Price({ naira, from, className }: { naira: number; from?: boolean; className?: string }) {
+  const { currency, rate } = useCurrency()
+  const amounts = { ngn: naira, usd: toDollars(naira, rate) }
   const other = currency === "ngn" ? "usd" : "ngn"
   return (
     <span className={className}>
       <span key={currency} className="demo-enter block text-[40px] leading-none font-semibold tracking-[-0.045em] tabular-nums sm:text-[44px]">
         {from ? <span className="mr-2 align-middle text-base font-medium tracking-normal text-muted-foreground">from</span> : null}
-        {formatMoney(money[currency], currency)}
+        {formatMoney(amounts[currency], currency)}
       </span>
       <span className="mt-2 block text-sm text-muted-foreground">
-        about {formatMoney(money[other], other)} · paid once
+        about {formatMoney(amounts[other], other)} · paid once
       </span>
     </span>
   )
 }
 
-/** A smaller amount inline, in the chosen currency. */
-export function Amount({ money }: { money: Money }) {
-  const { currency } = useCurrency()
-  return <>{formatMoney(money[currency], currency)}</>
+/** A smaller naira amount inline, in the chosen currency. */
+export function Amount({ naira }: { naira: number }) {
+  const { currency, rate } = useCurrency()
+  return <>{formatMoney(currency === "ngn" ? naira : toDollars(naira, rate), currency)}</>
 }

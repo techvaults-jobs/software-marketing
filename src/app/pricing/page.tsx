@@ -7,25 +7,34 @@ import { Section, SectionIntro } from "@/components/site/section"
 import { CurrencyProvider, CurrencyToggle } from "@/components/pricing/currency"
 import { OwnOrRent } from "@/components/pricing/own-or-rent"
 import { Packages } from "@/components/pricing/packages"
-import { included, notIncluded, ownership, pricing } from "@/content/pricing"
+import { included, notIncluded, ownership } from "@/content/pricing"
+import { getDollarRate } from "@/lib/exchange-rate"
 
 export const metadata: Metadata = {
   title: "Pricing",
   description: "StockVaults is paid for once and yours to keep. Standard prices by number of locations, in naira and US dollars, with the first year of care included.",
 }
 
-export default function PricingPage() {
+export default async function PricingPage() {
+  const dollar = await getDollarRate()
   return (
     <Page>
-      <CurrencyProvider>
+      <CurrencyProvider rate={dollar.rate}>
         <PageHero eyebrow="Pricing" title="Pay once. It is yours to keep." actions={<CurrencyToggle />}>
           StockVaults is not a subscription. You pay for the system once and it stays yours, with no monthly licence. The first year of hosting, support and updates is in the price.
         </PageHero>
 
         <Section tone="subtle">
           <Packages />
-          <p className="reveal mt-6 text-sm leading-relaxed text-muted-foreground">
-            Prices are charged in naira. Dollar figures are the same price at ₦{pricing.rate.toLocaleString("en-US")} to the dollar, {pricing.ratedOn}. {notIncluded}
+          <p className="reveal mt-6 max-w-[90ch] text-sm leading-relaxed text-muted-foreground">
+            Prices are charged in naira. Dollar figures are the same price at ₦{Math.round(dollar.rate).toLocaleString("en-US")} to the dollar, the rate on {dollar.asOf}, and move with it.{" "}
+            {dollar.live ? (
+              <a href="https://www.exchangerate-api.com" target="_blank" rel="noreferrer" className="link">
+                Rates by Exchange Rate API
+              </a>
+            ) : null}
+            {dollar.live ? ". " : null}
+            {notIncluded}
           </p>
         </Section>
 

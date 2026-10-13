@@ -1,26 +1,23 @@
 /**
- * Standard prices for StockVaults. Naira is the price we charge; the dollar
- * figure is that amount at `rate`, rounded, for buyers who think in dollars.
- * When the rate moves far enough to matter, change `rate`, `ratedOn` and the
- * `usd` figures together.
+ * Standard prices for StockVaults, in naira, which is what we charge. The
+ * dollar figures on the site are worked out from the day's exchange rate
+ * (see src/lib/exchange-rate.ts). The rate below is only used if the rate
+ * services cannot be reached.
  */
 export const pricing = {
-  rate: 1330,
-  ratedOn: "October 2026",
-  carePeriod: "12 months",
+  fallbackRate: 1330,
+  fallbackRatedOn: "October 2026",
 } as const
-
-export type Money = { ngn: number; usd: number }
 
 export type Package = {
   id: string
   name: string
   for: string
-  /** One payment. `from` marks a starting price that depends on scope. */
-  price: Money
+  /** One payment, in naira. `from` marks a starting price that depends on scope. */
+  price: number
   from?: boolean
-  /** The optional yearly care plan after the first twelve months. */
-  care: Money | null
+  /** The optional yearly care plan after the first twelve months, in naira. */
+  care: number | null
   locations: string
   highlights: string[]
   featured?: boolean
@@ -31,8 +28,8 @@ export const packages: Package[] = [
     id: "single",
     name: "One location",
     for: "A shop, a pharmacy or a store with one stock room.",
-    price: { ngn: 2_500_000, usd: 1_900 },
-    care: { ngn: 450_000, usd: 340 },
+    price: 2_500_000,
+    care: 450_000,
     locations: "1 location",
     highlights: ["StockVaults fitted to your sector", "Your opening stock and price list loaded", "Every member of staff trained", "Live in three to four weeks"],
   },
@@ -40,8 +37,8 @@ export const packages: Package[] = [
     id: "multi",
     name: "Several locations",
     for: "Branches that share stock, with or without a central store.",
-    price: { ngn: 6_500_000, usd: 4_900 },
-    care: { ngn: 1_200_000, usd: 900 },
+    price: 6_500_000,
+    care: 1_200_000,
     locations: "Up to 5 locations",
     highlights: ["Everything in One location", "Transfers with a sender and a receiver", "Screens and approvals built for your workflows", "One view of every branch for the owner"],
     featured: true,
@@ -50,7 +47,7 @@ export const packages: Package[] = [
     id: "group",
     name: "Group",
     for: "Six locations or more, or a system that must talk to others.",
-    price: { ngn: 15_000_000, usd: 11_300 },
+    price: 15_000_000,
     from: true,
     care: null,
     locations: "6 locations or more",

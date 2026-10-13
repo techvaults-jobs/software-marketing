@@ -2,24 +2,28 @@
 
 import { useId, useState } from "react"
 import { packages } from "@/content/pricing"
-import { formatMoney, useCurrency } from "./currency"
+import { formatMoney, toDollars, useCurrency } from "./currency"
 
 const priced = packages.filter((plan) => plan.care)
+
+/** Only a starting point for the box. The visitor is asked to replace it with their own quote. */
+const STARTING_MONTHLY = 120_000
 
 /**
  * The visitor puts in what a subscription costs them and for how long. We add
  * up both sides, care plan included, so the comparison is theirs and not ours.
  */
 export function OwnOrRent() {
-  const { currency } = useCurrency()
+  const { currency, rate } = useCurrency()
   const [planId, setPlanId] = useState(priced[0].id)
-  const [monthly, setMonthly] = useState({ ngn: 120_000, usd: 90 })
+  const [monthly, setMonthly] = useState(() => ({ ngn: STARTING_MONTHLY, usd: toDollars(STARTING_MONTHLY, rate) }))
   const [years, setYears] = useState(5)
   const ids = { plan: useId(), monthly: useId(), years: useId() }
 
   const plan = priced.find((candidate) => candidate.id === planId) ?? priced[0]
   const rent = monthly[currency] * 12 * years
-  const own = plan.price[currency] + (plan.care?.[currency] ?? 0) * (years - 1)
+  const inCurrency = (naira: number) => (currency === "ngn" ? naira : toDollars(naira, rate))
+  const own = inCurrency(plan.price) + inCurrency(plan.care ?? 0) * (years - 1)
   const widest = Math.max(rent, own, 1)
   const gap = rent - own
   const symbol = currency === "ngn" ? "₦" : "$"
