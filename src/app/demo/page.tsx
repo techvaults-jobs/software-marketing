@@ -3,19 +3,20 @@ import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
 import { Page } from "@/components/site/page"
 import { PageHero } from "@/components/site/page-hero"
+import { AvailabilityBadge } from "@/components/site/sector-card"
 import { Section } from "@/components/site/section"
 import { sectors } from "@/content/sectors"
 
 export const metadata: Metadata = {
   title: "Live demo",
-  description: "Use a working copy of StockVaults for your sector. No sign-up, nothing to install.",
+  description: "Try StockVaults with made-up stock: a working demo for phone and electronics shops, and previews for other sectors. No sign-up, nothing to install.",
 }
 
 export default function DemoIndexPage() {
   return (
     <Page>
       <PageHero eyebrow="Live demo" title="Pick a business. Run it for five minutes.">
-        Each demo is a working copy of StockVaults with made-up stock for that sector. Sell, receive and transfer, then open the reports. No sign-up, and nothing you do is saved.
+        Every demo runs in your browser with made-up stock. Sell, receive and transfer, then open the reports. Phones and electronics is StockVaults as it runs today; the other sectors are previews of a version we build for you. No sign-up, and nothing you do is saved.
       </PageHero>
       <Section tone="subtle" className="py-12 sm:py-16">
         <ul className="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
@@ -37,6 +38,9 @@ export default function DemoIndexPage() {
                 <p className="mt-2 text-[15px] text-muted-foreground">
                   {sector.demo.locations.join(", ")}. Tracks {sector.demo.attrs.map((attr) => attr.label.toLowerCase()).join(" and ")}.
                 </p>
+                <div className="mt-auto pt-5">
+                  <AvailabilityBadge sector={sector} />
+                </div>
               </Link>
             </li>
           ))}

@@ -50,6 +50,13 @@ export type Sector = {
   blurb: string
   headline: string
   summary: string
+  /**
+   * "ready": StockVaults does this today, as it does for the phone shops it
+   * already runs. "on-request": the sector's own parts (its tracks and
+   * workflows) are built for the customer before go-live, and the demo is a
+   * preview of that version, not software that exists yet.
+   */
+  availability: "ready" | "on-request"
   /** What the system keeps count of in this sector. */
   tracks: string[]
   workflows: Array<{ title: string; body: string }>
@@ -59,6 +66,7 @@ export type Sector = {
 export const sectors: Sector[] = [
   {
     slug: "phones-electronics",
+    availability: "ready",
     name: "Phones and electronics",
     short: "Electronics",
     icon: Smartphone,
@@ -109,6 +117,7 @@ export const sectors: Sector[] = [
   },
   {
     slug: "pharmacy",
+    availability: "on-request",
     name: "Pharmacy and healthcare",
     short: "Pharmacy",
     icon: Pill,
@@ -159,6 +168,7 @@ export const sectors: Sector[] = [
   },
   {
     slug: "supermarket",
+    availability: "on-request",
     name: "Supermarkets and grocery",
     short: "Grocery",
     icon: ShoppingBasket,
@@ -209,6 +219,7 @@ export const sectors: Sector[] = [
   },
   {
     slug: "warehouse-distribution",
+    availability: "on-request",
     name: "Warehousing and distribution",
     short: "Warehouse",
     icon: Warehouse,
@@ -260,6 +271,7 @@ export const sectors: Sector[] = [
   },
   {
     slug: "manufacturing",
+    availability: "on-request",
     name: "Manufacturing",
     short: "Manufacturing",
     icon: Factory,
@@ -312,6 +324,7 @@ export const sectors: Sector[] = [
   },
   {
     slug: "restaurants",
+    availability: "on-request",
     name: "Restaurants and hospitality",
     short: "Restaurants",
     icon: UtensilsCrossed,
@@ -364,6 +377,7 @@ export const sectors: Sector[] = [
   },
   {
     slug: "fashion-retail",
+    availability: "on-request",
     name: "Fashion and apparel",
     short: "Fashion",
     icon: Shirt,
@@ -414,6 +428,7 @@ export const sectors: Sector[] = [
   },
   {
     slug: "auto-parts",
+    availability: "on-request",
     name: "Auto parts and workshops",
     short: "Auto parts",
     icon: Car,
@@ -464,6 +479,7 @@ export const sectors: Sector[] = [
   },
   {
     slug: "building-materials",
+    availability: "on-request",
     name: "Building materials and hardware",
     short: "Building",
     icon: HardHat,
@@ -517,4 +533,9 @@ export const sectors: Sector[] = [
 
 export function getSector(slug: string) {
   return sectors.find((sector) => sector.slug === slug)
+}
+
+/** True when the sector's own tracks and workflows exist in StockVaults today. */
+export function isReady(sector: Sector) {
+  return sector.availability === "ready"
 }

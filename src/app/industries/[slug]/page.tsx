@@ -7,8 +7,9 @@ import { DemoApp } from "@/components/demo/demo-app"
 import { CtaBand } from "@/components/site/cta-band"
 import { Page } from "@/components/site/page"
 import { PageHero } from "@/components/site/page-hero"
+import { AvailabilityBadge } from "@/components/site/sector-card"
 import { Section, SectionIntro } from "@/components/site/section"
-import { getSector, sectors } from "@/content/sectors"
+import { getSector, isReady, sectors } from "@/content/sectors"
 
 export function generateStaticParams() {
   return sectors.map((sector) => ({ slug: sector.slug }))
@@ -24,6 +25,7 @@ export default async function SectorPage({ params }: PageProps<"/industries/[slu
   const sector = getSector((await params).slug)
   if (!sector) notFound()
   const others = sectors.filter((other) => other.slug !== sector.slug)
+  const ready = isReady(sector)
 
   return (
     <Page>
@@ -41,7 +43,7 @@ export default async function SectorPage({ params }: PageProps<"/industries/[slu
         actions={
           <>
             <Link href={`/demo/${sector.slug}`} transitionTypes={["nav-forward"]} className="btn btn-primary">
-              Open the full demo <ArrowRight className="size-4" aria-hidden />
+              {ready ? "Open the full demo" : "Open the preview"} <ArrowRight className="size-4" aria-hidden />
             </Link>
             <Link href="/contact" className="btn btn-outline">
               Book a walkthrough
@@ -50,12 +52,23 @@ export default async function SectorPage({ params }: PageProps<"/industries/[slu
         }
       >
         {sector.summary}
+        <span className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[15px]">
+          <AvailabilityBadge sector={sector} />
+          {ready ? null : (
+            <span className="text-muted-foreground">
+              StockVaults runs phone and electronics shops today. For {sector.name.toLowerCase()}, the parts below are built into your version before you go live.
+            </span>
+          )}
+        </span>
       </PageHero>
 
       <Section tone="subtle">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <div className="reveal">
-            <SectionIntro eyebrow="What it tracks" title="The details that matter in your trade." />
+            <SectionIntro
+              eyebrow={ready ? "What it tracks" : "What we build in"}
+              title={ready ? "The details that matter in your trade." : "The details your version would track."}
+            />
             <ul className="mt-8 space-y-3">
               {sector.tracks.map((line) => (
                 <li key={line} className="flex gap-3 text-[16px]">
@@ -78,8 +91,10 @@ export default async function SectorPage({ params }: PageProps<"/industries/[slu
       </Section>
 
       <Section>
-        <SectionIntro eyebrow="Demo" title={`Try it as ${sector.demo.business}.`} className="reveal">
-          A made-up business with made-up stock. Everything you do stays in your browser.
+        <SectionIntro eyebrow={ready ? "Demo" : "Preview"} title={`Try it as ${sector.demo.business}.`} className="reveal">
+          {ready
+            ? "A made-up business with made-up stock. Everything you do stays in your browser."
+            : "A preview of your version, with a made-up business and made-up stock. It shows how the screens would work; the sector parts are built for you. Everything you do stays in your browser."}
         </SectionIntro>
         <div className="reveal mt-10">
           <DemoApp slug={sector.slug} compact />

@@ -4,7 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { motion, useReducedMotion } from "motion/react"
 import { ArrowRight } from "lucide-react"
-import { getSector, sectors } from "@/content/sectors"
+import { getSector, isReady, sectors } from "@/content/sectors"
 import { cn } from "@/lib/utils"
 import { DemoApp } from "./demo-app"
 
@@ -50,7 +50,9 @@ export function DemoSwitcher({ initial = sectors[0].slug, compact = false }: { i
 
       {compact && sector ? (
         <div key={`tracks-${slug}`} className="demo-enter mb-4 flex flex-wrap items-center gap-x-2 gap-y-2 text-[13px]">
-          <span className="mr-1 text-muted-foreground">For {sector.name.toLowerCase()} it keeps count by</span>
+          <span className="mr-1 text-muted-foreground">
+            For {sector.name.toLowerCase()} {isReady(sector) ? "it keeps count by" : "your version would keep count by"}
+          </span>
           {sector.tracks.map((track) => (
             <span key={track} className="rounded-full border border-line bg-white px-2.5 py-1">
               {track}
@@ -70,7 +72,11 @@ export function DemoSwitcher({ initial = sectors[0].slug, compact = false }: { i
 
       {compact ? (
         <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
-          <span>This is a working demo. Sell something, then check the stock.</span>
+          <span>
+            {sector && isReady(sector)
+              ? "This is a working demo. Sell something, then check the stock."
+              : "This is a preview of a version built for this sector. Sell something, then check the stock."}
+          </span>
           <Link href={`/demo/${slug}`} transitionTypes={["nav-forward"]} className="inline-flex items-center gap-1 font-medium text-ink hover:text-brand">
             Open it full screen <ArrowRight className="size-3.5" aria-hidden />
           </Link>

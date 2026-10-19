@@ -41,10 +41,10 @@ const included = [
   "Built for many locations, products and staff accounts",
   "Web app that works on computers, tablets and phones",
   "Barcode, QR and serial scanning",
-  "Receipts, invoices, delivery notes and labels in your branding",
+  "Receipts and invoices in your branding",
   "Excel and PDF export on every report",
   "Import from your spreadsheets or current system",
-  "Your currency, tax rules and time zone",
+  "Set up for Nigeria: naira and West Africa Time. Other currencies, tax rules and time zones on request",
   "Integrations with accounting, payments and messaging on request",
 ]
 

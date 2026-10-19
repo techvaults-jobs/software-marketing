@@ -12,7 +12,7 @@ export function FeatureBento() {
       <Tile className="md:col-span-4" title="Stock by location" body="Every shop, branch, warehouse and van has its own count. See one, or all of them together.">
         <LocationsArt />
       </Tile>
-      <Tile className="md:col-span-2" title="Unit-level tracking" body="Serial numbers, IMEIs, batches or plain quantities. Each product is tracked the way it needs to be.">
+      <Tile className="md:col-span-2" title="Unit-level tracking" body="Serial numbers, IMEIs or plain quantities. Each product is tracked the way it needs to be.">
         <ScanArt />
       </Tile>
       <Tile className="md:col-span-3" title="Audit trail" body="Who did what, when and from where. Entries are chained, so a deleted line is detectable.">

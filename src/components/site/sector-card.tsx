@@ -1,7 +1,28 @@
 import { ViewTransition } from "react"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
-import type { Sector } from "@/content/sectors"
+import { isReady, type Sector } from "@/content/sectors"
+import { cn } from "@/lib/utils"
+
+/**
+ * Says plainly whether a sector runs on StockVaults today or is built for the
+ * customer, so no page lets a preview pass for shipped software.
+ */
+export function AvailabilityBadge({ sector, className }: { sector: Sector; className?: string }) {
+  const ready = isReady(sector)
+  return (
+    <span
+      className={cn(
+        "inline-flex h-6 items-center gap-1.5 rounded-full px-2.5 text-[12px] font-medium whitespace-nowrap",
+        ready ? "bg-ink text-white" : "border border-line bg-white text-muted-foreground",
+        className
+      )}
+    >
+      <span aria-hidden className={cn("size-1.5 rounded-full", ready ? "bg-brand" : "bg-[#b0b0b0]")} />
+      {ready ? "Ready today" : "Built on request"}
+    </span>
+  )
+}
 
 /**
  * A sector tile. The icon badge shares a transition name with the badge on
@@ -27,6 +48,9 @@ export function SectorCard({ sector }: { sector: Sector }) {
       </div>
       <h3 className="mt-6 text-[17px] font-semibold tracking-tight">{sector.name}</h3>
       <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{sector.blurb}</p>
+      <div className="mt-auto pt-5">
+        <AvailabilityBadge sector={sector} />
+      </div>
     </Link>
   )
 }
