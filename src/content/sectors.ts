@@ -57,6 +57,12 @@ export type Sector = {
    * preview of that version, not software that exists yet.
    */
   availability: "ready" | "on-request"
+  /**
+   * The industry setup in the StockVaults app that this sector opens as a full
+   * demo: the visitor's own made-up business, kept for a day. None where no
+   * setup fits closely enough yet.
+   */
+  setup?: "retail" | "phones" | "pharmacy" | "hospital" | "restaurant" | "hardware" | "distribution" | "office"
   /** What the system keeps count of in this sector. */
   tracks: string[]
   workflows: Array<{ title: string; body: string }>
@@ -66,6 +72,7 @@ export type Sector = {
 export const sectors: Sector[] = [
   {
     slug: "phones-electronics",
+    setup: "phones",
     availability: "ready",
     name: "Phones and electronics",
     short: "Electronics",
@@ -117,6 +124,7 @@ export const sectors: Sector[] = [
   },
   {
     slug: "pharmacy",
+    setup: "pharmacy",
     availability: "on-request",
     name: "Pharmacy and healthcare",
     short: "Pharmacy",
@@ -168,6 +176,7 @@ export const sectors: Sector[] = [
   },
   {
     slug: "supermarket",
+    setup: "retail",
     availability: "on-request",
     name: "Supermarkets and grocery",
     short: "Grocery",
@@ -219,6 +228,7 @@ export const sectors: Sector[] = [
   },
   {
     slug: "warehouse-distribution",
+    setup: "distribution",
     availability: "on-request",
     name: "Warehousing and distribution",
     short: "Warehouse",
@@ -324,6 +334,7 @@ export const sectors: Sector[] = [
   },
   {
     slug: "restaurants",
+    setup: "restaurant",
     availability: "on-request",
     name: "Restaurants and hospitality",
     short: "Restaurants",
@@ -377,6 +388,7 @@ export const sectors: Sector[] = [
   },
   {
     slug: "fashion-retail",
+    setup: "retail",
     availability: "on-request",
     name: "Fashion and apparel",
     short: "Fashion",
@@ -428,6 +440,7 @@ export const sectors: Sector[] = [
   },
   {
     slug: "auto-parts",
+    setup: "retail",
     availability: "on-request",
     name: "Auto parts and workshops",
     short: "Auto parts",
@@ -479,6 +492,7 @@ export const sectors: Sector[] = [
   },
   {
     slug: "building-materials",
+    setup: "hardware",
     availability: "on-request",
     name: "Building materials and hardware",
     short: "Building",
@@ -530,6 +544,12 @@ export const sectors: Sector[] = [
     },
   },
 ]
+
+/** App setups with a full demo but no sector page of their own on this site. */
+export const otherSetups = [
+  { setup: "hospital", name: "Hospitals and clinics" },
+  { setup: "office", name: "Schools, offices and NGOs" },
+] as const
 
 export function getSector(slug: string) {
   return sectors.find((sector) => sector.slug === slug)

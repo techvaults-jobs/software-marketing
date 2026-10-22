@@ -15,6 +15,7 @@ npm run dev
 
 - **Home, StockVaults, Industries, Services, Other systems, Customers, Contact**
 - **Live demo** at `/demo/<sector>`: a working inventory app with made-up data for nine sectors. It runs entirely in the browser and saves nothing.
+- **Full system** links from each sector to `/demo/<setup>` in the StockVaults app, which opens a stocked demo business of the visitor's own. Shown only when `NEXT_PUBLIC_APP_URL` is set.
 - **Route transitions** with React view transitions, and a framed layout in the TechVaults colours.
 
 ## Configuration
@@ -25,6 +26,7 @@ Copy `.env.example` to `.env.local`.
 | --- | --- |
 | `NEXT_PUBLIC_SITE_URL` | Public address, used for the sitemap and social cards |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | Address shown on the site |
+| `NEXT_PUBLIC_APP_URL` | The StockVaults app. When set, the header gets "Sign in" and each sector gets "Open the full system", which opens the visitor's own made-up business in the real app for 24 hours. Built into the pages, so changing it needs a rebuild |
 | `DATABASE_URL` | Postgres connection string. Contact-form messages are saved here |
 | `ADMIN_PASSWORD` | Opens `/admin`, where the team reads enquiries. 12 characters or more; the page stays closed without it |
 | `RESEND_API_KEY`, `CONTACT_TO`, `CONTACT_FROM` | Optional. When all three are set, each enquiry is also emailed to the team through Resend |

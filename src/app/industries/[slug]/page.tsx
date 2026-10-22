@@ -10,6 +10,7 @@ import { PageHero } from "@/components/site/page-hero"
 import { AvailabilityBadge } from "@/components/site/sector-card"
 import { Section, SectionIntro } from "@/components/site/section"
 import { getSector, isReady, sectors } from "@/content/sectors"
+import { appLink } from "@/content/site"
 
 export function generateStaticParams() {
   return sectors.map((sector) => ({ slug: sector.slug }))
@@ -48,6 +49,11 @@ export default async function SectorPage({ params }: PageProps<"/industries/[slu
             <Link href="/contact" className="btn btn-outline">
               Book a walkthrough
             </Link>
+            {sector.setup && appLink("/") ? (
+              <a href={appLink(`/demo/${sector.setup}`) ?? undefined} className="btn btn-outline">
+                Open the full system
+              </a>
+            ) : null}
           </>
         }
       >

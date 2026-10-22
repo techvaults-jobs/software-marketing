@@ -19,6 +19,17 @@ export function whatsappLink(message = "Hello TechVaults. I would like to know m
   return `https://wa.me/${site.phone.e164.slice(1)}?text=${encodeURIComponent(message)}`
 }
 
+/**
+ * The StockVaults app itself, where customers sign in and visitors open a full
+ * demo. Unset until the app is live, and every link to it stays hidden until then.
+ */
+export const appUrl = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/+$/, "") || null
+
+/** A page in the app, or null while the app has no address. */
+export function appLink(path: string) {
+  return appUrl ? `${appUrl}${path}` : null
+}
+
 export const nav = [
   { href: "/stockvaults", label: "StockVaults" },
   { href: "/industries", label: "Industries" },

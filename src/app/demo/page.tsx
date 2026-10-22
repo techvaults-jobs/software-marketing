@@ -4,8 +4,9 @@ import { ArrowUpRight } from "lucide-react"
 import { Page } from "@/components/site/page"
 import { PageHero } from "@/components/site/page-hero"
 import { AvailabilityBadge } from "@/components/site/sector-card"
-import { Section } from "@/components/site/section"
-import { sectors } from "@/content/sectors"
+import { Section, SectionIntro } from "@/components/site/section"
+import { otherSetups, sectors } from "@/content/sectors"
+import { appLink, appUrl } from "@/content/site"
 
 export const metadata: Metadata = {
   title: "Live demo",
@@ -46,6 +47,23 @@ export default function DemoIndexPage() {
           ))}
         </ul>
       </Section>
+      {appUrl ? (
+        <Section className="py-12 sm:py-16">
+          <SectionIntro eyebrow="Full system" title="Or open StockVaults itself.">
+            The demos above are quick previews. The full system gives you your own made-up business inside the real StockVaults, set up for your trade: stock, sales, transfers, batches, serial numbers and reports. It is kept for 24 hours and nobody else sees it.
+          </SectionIntro>
+          <ul className="mt-8 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+            {[...sectors.filter((sector) => sector.setup).map((sector) => ({ key: sector.slug, name: sector.name, setup: sector.setup })), ...otherSetups.map((other) => ({ key: other.setup, ...other }))].map((entry) => (
+              <li key={entry.key}>
+                <a href={appLink(`/demo/${entry.setup}`) ?? undefined} className="group flex h-full items-center justify-between gap-4 bg-white px-6 py-5 transition-colors hover:bg-subtle">
+                  <span className="text-[15px] font-medium">{entry.name}</span>
+                  <ArrowUpRight className="size-4 shrink-0 text-[#b0b0b0] transition-colors group-hover:text-ink" aria-hidden />
+                </a>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      ) : null}
     </Page>
   )
 }

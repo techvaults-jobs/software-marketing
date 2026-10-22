@@ -5,7 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { motion } from "motion/react"
 import { Menu } from "lucide-react"
-import { nav } from "@/content/site"
+import { appLink, nav } from "@/content/site"
 import { cn } from "@/lib/utils"
 import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 import { Logo } from "./logo"
@@ -23,6 +23,7 @@ export function Header() {
     return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
+  const signIn = appLink("/login")
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`)
 
   return (
@@ -65,6 +66,11 @@ export function Header() {
         </nav>
 
         <div className="ml-auto flex items-center gap-2 lg:ml-0">
+          {signIn ? (
+            <a href={signIn} className="hidden px-2 text-sm whitespace-nowrap text-muted-foreground transition-colors hover:text-ink xl:inline">
+              Sign in
+            </a>
+          ) : null}
           <Link href="/demo" className="btn btn-sm btn-outline hidden sm:inline-flex">
             Try the demo
           </Link>
@@ -83,7 +89,7 @@ export function Header() {
                 <SheetTitle className="text-left text-sm font-medium text-muted-foreground">Menu</SheetTitle>
               </SheetHeader>
               <nav aria-label="Mobile" className="flex flex-col px-2 py-3">
-                {[...nav, { href: "/demo", label: "Try the demo" }, { href: "/contact", label: "Talk to us" }].map((item) => (
+                {[...nav, { href: "/demo", label: "Try the demo" }, { href: "/contact", label: "Talk to us" }, ...(signIn ? [{ href: signIn, label: "Sign in" }] : [])].map((item) => (
                   <SheetClose
                     key={item.href}
                     render={<Link href={item.href} />}

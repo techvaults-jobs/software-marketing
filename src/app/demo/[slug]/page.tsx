@@ -6,6 +6,7 @@ import { DemoApp } from "@/components/demo/demo-app"
 import { Page } from "@/components/site/page"
 import { AvailabilityBadge } from "@/components/site/sector-card"
 import { getSector, isReady, sectors } from "@/content/sectors"
+import { appLink } from "@/content/site"
 
 export function generateStaticParams() {
   return sectors.map((sector) => ({ slug: sector.slug }))
@@ -25,6 +26,7 @@ export async function generateMetadata({ params }: PageProps<"/demo/[slug]">): P
 export default async function DemoPage({ params }: PageProps<"/demo/[slug]">) {
   const sector = getSector((await params).slug)
   if (!sector) notFound()
+  const fullSystem = sector.setup ? appLink(`/demo/${sector.setup}`) : null
 
   return (
     <Page>
@@ -42,6 +44,11 @@ export default async function DemoPage({ params }: PageProps<"/demo/[slug]">) {
             <Link href={`/industries/${sector.slug}`} className="btn btn-sm btn-outline hidden sm:inline-flex">
               About this system
             </Link>
+            {fullSystem ? (
+              <a href={fullSystem} className="btn btn-sm btn-outline">
+                Open the full system
+              </a>
+            ) : null}
             <Link href="/contact" className="btn btn-sm btn-brand">
               Get this for my business
             </Link>
@@ -54,6 +61,11 @@ export default async function DemoPage({ params }: PageProps<"/demo/[slug]">) {
             ? "The demo shows the core screens; your system is fitted with the workflows, roles and reports your business needs."
             : `This is a preview: StockVaults runs phone and electronics shops today, and the ${sector.name.toLowerCase()} parts are built into your version before you go live.`}
         </p>
+        {fullSystem ? (
+          <p className="mt-2 text-sm text-muted-foreground">
+            This page saves nothing. <a href={fullSystem} className="font-medium text-ink underline underline-offset-4">Open the full system</a> for your own copy of StockVaults with made-up stock, sales and reports. It is kept for 24 hours and nobody else sees it.
+          </p>
+        ) : null}
       </div>
     </Page>
   )
