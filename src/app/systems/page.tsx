@@ -27,8 +27,8 @@ export default function SystemsPage() {
         Inventory is what we lead with, and for most customers it is the first system we deliver. The same team designs, builds and maintains the software around it, for companies in any sector.
       </PageHero>
 
-      <Section tone="subtle">
-        <ul className="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+      <Section tone="mist">
+        <ul className="grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
           {systems.map((system) => (
             <li key={system.name} className="reveal bg-paper p-6 sm:p-7">
               <system.icon className="size-5" strokeWidth={1.75} aria-hidden />

@@ -29,7 +29,7 @@ export function OwnOrRent() {
   const symbol = currency === "ngn" ? "₦" : "$"
 
   return (
-    <div className="reveal grid overflow-hidden rounded-xl border border-line bg-paper lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)]">
+    <div className="reveal grid overflow-hidden rounded-card border border-line bg-paper lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)]">
       <div className="space-y-6 border-b border-line p-6 sm:p-8 lg:border-r lg:border-b-0">
         <div>
           <label htmlFor={ids.plan} className="text-sm font-medium">

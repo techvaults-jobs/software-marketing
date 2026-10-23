@@ -8,6 +8,7 @@ import { CtaBand } from "@/components/site/cta-band"
 import { Page } from "@/components/site/page"
 import { PageHero } from "@/components/site/page-hero"
 import { AvailabilityBadge } from "@/components/site/sector-card"
+import { SectorPanel } from "@/components/site/sector-panel"
 import { Section, SectionIntro } from "@/components/site/section"
 import { getSector, isReady, sectors } from "@/content/sectors"
 import { appLink } from "@/content/site"
@@ -34,7 +35,7 @@ export default async function SectorPage({ params }: PageProps<"/industries/[slu
         back={{ href: "/industries", label: "All industries" }}
         lead={
           <ViewTransition name={`sector-${sector.slug}`} share="morph" default="none">
-            <span className="inline-flex size-12 items-center justify-center rounded-xl border border-line bg-paper">
+            <span className="inline-flex size-12 items-center justify-center rounded-card border border-line bg-paper">
               <sector.icon className="size-[22px]" strokeWidth={1.75} aria-hidden />
             </span>
           </ViewTransition>
@@ -68,7 +69,11 @@ export default async function SectorPage({ params }: PageProps<"/industries/[slu
         </span>
       </PageHero>
 
-      <Section tone="subtle">
+      <Section className="pt-0 lg:pt-0" label={`StockVaults for ${sector.name.toLowerCase()} at a glance`}>
+        <SectorPanel sector={sector} className="reveal" />
+      </Section>
+
+      <Section tone="mist">
         <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <div className="reveal">
             <SectionIntro
@@ -84,7 +89,7 @@ export default async function SectorPage({ params }: PageProps<"/industries/[slu
               ))}
             </ul>
           </div>
-          <ul className="reveal grid gap-px self-start overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
+          <ul className="reveal grid gap-px self-start overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2">
             {sector.workflows.map((workflow, index) => (
               <li key={workflow.title} className="bg-paper p-6 sm:p-7">
                 <span className="font-mono text-[12px] text-steel">0{index + 1}</span>
@@ -107,7 +112,7 @@ export default async function SectorPage({ params }: PageProps<"/industries/[slu
         </div>
       </Section>
 
-      <Section tone="subtle" className="py-12 sm:py-16">
+      <Section tone="mist" className="py-12 lg:py-16">
         <h2 className="eyebrow mb-5">Other industries</h2>
         <ul className="flex flex-wrap gap-2">
           {others.map((other) => (

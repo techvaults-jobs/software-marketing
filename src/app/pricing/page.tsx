@@ -24,7 +24,7 @@ export default async function PricingPage() {
           StockVaults is not a subscription. You pay for the system once and it stays yours, with no monthly licence. The first year of hosting, support and updates is in the price.
         </PageHero>
 
-        <Section tone="subtle">
+        <Section tone="mist">
           <Packages />
           <p className="reveal mt-6 max-w-[90ch] text-sm leading-relaxed text-steel">
             Prices are charged in naira. Dollar figures are the same price at ₦{Math.round(dollar.rate).toLocaleString("en-US")} to the dollar, the rate on {dollar.asOf}, and move with it.{" "}
@@ -55,7 +55,7 @@ export default async function PricingPage() {
           </div>
         </Section>
 
-        <Section tone="subtle">
+        <Section tone="mist">
           <SectionIntro eyebrow="Own or rent" title="Work it out with your own numbers." className="reveal">
             Put in what a subscription would cost you each month. We add up both sides, including our care plan after the first year.
           </SectionIntro>
@@ -66,7 +66,7 @@ export default async function PricingPage() {
 
         <Section>
           <SectionIntro eyebrow="What owning means" title="Three things you can hold us to." className="reveal" />
-          <ul className="reveal reveal-children mt-12 grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-3">
+          <ul className="reveal reveal-children mt-12 grid gap-px overflow-hidden rounded-card border border-line bg-line md:grid-cols-3">
             {ownership.map((entry) => (
               <li key={entry.title} className="bg-paper p-6 sm:p-8">
                 <Check className="size-5 text-vault-red" aria-hidden />

@@ -65,7 +65,7 @@ const when = new Intl.DateTimeFormat("en-GB", { dateStyle: "medium", timeStyle: 
 function EnquiryCard({ enquiry }: { enquiry: Enquiry }) {
   const handled = Boolean(enquiry.handledAt)
   return (
-    <li className={`rounded-xl border border-line p-5 sm:p-6 ${handled ? "bg-mist" : "bg-paper"}`}>
+    <li className={`rounded-card border border-line p-5 sm:p-6 ${handled ? "bg-mist" : "bg-paper"}`}>
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="flex items-center gap-2 text-[17px] font-semibold tracking-tight">
@@ -83,7 +83,7 @@ function EnquiryCard({ enquiry }: { enquiry: Enquiry }) {
         <form action={markHandled}>
           <input type="hidden" name="id" value={enquiry.id} />
           <input type="hidden" name="handled" value={String(!handled)} />
-          <button type="submit" className={`btn btn-sm ${handled ? "btn-outline" : "btn-primary"}`}>
+          <button type="submit" className={`btn btn-sm ${handled ? "btn-outline" : "btn-ink"}`}>
             {handled ? "Reopen" : "Mark handled"}
           </button>
         </form>

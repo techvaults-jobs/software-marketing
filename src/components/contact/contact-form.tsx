@@ -20,7 +20,7 @@ export function ContactForm({ sectors }: { sectors: string[] }) {
 
   if (state.status === "sent") {
     return (
-      <div className="rounded-xl border border-line bg-paper p-8" role="status">
+      <div className="rounded-card border border-line bg-paper p-8" role="status">
         <span className="flex size-10 items-center justify-center rounded-full bg-ink text-paper">
           <Check className="size-5" aria-hidden />
         </span>
@@ -31,7 +31,7 @@ export function ContactForm({ sectors }: { sectors: string[] }) {
   }
 
   return (
-    <form action={action} noValidate className="space-y-5 rounded-xl border border-line bg-paper p-6 sm:p-8">
+    <form action={action} noValidate className="space-y-5 rounded-card border border-line bg-paper p-6 sm:p-8">
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Your name" name="name" error={errors.name}>
           <Input id="name" name="name" autoComplete="name" required aria-invalid={Boolean(errors.name)} className={control} />

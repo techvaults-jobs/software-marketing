@@ -10,7 +10,7 @@ export function Packages() {
   return (
     <ul className="reveal reveal-children grid gap-4 lg:grid-cols-3">
       {packages.map((plan) => (
-        <li key={plan.id} className={cn("flex flex-col rounded-xl border bg-paper p-6 sm:p-8", plan.featured ? "border-ink" : "border-line")}>
+        <li key={plan.id} className={cn("flex flex-col rounded-card border bg-paper p-6 sm:p-8", plan.featured ? "border-ink" : "border-line")}>
           <span className={cn("self-start rounded-full px-2.5 py-1 font-mono text-[11px] whitespace-nowrap uppercase", plan.featured ? "bg-ink text-paper" : "border border-line text-steel")}>{plan.locations}</span>
           <h2 className="mt-5 text-[22px] font-semibold tracking-[-0.03em]">{plan.name}</h2>
           <p className="mt-2 min-h-[3em] text-[15px] leading-relaxed text-steel">{plan.for}</p>

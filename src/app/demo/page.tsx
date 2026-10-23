@@ -19,14 +19,14 @@ export default function DemoIndexPage() {
       <PageHero eyebrow="Live demo" title="Pick a business. Run it for five minutes.">
         Every demo runs in your browser with made-up stock. Sell, receive and transfer, then open the reports. Phones and electronics is StockVaults as it runs today; the other sectors are previews of a version we build for you. No sign-up, and nothing you do is saved.
       </PageHero>
-      <Section tone="subtle" className="py-12 sm:py-16">
-        <ul className="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+      <Section tone="mist" className="py-12 lg:py-16">
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {sectors.map((sector) => (
             <li key={sector.slug}>
               <Link
                 href={`/demo/${sector.slug}`}
                 transitionTypes={["nav-forward"]}
-                className="group flex h-full flex-col bg-paper p-6 transition-colors hover:bg-mist sm:p-7"
+                className="card group flex h-full flex-col p-6 transition-colors hover:border-ink sm:p-7"
               >
                 <div className="flex items-start justify-between">
                   <span className="flex size-10 items-center justify-center rounded-lg border border-line bg-paper">
@@ -48,11 +48,11 @@ export default function DemoIndexPage() {
         </ul>
       </Section>
       {appUrl ? (
-        <Section className="py-12 sm:py-16">
+        <Section className="py-12 lg:py-16">
           <SectionIntro eyebrow="Full system" title="Or open StockVaults itself.">
             The demos above are quick previews. The full system gives you your own made-up business inside the real StockVaults, set up for your trade: stock, sales, transfers, batches, serial numbers and reports. It is kept for 24 hours and nobody else sees it.
           </SectionIntro>
-          <ul className="mt-8 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="mt-8 grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
             {[...sectors.filter((sector) => sector.setup).map((sector) => ({ key: sector.slug, name: sector.name, setup: sector.setup })), ...otherSetups.map((other) => ({ key: other.setup, ...other }))].map((entry) => (
               <li key={entry.key}>
                 <a href={appLink(`/demo/${entry.setup}`) ?? undefined} className="group flex h-full items-center justify-between gap-4 bg-paper px-6 py-5 transition-colors hover:bg-mist">

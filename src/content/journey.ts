@@ -29,11 +29,11 @@ export const journey: JourneyStop[] = [
   },
   {
     step: "Send",
-    title: "The vault sends it to a shop.",
-    body: "It leaves the vault's count the moment it is sent. Until the shop accepts it, it is in transit and belongs to neither.",
+    title: "The warehouse sends it to a shop.",
+    body: "It leaves the warehouse's count the moment it is sent. Until the shop accepts it, it is in transit and belongs to neither.",
     place: 1,
     record: { what: "Sent to Dugbe", who: "L. Okoye", when: "Mon 14:30" },
-    refuses: "Sending a unit the vault does not hold.",
+    refuses: "Sending a unit the warehouse does not hold.",
   },
   {
     step: "Accept",

@@ -16,13 +16,14 @@ Node 20 or newer.
 | --- | --- |
 | `src/content` | Everything the site says: sectors and their demo data, services, systems, FAQ, company details |
 | `src/app` | Routes. Each page is a thin layout over content |
-| `src/components/site` | Header, footer, section frame, cards |
+| `src/components/site` | Shared pieces: header, footer, Section, Eyebrow, StatCell, SectorTabs, SectorPanel, cards |
+| `src/components/home` | The home page sections, one component each |
 | `src/components/demo` | The in-browser inventory demo |
 | `src/components/ui` | shadcn/ui components. Regenerate with the shadcn CLI, do not hand-edit |
 
 ## Adding a sector
 
-1. Add an entry to `sectors` in `src/content/sectors.ts`: copy, what it tracks, four workflows and a demo dataset of about eight items.
+1. Add an entry to `sectors` in `src/content/sectors.ts`: copy, a `tab` label for the home page picker, what it tracks, four workflows, a demo dataset of about eight items priced in naira, and a `sample` of four of those items for the picker table.
 2. Give the demo business a made-up name. Check it is not a real company in that trade.
 3. Run `npm run check`. The industry page, the demo page, the footer and the sitemap pick it up.
 
@@ -36,6 +37,7 @@ Get written permission to use their name and logo first. Put the logo in `public
 
 - TypeScript, strict. No `any`, no non-null assertion where a check is cheap.
 - Two-space indent, double quotes, no semicolons. Match the file you are in.
+- Colours come from the tokens in `globals.css` (`vault-red`, `ink`, `paper`, `mist`, `line`, `steel` and the rest). No hex values in components.
 - Tailwind classes in the markup. A class goes in `globals.css` only when it is used in many places (`btn`, `title`, `frame`).
 - One component per concern. If a file passes 300 lines, look for the second component inside it.
 - Accessibility is part of done: labels on inputs, `aria-current` on the active link, visible focus, real buttons for actions and real links for navigation.

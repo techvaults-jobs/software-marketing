@@ -27,8 +27,8 @@ export default function ServicesPage() {
         We take responsibility for the whole thing: the build, the set-up, the training and the years after go-live. You deal with one team that knows your business.
       </PageHero>
 
-      <Section tone="subtle">
-        <ul className="grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-2">
+      <Section tone="mist">
+        <ul className="grid gap-px overflow-hidden rounded-card border border-line bg-line md:grid-cols-2">
           {services.map((service, index) => (
             <li key={service.id} id={service.id} className="reveal scroll-mt-24 bg-paper p-7 sm:p-9">
               <div className="flex items-center justify-between">
@@ -67,7 +67,7 @@ export default function ServicesPage() {
         </ol>
       </Section>
 
-      <Section tone="subtle">
+      <Section tone="mist">
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
           <SectionIntro eyebrow="Training" title="Taught by role, on your own screens." className="reveal">
             A cashier does not need the same training as an accountant. Each group learns the handful of screens they will use every day, on a practice copy loaded with sample stock.

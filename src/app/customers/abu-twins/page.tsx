@@ -97,9 +97,9 @@ export default function AbuTwinsPage() {
         </div>
       </Section>
 
-      <Section tone="subtle">
+      <Section tone="mist">
         <SectionIntro eyebrow="What we built" title="Their workflows, written into the system." className="reveal" />
-        <ul className="reveal mt-12 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
+        <ul className="reveal mt-12 grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2">
           {built.map((item, index) => (
             <li key={item.title} className="bg-paper p-6 sm:p-7">
               <span className="font-mono text-[12px] text-steel">{String(index + 1).padStart(2, "0")}</span>

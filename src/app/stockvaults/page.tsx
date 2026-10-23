@@ -2,11 +2,13 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowRight, Check } from "lucide-react"
 import { DemoSwitcher } from "@/components/demo/demo-switcher"
+import { Alternatives } from "@/components/site/alternatives"
 import { CtaBand } from "@/components/site/cta-band"
+import { DisciplineBento } from "@/components/site/discipline-bento"
 import { FeatureBento } from "@/components/site/feature-bento"
+import { ItemJourney } from "@/components/site/item-journey"
 import { Page } from "@/components/site/page"
 import { PageHero } from "@/components/site/page-hero"
-import { Rules } from "@/components/site/rules"
 import { Section, SectionIntro } from "@/components/site/section"
 
 export const metadata: Metadata = {
@@ -68,7 +70,7 @@ export default function StockVaultsPage() {
         When the shop floor, the store room and the accounts all read from the same numbers, arguments about stock stop. StockVaults is the inventory system TechVaults builds, fits to your trade and looks after.
       </PageHero>
 
-      <Section tone="subtle">
+      <Section tone="mist">
         <SectionIntro eyebrow="What is in it" title="Nine parts, working from one set of numbers." className="reveal" />
         <div className="mt-12">
           <FeatureBento />
@@ -88,12 +90,30 @@ export default function StockVaultsPage() {
         </ol>
       </Section>
 
-      <Section tone="subtle">
+      <Section tone="mist">
         <SectionIntro eyebrow="Built-in discipline" title="Your rules, applied every time." className="reveal">
           These three come from problems our customers brought us. Your system carries the rules your business needs.
         </SectionIntro>
         <div className="mt-12">
-          <Rules />
+          <DisciplineBento link={false} />
+        </div>
+      </Section>
+
+      <Section>
+        <SectionIntro eyebrow="How it works" title="Follow one phone from the supplier to a customer." className="reveal">
+          Every item in StockVaults is in one known place at a time, and every move has a name on it. Step through it.
+        </SectionIntro>
+        <div className="mt-12">
+          <ItemJourney />
+        </div>
+      </Section>
+
+      <Section tone="mist">
+        <SectionIntro eyebrow="What it replaces" title="Most stock is still counted in a book, a spreadsheet or software built for somebody else." className="reveal">
+          Each of them works on a quiet day. This is what happens on the other days.
+        </SectionIntro>
+        <div className="mt-12">
+          <Alternatives />
         </div>
       </Section>
 
@@ -106,7 +126,7 @@ export default function StockVaultsPage() {
         </div>
       </Section>
 
-      <Section tone="subtle">
+      <Section tone="mist">
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <SectionIntro eyebrow="Included" title="What comes with it." className="reveal">
             The practical things that decide whether a system gets used.
