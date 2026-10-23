@@ -21,7 +21,7 @@ export function ItemJourney() {
   const last = journey.length - 1
 
   return (
-    <div className="reveal overflow-hidden rounded-xl border border-line bg-paper">
+    <div className="reveal overflow-hidden rounded-card border border-line bg-paper">
       <div className="border-b border-line bg-mist p-4 sm:p-6">
         <p className="eyebrow mb-3">Where it is counted</p>
         <ol className="grid grid-cols-4 gap-1.5 sm:gap-3">

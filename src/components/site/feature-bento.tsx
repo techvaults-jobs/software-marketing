@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils"
  */
 export function FeatureBento() {
   return (
-    <div className="reveal reveal-children grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-6">
+    <div className="reveal reveal-children grid gap-px overflow-hidden rounded-card border border-line bg-line md:grid-cols-6">
       <Tile className="md:col-span-4" title="Stock by location" body="Every shop, branch, warehouse and van has its own count. See one, or all of them together.">
         <LocationsArt />
       </Tile>

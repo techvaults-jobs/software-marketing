@@ -54,7 +54,7 @@ export function Alternatives() {
 
       <ul className="space-y-4 md:hidden">
         {situations.map((situation) => (
-          <li key={situation.when} className="overflow-hidden rounded-xl border border-line bg-paper">
+          <li key={situation.when} className="overflow-hidden rounded-card border border-line bg-paper">
             <h3 className="border-b border-line px-4 py-3.5 text-[15px] font-semibold tracking-tight">{situation.when}</h3>
             <dl className="divide-y divide-line text-sm">
               {situation.answers.map((answer, index) => (

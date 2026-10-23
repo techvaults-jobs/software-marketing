@@ -1,68 +1,82 @@
 import type { ReactNode } from "react"
 import { cn } from "@/lib/utils"
 
-/** A band of the page: a hairline on top, content inside the framed column. */
+/** A band of the page. Mist and dark bands break up the long white scroll. */
 export function Section({
   children,
   className,
   tone = "light",
   id,
+  label,
 }: {
   children: ReactNode
   className?: string
-  tone?: "light" | "subtle" | "dark"
+  tone?: "light" | "mist" | "dark"
   id?: string
+  /** Names the band for screen readers when it has no heading of its own. */
+  label?: string
 }) {
   return (
     <section
       id={id}
+      aria-label={label}
       className={cn(
-        // The crosses sit 4px outside the frame, which at laptop widths is the page edge.
-        "overflow-x-clip border-t",
-        tone === "dark" ? "border-paper/10 bg-ink text-paper" : "border-line",
-        tone === "subtle" && "bg-mist"
+        "overflow-x-clip",
+        tone === "mist" && "border-y border-line bg-mist",
+        tone === "dark" && "bg-ink text-paper"
       )}
     >
-      <div className={cn("frame relative", tone === "dark" && "frame-dark")}>
-        <Cross className="-top-[5px] -left-[5px]" dark={tone === "dark"} />
-        <Cross className="-top-[5px] -right-[5px]" dark={tone === "dark"} />
-        <div className={cn("pad py-16 sm:py-24", className)}>{children}</div>
-      </div>
+      <div className={cn("frame pad py-16 lg:py-26", className)}>{children}</div>
     </section>
   )
 }
 
-/** The small plus where a section line meets the frame. Desktop only. */
-function Cross({ className, dark }: { className: string; dark?: boolean }) {
-  return (
-    <svg
-      aria-hidden
-      viewBox="0 0 9 9"
-      className={cn("pointer-events-none absolute z-10 hidden size-[9px] lg:block", dark ? "text-paper/40" : "text-faint", className)}
-    >
-      <path d="M4.5 0v9M0 4.5h9" stroke="currentColor" strokeWidth="1" />
-    </svg>
-  )
+export function Eyebrow({ children, className }: { children: ReactNode; className?: string }) {
+  return <p className={cn("eyebrow", className)}>{children}</p>
 }
 
+/**
+ * Eyebrow, heading and a short paragraph. `split` puts the paragraph in its
+ * own column on wide screens, as the sector and service bands do.
+ */
 export function SectionIntro({
   eyebrow,
   title,
   children,
   className,
+  layout = "stack",
   as: Tag = "h2",
+  dark = false,
 }: {
   eyebrow?: string
   title: ReactNode
   children?: ReactNode
   className?: string
+  layout?: "stack" | "split"
   as?: "h1" | "h2"
+  dark?: boolean
 }) {
+  const body = children ? (
+    <p className={cn(layout === "split" ? "max-w-[40ch] text-[17px] leading-[1.5] sm:text-[18px]" : "lede mt-5", dark ? "text-on-dark-muted" : "text-body-muted")}>{children}</p>
+  ) : null
+
+  if (layout === "split") {
+    return (
+      <div className={cn("flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between lg:gap-16", className)}>
+        <div className="max-w-[720px]">
+          {eyebrow ? <Eyebrow className="mb-4">{eyebrow}</Eyebrow> : null}
+          <Tag className={Tag === "h1" ? "display" : "title"}>{title}</Tag>
+        </div>
+        {body}
+      </div>
+    )
+  }
+
   return (
     <div className={cn("max-w-[720px]", className)}>
-      {eyebrow ? <p className="eyebrow mb-4">{eyebrow}</p> : null}
+      {eyebrow ? <Eyebrow className="mb-4">{eyebrow}</Eyebrow> : null}
       <Tag className={Tag === "h1" ? "display" : "title"}>{title}</Tag>
-      {children ? <p className="lede mt-5">{children}</p> : null}
+      {body}
     </div>
   )
 }

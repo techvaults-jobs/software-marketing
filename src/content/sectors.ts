@@ -43,8 +43,10 @@ export type DemoConfig = {
 export type Sector = {
   slug: string
   name: string
-  /** A short label for tabs, where the full name will not fit. */
+  /** A short label for tight spaces, such as button text. */
   short: string
+  /** The label on the home page sector tabs. */
+  tab: string
   icon: LucideIcon
   /** One line for cards and menus. */
   blurb: string
@@ -81,6 +83,7 @@ export const sectors: Sector[] = [
     availability: "ready",
     name: "Phones and electronics",
     short: "Electronics",
+    tab: "Phones and electronics",
     icon: Smartphone,
     blurb: "Every unit tracked by IMEI or serial number, from supplier to customer.",
     headline: "Every phone accounted for, by serial number.",
@@ -134,6 +137,7 @@ export const sectors: Sector[] = [
     availability: "on-request",
     name: "Pharmacy and healthcare",
     short: "Pharmacy",
+    tab: "Pharmacy",
     icon: Pill,
     blurb: "Batch numbers and expiry dates on every pack, with the oldest stock sold first.",
     headline: "Nothing expires on the shelf unnoticed.",
@@ -187,6 +191,7 @@ export const sectors: Sector[] = [
     availability: "on-request",
     name: "Supermarkets and grocery",
     short: "Grocery",
+    tab: "Supermarkets",
     icon: ShoppingBasket,
     blurb: "Barcode scanning, cartons broken into singles and reorder points that keep shelves full.",
     headline: "Full shelves, fewer write-offs.",
@@ -240,6 +245,7 @@ export const sectors: Sector[] = [
     availability: "on-request",
     name: "Warehousing and distribution",
     short: "Warehouse",
+    tab: "Warehousing",
     icon: Warehouse,
     blurb: "Bin locations, pick lists and dispatch notes for stock that moves by the pallet.",
     headline: "Find any pallet in under a minute.",
@@ -293,6 +299,7 @@ export const sectors: Sector[] = [
     availability: "on-request",
     name: "Manufacturing",
     short: "Manufacturing",
+    tab: "Manufacturing",
     icon: Factory,
     blurb: "Raw materials in, finished goods out, and the true cost of every production run.",
     headline: "Know what each batch really cost to make.",
@@ -348,6 +355,7 @@ export const sectors: Sector[] = [
     availability: "on-request",
     name: "Restaurants and hospitality",
     short: "Restaurants",
+    tab: "Restaurants",
     icon: UtensilsCrossed,
     blurb: "Ingredients drawn down by recipe, wastage logged, and food cost per dish.",
     headline: "See your food cost dish by dish.",
@@ -403,6 +411,7 @@ export const sectors: Sector[] = [
     availability: "on-request",
     name: "Fashion and apparel",
     short: "Fashion",
+    tab: "Fashion",
     icon: Shirt,
     blurb: "One style, many sizes and colours, counted separately and reported together.",
     headline: "Know which sizes sell before you reorder.",
@@ -456,6 +465,7 @@ export const sectors: Sector[] = [
     availability: "on-request",
     name: "Auto parts and workshops",
     short: "Auto parts",
+    tab: "Auto parts",
     icon: Car,
     blurb: "Part numbers, the vehicles each part fits, and parts used on every job card.",
     headline: "The right part, for the right vehicle, first time.",
@@ -509,6 +519,7 @@ export const sectors: Sector[] = [
     availability: "on-request",
     name: "Building materials and hardware",
     short: "Building",
+    tab: "Building materials",
     icon: HardHat,
     blurb: "Bags, tonnes and lengths on one invoice, sold on account and delivered to site.",
     headline: "Heavy stock, sold on credit, kept in balance.",
