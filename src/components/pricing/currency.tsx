@@ -37,7 +37,7 @@ export function CurrencyToggle() {
   const { currency, setCurrency } = useCurrency()
   const still = useReducedMotion()
   return (
-    <div role="group" aria-label="Show prices in" className="inline-flex rounded-full border border-line bg-white p-1">
+    <div role="group" aria-label="Show prices in" className="inline-flex rounded-full border border-line bg-paper p-1">
       {options.map((option) => {
         const active = option.id === currency
         return (
@@ -46,7 +46,7 @@ export function CurrencyToggle() {
             type="button"
             aria-pressed={active}
             onClick={() => setCurrency(option.id)}
-            className={cn("relative h-8 rounded-full px-4 text-sm font-medium transition-colors", active ? "text-white" : "text-muted-foreground hover:text-ink")}
+            className={cn("relative h-8 rounded-full px-4 text-sm font-medium transition-colors", active ? "text-paper" : "text-steel hover:text-ink")}
           >
             {active ? (
               <motion.span layoutId="currency-pill" className="absolute inset-0 rounded-full bg-ink" transition={still ? { duration: 0 } : { type: "spring", duration: 0.3, bounce: 0 }} />
@@ -67,10 +67,10 @@ export function Price({ naira, from, className }: { naira: number; from?: boolea
   return (
     <span className={className}>
       <span key={currency} className="demo-enter block text-[40px] leading-none font-semibold tracking-[-0.045em] tabular-nums sm:text-[44px]">
-        {from ? <span className="mr-2 align-middle text-base font-medium tracking-normal text-muted-foreground">from</span> : null}
+        {from ? <span className="mr-2 align-middle text-base font-medium tracking-normal text-steel">from</span> : null}
         {formatMoney(amounts[currency], currency)}
       </span>
-      <span className="mt-2 block text-sm text-muted-foreground">
+      <span className="mt-2 block text-sm text-steel">
         about {formatMoney(amounts[other], other)} · paid once
       </span>
     </span>

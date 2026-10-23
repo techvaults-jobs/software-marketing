@@ -11,14 +11,14 @@ export type Prefill = { itemId: string; from: number; to: number }
 type ScreenProps = { config: DemoConfig; state: DemoState }
 
 const field =
-  "h-9 w-full rounded-md border border-line bg-white px-2.5 text-[13px] outline-none transition-colors hover:border-[#bdbdbd] focus-visible:border-ink"
+  "h-9 w-full rounded-md border border-line bg-paper px-2.5 text-[13px] outline-none transition-colors hover:border-on-dark-muted focus-visible:border-ink"
 
 function Heading({ title, note, children }: { title: string; note?: string; children?: ReactNode }) {
   return (
     <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
       <div>
         <h3 className="text-[15px] font-semibold tracking-tight">{title}</h3>
-        {note ? <p className="mt-0.5 text-muted-foreground">{note}</p> : null}
+        {note ? <p className="mt-0.5 text-steel">{note}</p> : null}
       </div>
       {children}
     </div>
@@ -28,7 +28,7 @@ function Heading({ title, note, children }: { title: string; note?: string; chil
 function Panel({ title, children, className }: { title: string; children: ReactNode; className?: string }) {
   return (
     <section className={cn("rounded-lg border border-line", className)}>
-      <h4 className="border-b border-line px-3 py-2 font-mono text-[11px] tracking-wide text-muted-foreground uppercase">{title}</h4>
+      <h4 className="border-b border-line px-3 py-2 font-mono text-[11px] tracking-wide text-steel uppercase">{title}</h4>
       {children}
     </section>
   )
@@ -40,9 +40,9 @@ function StatusTag({ status }: { status: Status }) {
     <span
       className={cn(
         "inline-flex items-center gap-1.5 rounded-full border px-2 py-0.5 text-[11px] font-medium",
-        status === "ok" && "border-line text-muted-foreground",
+        status === "ok" && "border-line text-steel",
         status === "low" && "border-ink text-ink",
-        status === "out" && "border-brand bg-brand text-white"
+        status === "out" && "border-vault-red bg-vault-red text-paper"
       )}
     >
       {label}
@@ -77,10 +77,10 @@ export function OverviewScreen({ config, state, onTransfer }: ScreenProps & { on
             key={tile.label}
             className={cn("border-line p-3", index % 2 === 1 && "border-l", index > 1 && "border-t lg:border-t-0", index === 2 && "lg:border-l")}
           >
-            <dt className="text-muted-foreground">{tile.label}</dt>
+            <dt className="text-steel">{tile.label}</dt>
             <dd className="mt-1 flex items-center gap-2 text-[20px] font-semibold tracking-tight tabular-nums">
               {tile.value}
-              {tile.alert ? <span className="size-1.5 rounded-full bg-brand" aria-hidden /> : null}
+              {tile.alert ? <span className="size-1.5 rounded-full bg-vault-red" aria-hidden /> : null}
             </dd>
           </div>
         ))}
@@ -92,10 +92,10 @@ export function OverviewScreen({ config, state, onTransfer }: ScreenProps & { on
             {week.map((amount, index) => (
               <div key={index} className="flex h-full flex-1 flex-col justify-end gap-1.5">
                 <div
-                  className={cn("w-full rounded-sm transition-[height] duration-500 ease-out", index === 6 ? "bg-brand" : "bg-[#d4d4d4]")}
+                  className={cn("w-full rounded-sm transition-[height] duration-500 ease-out", index === 6 ? "bg-vault-red" : "bg-line-strong")}
                   style={{ height: `${Math.max(3, (amount / peak) * 100)}%` }}
                 />
-                <span className="text-center font-mono text-[10px] text-muted-foreground">{index === 6 ? "Today" : `-${6 - index}d`}</span>
+                <span className="text-center font-mono text-[10px] text-steel">{index === 6 ? "Today" : `-${6 - index}d`}</span>
               </div>
             ))}
           </div>
@@ -108,7 +108,7 @@ export function OverviewScreen({ config, state, onTransfer }: ScreenProps & { on
                 <li key={row.item.id} className="flex items-center gap-3 px-3 py-2">
                   <div className="min-w-0 flex-1">
                     <p className="truncate font-medium">{row.item.name}</p>
-                    <p className="truncate text-muted-foreground">{row.note}</p>
+                    <p className="truncate text-steel">{row.note}</p>
                   </div>
                   {row.from !== undefined && row.to !== undefined ? (
                     <button
@@ -123,7 +123,7 @@ export function OverviewScreen({ config, state, onTransfer }: ScreenProps & { on
               ))}
             </ul>
           ) : (
-            <p className="px-3 py-6 text-center text-muted-foreground">Every line is above its reorder point.</p>
+            <p className="px-3 py-6 text-center text-steel">Every line is above its reorder point.</p>
           )}
         </Panel>
       </div>
@@ -132,14 +132,14 @@ export function OverviewScreen({ config, state, onTransfer }: ScreenProps & { on
         <ul className="divide-y divide-line">
           {state.activity.slice(0, 5).map((entry) => (
             <li key={entry.id} className="flex items-center gap-3 px-3 py-2">
-              <span className="flex size-6 shrink-0 items-center justify-center rounded-md border border-line text-muted-foreground">
+              <span className="flex size-6 shrink-0 items-center justify-center rounded-md border border-line text-steel">
                 {entry.kind === "sale" ? <Check className="size-3.5" /> : entry.kind === "receive" ? <PackagePlus className="size-3.5" /> : <Truck className="size-3.5" />}
               </span>
               <div className="min-w-0 flex-1">
                 <p className="truncate font-medium">{entry.text}</p>
-                <p className="truncate text-muted-foreground">{entry.detail}</p>
+                <p className="truncate text-steel">{entry.detail}</p>
               </div>
-              <span className="shrink-0 text-muted-foreground">{entry.when}</span>
+              <span className="shrink-0 text-steel">{entry.when}</span>
             </li>
           ))}
         </ul>
@@ -165,7 +165,7 @@ export function StockScreen({ config, state, location }: ScreenProps & { locatio
       <Heading title="Stock" note={`${config.items.length} lines across ${config.locations.length} locations`}>
         <div className="flex w-full items-center gap-2 sm:w-auto">
           <div className="relative flex-1 sm:w-56">
-            <Search className="pointer-events-none absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2 text-muted-foreground" aria-hidden />
+            <Search className="pointer-events-none absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2 text-steel" aria-hidden />
             <input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
@@ -178,7 +178,7 @@ export function StockScreen({ config, state, location }: ScreenProps & { locatio
             type="button"
             onClick={() => setOnlyLow((value) => !value)}
             aria-pressed={onlyLow}
-            className={cn("h-9 shrink-0 rounded-md border px-3 font-medium transition-colors", onlyLow ? "border-ink bg-ink text-white" : "border-line hover:border-ink")}
+            className={cn("h-9 shrink-0 rounded-md border px-3 font-medium transition-colors", onlyLow ? "border-ink bg-ink text-paper" : "border-line hover:border-ink")}
           >
             Low or out
           </button>
@@ -187,7 +187,7 @@ export function StockScreen({ config, state, location }: ScreenProps & { locatio
 
       <div className="overflow-x-auto rounded-lg border border-line">
         <table className="w-full min-w-[640px] text-left">
-          <thead className="bg-subtle font-mono text-[11px] tracking-wide text-muted-foreground uppercase">
+          <thead className="bg-mist font-mono text-[11px] tracking-wide text-steel uppercase">
             <tr>
               <th className="px-3 py-2 font-normal">Item</th>
               {config.attrs.map((attr) => (
@@ -205,18 +205,18 @@ export function StockScreen({ config, state, location }: ScreenProps & { locatio
           </thead>
           <tbody className="divide-y divide-line">
             {rows.map((item) => (
-              <tr key={item.id} className="transition-colors hover:bg-subtle">
+              <tr key={item.id} className="transition-colors hover:bg-mist">
                 <td className="px-3 py-2">
                   <p className="font-medium">{item.name}</p>
-                  <p className="font-mono text-[11px] text-muted-foreground">{item.sku}</p>
+                  <p className="font-mono text-[11px] text-steel">{item.sku}</p>
                 </td>
                 {config.attrs.map((attr) => (
-                  <td key={attr.key} className="px-3 py-2 whitespace-nowrap text-muted-foreground">
+                  <td key={attr.key} className="px-3 py-2 whitespace-nowrap text-steel">
                     {item.attrs[attr.key]}
                   </td>
                 ))}
                 {state.stock[item.id].map((level, index) => (
-                  <td key={index} className={cn("px-3 py-2 text-right tabular-nums", index === location ? "font-semibold" : "text-muted-foreground", level === 0 && "text-[#b3b3b3]")}>
+                  <td key={index} className={cn("px-3 py-2 text-right tabular-nums", index === location ? "font-semibold" : "text-steel", level === 0 && "text-faint")}>
                     {count(level)}
                   </td>
                 ))}
@@ -227,7 +227,7 @@ export function StockScreen({ config, state, location }: ScreenProps & { locatio
             ))}
             {!rows.length ? (
               <tr>
-                <td colSpan={config.attrs.length + config.locations.length + 2} className="px-3 py-10 text-center text-muted-foreground">
+                <td colSpan={config.attrs.length + config.locations.length + 2} className="px-3 py-10 text-center text-steel">
                   Nothing matches. Clear the search to see every line.
                 </td>
               </tr>
@@ -294,13 +294,13 @@ export function OutScreen({ config, state, location, dispatch }: ScreenProps & {
                 >
                   <div className="min-w-0 flex-1">
                     <p className="truncate font-medium">{item.name}</p>
-                    <p className="truncate text-muted-foreground">
+                    <p className="truncate text-steel">
                       {config.attrs.map((attr) => item.attrs[attr.key]).filter((text) => text && text !== "-").join(" · ") || item.sku}
                     </p>
                   </div>
                   <div className="shrink-0 text-right">
                     <p className="font-semibold tabular-nums">{money(item.price)}</p>
-                    <p className={cn("tabular-nums", available === 0 ? "text-brand" : "text-muted-foreground")}>{available === 0 ? "None here" : `${count(available - inCart)} left`}</p>
+                    <p className={cn("tabular-nums", available === 0 ? "text-vault-red" : "text-steel")}>{available === 0 ? "None here" : `${count(available - inCart)} left`}</p>
                   </div>
                 </button>
               </li>
@@ -309,7 +309,7 @@ export function OutScreen({ config, state, location, dispatch }: ScreenProps & {
         </ul>
 
         <aside className="flex flex-col rounded-lg border border-line lg:col-span-2 lg:sticky lg:top-0 lg:self-start">
-          <h4 className="border-b border-line px-3 py-2 font-mono text-[11px] tracking-wide text-muted-foreground uppercase">{selling ? "Receipt" : "This order"}</h4>
+          <h4 className="border-b border-line px-3 py-2 font-mono text-[11px] tracking-wide text-steel uppercase">{selling ? "Receipt" : "This order"}</h4>
           {lines.length ? (
             <ul className="divide-y divide-line">
               {lines.map((line) => {
@@ -318,7 +318,7 @@ export function OutScreen({ config, state, location, dispatch }: ScreenProps & {
                   <li key={line.itemId} className="flex items-center gap-2 px-3 py-2">
                     <p className="min-w-0 flex-1 truncate font-medium">{item.name}</p>
                     <div className="flex items-center rounded-md border border-line">
-                      <button type="button" onClick={() => change(item.id, -1)} aria-label={`One fewer ${item.name}`} className="flex size-7 items-center justify-center hover:bg-subtle">
+                      <button type="button" onClick={() => change(item.id, -1)} aria-label={`One fewer ${item.name}`} className="flex size-7 items-center justify-center hover:bg-mist">
                         <Minus className="size-3" />
                       </button>
                       <span className="w-7 text-center tabular-nums">{line.qty}</span>
@@ -327,28 +327,28 @@ export function OutScreen({ config, state, location, dispatch }: ScreenProps & {
                         onClick={() => change(item.id, 1)}
                         disabled={line.qty >= state.stock[item.id][location]}
                         aria-label={`One more ${item.name}`}
-                        className="flex size-7 items-center justify-center hover:bg-subtle disabled:opacity-30"
+                        className="flex size-7 items-center justify-center hover:bg-mist disabled:opacity-30"
                       >
                         <Plus className="size-3" />
                       </button>
                     </div>
-                    <span className="w-16 text-right tabular-nums">{money(item.price * line.qty)}</span>
+                    <span className="min-w-16 shrink-0 text-right tabular-nums">{money(item.price * line.qty)}</span>
                   </li>
                 )
               })}
             </ul>
           ) : receipt ? (
             <div className="px-3 py-6 text-center">
-              <span className="mx-auto flex size-8 items-center justify-center rounded-full bg-ink text-white">
+              <span className="mx-auto flex size-8 items-center justify-center rounded-full bg-ink text-paper">
                 <Check className="size-4" />
               </span>
               <p className="mt-3 font-medium">{wording.done}</p>
-              <p className="mt-1 text-muted-foreground">
+              <p className="mt-1 text-steel">
                 {count(receipt.units)} {receipt.units === 1 ? config.unit : `${config.unit}s`} taken out of {receipt.where}, worth {money(receipt.value)}. Stock and reports are already updated.
               </p>
             </div>
           ) : (
-            <p className="px-3 py-8 text-center text-muted-foreground">Tap an item to add it.</p>
+            <p className="px-3 py-8 text-center text-steel">Tap an item to add it.</p>
           )}
           <div className="mt-auto space-y-3 border-t border-line p-3">
             {selling ? (
@@ -360,7 +360,7 @@ export function OutScreen({ config, state, location, dispatch }: ScreenProps & {
                     role="radio"
                     aria-checked={method === name}
                     onClick={() => setMethod(name)}
-                    className={cn("h-7 flex-1 rounded px-1 font-medium transition-colors", method === name ? "bg-white shadow-[0_0_0_1px_var(--line)]" : "text-muted-foreground hover:text-ink")}
+                    className={cn("h-7 flex-1 rounded px-1 font-medium transition-colors", method === name ? "bg-paper shadow-[0_0_0_1px_var(--line)]" : "text-steel hover:text-ink")}
                   >
                     {name}
                   </button>
@@ -368,14 +368,14 @@ export function OutScreen({ config, state, location, dispatch }: ScreenProps & {
               </div>
             ) : null}
             <div className="flex items-baseline justify-between">
-              <span className="text-muted-foreground">Total</span>
+              <span className="text-steel">Total</span>
               <span className="text-[18px] font-semibold tracking-tight tabular-nums">{money(value)}</span>
             </div>
             <button
               type="button"
               onClick={complete}
               disabled={!lines.length}
-              className="flex h-10 w-full items-center justify-center rounded-md bg-ink font-medium text-white transition-colors hover:bg-[#2b2b2b] disabled:cursor-not-allowed disabled:bg-[#e5e5e5] disabled:text-[#9b9b9b]"
+              className="flex h-10 w-full items-center justify-center rounded-md bg-ink font-medium text-paper transition-colors hover:bg-ink-hover disabled:cursor-not-allowed disabled:bg-secondary disabled:text-faint"
             >
               {wording.cta}
             </button>
@@ -435,7 +435,7 @@ export function MovesScreen({
                 type="button"
                 onClick={() => setMode(value)}
                 aria-pressed={mode === value}
-                className={cn("h-7 flex-1 rounded font-medium transition-colors", mode === value ? "bg-white shadow-[0_0_0_1px_var(--line)]" : "text-muted-foreground hover:text-ink")}
+                className={cn("h-7 flex-1 rounded font-medium transition-colors", mode === value ? "bg-paper shadow-[0_0_0_1px_var(--line)]" : "text-steel hover:text-ink")}
               >
                 {value === "transfer" ? "Transfer" : "Receive"}
               </button>
@@ -443,7 +443,7 @@ export function MovesScreen({
           </div>
 
           <label className="block space-y-1">
-            <span className="text-muted-foreground">Item</span>
+            <span className="text-steel">Item</span>
             <select value={itemId} onChange={(event) => setItemId(event.target.value)} className={field}>
               {config.items.map((item) => (
                 <option key={item.id} value={item.id}>
@@ -456,7 +456,7 @@ export function MovesScreen({
           <div className="grid grid-cols-[1fr_auto_1fr] items-end gap-2">
             {mode === "transfer" ? (
               <label className="block space-y-1">
-                <span className="text-muted-foreground">From</span>
+                <span className="text-steel">From</span>
                 <select value={from} onChange={(event) => setFrom(Number(event.target.value))} className={field}>
                   {config.locations.map((name, index) => (
                     <option key={name} value={index}>
@@ -467,13 +467,13 @@ export function MovesScreen({
               </label>
             ) : (
               <div className="space-y-1">
-                <span className="text-muted-foreground">From</span>
-                <p className={cn(field, "flex items-center bg-subtle text-muted-foreground")}>Supplier</p>
+                <span className="text-steel">From</span>
+                <p className={cn(field, "flex items-center bg-mist text-steel")}>Supplier</p>
               </div>
             )}
-            <ArrowRight className="mb-2.5 size-4 text-muted-foreground" aria-hidden />
+            <ArrowRight className="mb-2.5 size-4 text-steel" aria-hidden />
             <label className="block space-y-1">
-              <span className="text-muted-foreground">To</span>
+              <span className="text-steel">To</span>
               <select value={to} onChange={(event) => setTo(Number(event.target.value))} className={field}>
                 {config.locations.map((name, index) => (
                   <option key={name} value={index}>
@@ -485,18 +485,18 @@ export function MovesScreen({
           </div>
 
           <label className="block space-y-1">
-            <span className="text-muted-foreground">Quantity</span>
+            <span className="text-steel">Quantity</span>
             <input type="number" min={1} inputMode="numeric" value={qty} onChange={(event) => setQty(event.target.value)} className={cn(field, "tabular-nums")} />
           </label>
 
-          <p className={cn("min-h-5", problem ? "text-brand" : "text-muted-foreground")} aria-live="polite">
+          <p className={cn("min-h-5", problem ? "text-vault-red" : "text-steel")} aria-live="polite">
             {problem ?? (mode === "transfer" ? `${count(available - amount)} will remain at ${config.locations[from]}.` : `${config.locations[to]} will hold ${count(state.stock[itemId][to] + amount)}.`)}
           </p>
 
           <button
             type="submit"
             disabled={Boolean(problem)}
-            className="flex h-10 w-full items-center justify-center rounded-md bg-ink font-medium text-white transition-colors hover:bg-[#2b2b2b] disabled:cursor-not-allowed disabled:bg-[#e5e5e5] disabled:text-[#9b9b9b]"
+            className="flex h-10 w-full items-center justify-center rounded-md bg-ink font-medium text-paper transition-colors hover:bg-ink-hover disabled:cursor-not-allowed disabled:bg-secondary disabled:text-faint"
           >
             {mode === "transfer" ? "Send transfer" : "Receive stock"}
           </button>
@@ -506,12 +506,12 @@ export function MovesScreen({
           <ul className="divide-y divide-line">
             {moves.map((entry) => (
               <li key={entry.id} className="flex items-center gap-3 px-3 py-2">
-                <span className="w-16 shrink-0 font-mono text-[11px] text-muted-foreground uppercase">{entry.kind === "receive" ? "Received" : "Transfer"}</span>
+                <span className="w-16 shrink-0 font-mono text-[11px] text-steel uppercase">{entry.kind === "receive" ? "Received" : "Transfer"}</span>
                 <div className="min-w-0 flex-1">
                   <p className="truncate font-medium">{entry.text}</p>
-                  <p className="truncate text-muted-foreground">{entry.detail}</p>
+                  <p className="truncate text-steel">{entry.detail}</p>
                 </div>
-                <span className="shrink-0 text-muted-foreground">{entry.when}</span>
+                <span className="shrink-0 text-steel">{entry.when}</span>
               </li>
             ))}
           </ul>
@@ -563,7 +563,7 @@ export function ReportsScreen({ config, state }: ScreenProps) {
 
       <div className="overflow-x-auto rounded-lg border border-line">
         <table className="w-full min-w-[520px] text-left">
-          <thead className="bg-subtle font-mono text-[11px] tracking-wide text-muted-foreground uppercase">
+          <thead className="bg-mist font-mono text-[11px] tracking-wide text-steel uppercase">
             <tr>
               <th className="px-3 py-2 font-normal">{config.locationNoun}</th>
               <th className="px-3 py-2 text-right font-normal">Units</th>
@@ -583,7 +583,7 @@ export function ReportsScreen({ config, state }: ScreenProps) {
               </tr>
             ))}
           </tbody>
-          <tfoot className="border-t border-line bg-subtle font-semibold tabular-nums">
+          <tfoot className="border-t border-line bg-mist font-semibold tabular-nums">
             <tr>
               <td className="px-3 py-2">Total</td>
               <td className="px-3 py-2 text-right">{count(totals.units)}</td>
@@ -601,13 +601,13 @@ export function ReportsScreen({ config, state }: ScreenProps) {
             {movers.map((row) => (
               <li key={row.item.id} className="flex items-center gap-3 px-3 py-2">
                 <p className="min-w-0 flex-1 truncate font-medium">{row.item.name}</p>
-                <span className="tabular-nums text-muted-foreground">{count(row.units)} × {money(row.item.price)}</span>
-                <span className="w-20 text-right font-semibold tabular-nums">{money(row.units * row.item.price)}</span>
+                <span className="tabular-nums text-steel">{count(row.units)} × {money(row.item.price)}</span>
+                <span className="min-w-20 shrink-0 text-right font-semibold tabular-nums">{money(row.units * row.item.price)}</span>
               </li>
             ))}
           </ul>
         ) : (
-          <p className="px-3 py-6 text-center text-muted-foreground">
+          <p className="px-3 py-6 text-center text-steel">
             Nothing yet. Use {wording.tab} to move some stock, then come back.
           </p>
         )}

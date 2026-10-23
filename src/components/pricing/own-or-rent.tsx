@@ -29,13 +29,13 @@ export function OwnOrRent() {
   const symbol = currency === "ngn" ? "₦" : "$"
 
   return (
-    <div className="reveal grid overflow-hidden rounded-xl border border-line bg-white lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)]">
+    <div className="reveal grid overflow-hidden rounded-xl border border-line bg-paper lg:grid-cols-[minmax(0,22rem)_minmax(0,1fr)]">
       <div className="space-y-6 border-b border-line p-6 sm:p-8 lg:border-r lg:border-b-0">
         <div>
           <label htmlFor={ids.plan} className="text-sm font-medium">
             StockVaults package
           </label>
-          <select id={ids.plan} value={planId} onChange={(event) => setPlanId(event.target.value)} className="mt-2 h-11 w-full rounded-lg border border-input bg-white px-3 text-[15px]">
+          <select id={ids.plan} value={planId} onChange={(event) => setPlanId(event.target.value)} className="mt-2 h-11 w-full rounded-lg border border-input bg-paper px-3 text-[15px]">
             {priced.map((option) => (
               <option key={option.id} value={option.id}>
                 {option.name}
@@ -47,8 +47,8 @@ export function OwnOrRent() {
           <label htmlFor={ids.monthly} className="text-sm font-medium">
             A subscription would cost you, each month
           </label>
-          <div className="mt-2 flex h-11 items-center rounded-lg border border-input bg-white px-3 focus-within:border-ink">
-            <span className="text-muted-foreground">{symbol}</span>
+          <div className="mt-2 flex h-11 items-center rounded-lg border border-input bg-paper px-3 focus-within:border-ink">
+            <span className="text-steel">{symbol}</span>
             <input
               id={ids.monthly}
               inputMode="numeric"
@@ -60,7 +60,7 @@ export function OwnOrRent() {
               className="h-full w-full bg-transparent pl-1.5 text-[15px] tabular-nums outline-none"
             />
           </div>
-          <p className="mt-2 text-[13px] text-muted-foreground">Use a quote you have been given, across all your branches and users.</p>
+          <p className="mt-2 text-[13px] text-steel">Use a quote you have been given, across all your branches and users.</p>
         </div>
         <div>
           <label htmlFor={ids.years} className="flex items-center justify-between text-sm font-medium">
@@ -69,7 +69,7 @@ export function OwnOrRent() {
               {years} {years === 1 ? "year" : "years"}
             </span>
           </label>
-          <input id={ids.years} type="range" min={1} max={10} value={years} onChange={(event) => setYears(Number(event.target.value))} className="mt-3 w-full accent-[#0a0a0a]" />
+          <input id={ids.years} type="range" min={1} max={10} value={years} onChange={(event) => setYears(Number(event.target.value))} className="mt-3 w-full accent-ink" />
         </div>
       </div>
 
@@ -85,16 +85,16 @@ export function OwnOrRent() {
                 <dd className="text-[22px] font-semibold tracking-tight tabular-nums">{formatMoney(side.total, currency)}</dd>
               </div>
               <div className="mt-2 h-2.5 overflow-hidden rounded-full bg-secondary">
-                <div className={side.ours ? "h-full rounded-full bg-ink" : "h-full rounded-full bg-[#a3a3a3]"} style={{ width: `${(side.total / widest) * 100}%`, transition: "width 320ms var(--ease-out)" }} />
+                <div className={side.ours ? "h-full rounded-full bg-ink" : "h-full rounded-full bg-faint"} style={{ width: `${(side.total / widest) * 100}%`, transition: "width 320ms var(--ease-out)" }} />
               </div>
-              <p className="mt-2 text-sm text-muted-foreground">{side.detail}</p>
+              <p className="mt-2 text-sm text-steel">{side.detail}</p>
             </div>
           ))}
         </dl>
         <p className="mt-8 border-t border-line pt-6 text-[17px] leading-snug font-medium tracking-tight">
           {gap > 0 ? (
             <>
-              Over {years} {years === 1 ? "year" : "years"}, owning costs <span className="text-brand">{formatMoney(gap, currency)} less</span>, and you still have the system at the end.
+              Over {years} {years === 1 ? "year" : "years"}, owning costs <span className="text-vault-red">{formatMoney(gap, currency)} less</span>, and you still have the system at the end.
             </>
           ) : gap < 0 ? (
             <>

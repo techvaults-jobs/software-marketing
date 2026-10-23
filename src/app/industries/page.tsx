@@ -20,10 +20,10 @@ export default function IndustriesPage() {
       </PageHero>
       <Section tone="subtle" className="py-12 sm:py-16">
         <SectorGrid sectors={sectors} />
-        <div className="mt-8 flex flex-col gap-4 rounded-xl border border-dashed border-[#cfcfcf] bg-white p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7">
+        <div className="mt-8 flex flex-col gap-4 rounded-xl border border-dashed border-line-strong bg-paper p-6 sm:flex-row sm:items-center sm:justify-between sm:p-7">
           <div>
             <h2 className="text-[17px] font-semibold tracking-tight">Your sector is not here?</h2>
-            <p className="mt-1 text-[15px] text-muted-foreground">
+            <p className="mt-1 text-[15px] text-steel">
               These are the ones with a demo or preview. If you hold stock of any kind, we can fit the core to it.
             </p>
           </div>

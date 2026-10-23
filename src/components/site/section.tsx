@@ -19,8 +19,8 @@ export function Section({
       className={cn(
         // The crosses sit 4px outside the frame, which at laptop widths is the page edge.
         "overflow-x-clip border-t",
-        tone === "dark" ? "border-white/10 bg-ink text-white" : "border-line",
-        tone === "subtle" && "bg-subtle"
+        tone === "dark" ? "border-paper/10 bg-ink text-paper" : "border-line",
+        tone === "subtle" && "bg-mist"
       )}
     >
       <div className={cn("frame relative", tone === "dark" && "frame-dark")}>
@@ -38,7 +38,7 @@ function Cross({ className, dark }: { className: string; dark?: boolean }) {
     <svg
       aria-hidden
       viewBox="0 0 9 9"
-      className={cn("pointer-events-none absolute z-10 hidden size-[9px] lg:block", dark ? "text-white/40" : "text-[#a8a8a8]", className)}
+      className={cn("pointer-events-none absolute z-10 hidden size-[9px] lg:block", dark ? "text-paper/40" : "text-faint", className)}
     >
       <path d="M4.5 0v9M0 4.5h9" stroke="currentColor" strokeWidth="1" />
     </svg>

@@ -31,10 +31,10 @@ export default function ContactPage() {
               <ol className="mt-10 space-y-6 border-t border-line pt-8">
                 {next.map(([title, body], index) => (
                   <li key={title} className="flex gap-4">
-                    <span className="font-mono text-[12px] leading-6 text-brand">0{index + 1}</span>
+                    <span className="font-mono text-[12px] leading-6 text-vault-red">0{index + 1}</span>
                     <div>
                       <p className="font-medium">{title}</p>
-                      <p className="mt-1 text-[15px] leading-relaxed text-muted-foreground">{body}</p>
+                      <p className="mt-1 text-[15px] leading-relaxed text-steel">{body}</p>
                     </div>
                   </li>
                 ))}
@@ -51,12 +51,12 @@ export default function ContactPage() {
                     {site.phone.display}
                   </a>
                 </div>
-                <p className="mt-6 text-[15px] text-muted-foreground">
+                <p className="mt-6 text-[15px] text-steel">
                   <a href={`mailto:${site.email}`} className="link text-ink">
                     {site.email}
                   </a>
                 </p>
-                <address className="mt-2 text-[15px] leading-relaxed text-muted-foreground not-italic">{site.address.join(", ")}</address>
+                <address className="mt-2 text-[15px] leading-relaxed text-steel not-italic">{site.address.join(", ")}</address>
               </div>
             </div>
             <ContactForm sectors={sectors.map((sector) => sector.name)} />

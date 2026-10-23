@@ -26,17 +26,17 @@ export default function DemoIndexPage() {
               <Link
                 href={`/demo/${sector.slug}`}
                 transitionTypes={["nav-forward"]}
-                className="group flex h-full flex-col bg-white p-6 transition-colors hover:bg-subtle sm:p-7"
+                className="group flex h-full flex-col bg-paper p-6 transition-colors hover:bg-mist sm:p-7"
               >
                 <div className="flex items-start justify-between">
-                  <span className="flex size-10 items-center justify-center rounded-lg border border-line bg-white">
+                  <span className="flex size-10 items-center justify-center rounded-lg border border-line bg-paper">
                     <sector.icon className="size-[18px]" strokeWidth={1.75} aria-hidden />
                   </span>
-                  <ArrowUpRight className="size-4 text-[#b0b0b0] transition-[color,transform] duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand" aria-hidden />
+                  <ArrowUpRight className="size-4 text-faint transition-[color,transform] duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-vault-red" aria-hidden />
                 </div>
-                <p className="mt-6 font-mono text-[12px] tracking-wide text-muted-foreground uppercase">{sector.name}</p>
+                <p className="mt-6 font-mono text-[12px] tracking-wide text-steel uppercase">{sector.name}</p>
                 <h2 className="mt-1.5 text-[19px] font-semibold tracking-tight">{sector.demo.business}</h2>
-                <p className="mt-2 text-[15px] text-muted-foreground">
+                <p className="mt-2 text-[15px] text-steel">
                   {sector.demo.locations.join(", ")}. Tracks {sector.demo.attrs.map((attr) => attr.label.toLowerCase()).join(" and ")}.
                 </p>
                 <div className="mt-auto pt-5">
@@ -55,9 +55,9 @@ export default function DemoIndexPage() {
           <ul className="mt-8 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
             {[...sectors.filter((sector) => sector.setup).map((sector) => ({ key: sector.slug, name: sector.name, setup: sector.setup })), ...otherSetups.map((other) => ({ key: other.setup, ...other }))].map((entry) => (
               <li key={entry.key}>
-                <a href={appLink(`/demo/${entry.setup}`) ?? undefined} className="group flex h-full items-center justify-between gap-4 bg-white px-6 py-5 transition-colors hover:bg-subtle">
+                <a href={appLink(`/demo/${entry.setup}`) ?? undefined} className="group flex h-full items-center justify-between gap-4 bg-paper px-6 py-5 transition-colors hover:bg-mist">
                   <span className="text-[15px] font-medium">{entry.name}</span>
-                  <ArrowUpRight className="size-4 shrink-0 text-[#b0b0b0] transition-colors group-hover:text-ink" aria-hidden />
+                  <ArrowUpRight className="size-4 shrink-0 text-faint transition-colors group-hover:text-ink" aria-hidden />
                 </a>
               </li>
             ))}

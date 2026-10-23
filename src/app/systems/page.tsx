@@ -30,11 +30,11 @@ export default function SystemsPage() {
       <Section tone="subtle">
         <ul className="grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
           {systems.map((system) => (
-            <li key={system.name} className="reveal bg-white p-6 sm:p-7">
+            <li key={system.name} className="reveal bg-paper p-6 sm:p-7">
               <system.icon className="size-5" strokeWidth={1.75} aria-hidden />
               <h2 className="mt-5 text-[17px] font-semibold tracking-tight">{system.name}</h2>
-              <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{system.body}</p>
-              <p className="mt-5 font-mono text-[12px] tracking-wide text-muted-foreground uppercase">{system.for}</p>
+              <p className="mt-2 text-[15px] leading-relaxed text-steel">{system.body}</p>
+              <p className="mt-5 font-mono text-[12px] tracking-wide text-steel uppercase">{system.for}</p>
             </li>
           ))}
         </ul>
@@ -46,10 +46,10 @@ export default function SystemsPage() {
             Separate tools mean the same sale typed three times. When we build the systems around your inventory, a sale updates stock, the customer balance and the books in one step.
           </SectionIntro>
           <div className="reveal self-end">
-            <p className="text-[16px] leading-relaxed text-muted-foreground">
+            <p className="text-[16px] leading-relaxed text-steel">
               Something not on this list? Most of what we build starts as a conversation about a process that is costing a business time or money. If it can be written down as steps, it can be built.
             </p>
-            <Link href="/services#process" className="mt-5 inline-flex items-center gap-1.5 text-[15px] font-medium hover:text-brand">
+            <Link href="/services#process" className="mt-5 inline-flex items-center gap-1.5 text-[15px] font-medium hover:text-vault-red">
               See how a project runs <ArrowRight className="size-4" aria-hidden />
             </Link>
           </div>

@@ -34,7 +34,7 @@ export default async function SectorPage({ params }: PageProps<"/industries/[slu
         back={{ href: "/industries", label: "All industries" }}
         lead={
           <ViewTransition name={`sector-${sector.slug}`} share="morph" default="none">
-            <span className="inline-flex size-12 items-center justify-center rounded-xl border border-line bg-white">
+            <span className="inline-flex size-12 items-center justify-center rounded-xl border border-line bg-paper">
               <sector.icon className="size-[22px]" strokeWidth={1.75} aria-hidden />
             </span>
           </ViewTransition>
@@ -61,7 +61,7 @@ export default async function SectorPage({ params }: PageProps<"/industries/[slu
         <span className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2 text-[15px]">
           <AvailabilityBadge sector={sector} />
           {ready ? null : (
-            <span className="text-muted-foreground">
+            <span className="text-steel">
               StockVaults runs phone and electronics shops today. For {sector.name.toLowerCase()}, the parts below are built into your version before you go live.
             </span>
           )}
@@ -78,7 +78,7 @@ export default async function SectorPage({ params }: PageProps<"/industries/[slu
             <ul className="mt-8 space-y-3">
               {sector.tracks.map((line) => (
                 <li key={line} className="flex gap-3 text-[16px]">
-                  <Check className="mt-1 size-4 shrink-0 text-brand" aria-hidden />
+                  <Check className="mt-1 size-4 shrink-0 text-vault-red" aria-hidden />
                   {line}
                 </li>
               ))}
@@ -86,10 +86,10 @@ export default async function SectorPage({ params }: PageProps<"/industries/[slu
           </div>
           <ul className="reveal grid gap-px self-start overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
             {sector.workflows.map((workflow, index) => (
-              <li key={workflow.title} className="bg-white p-6 sm:p-7">
-                <span className="font-mono text-[12px] text-muted-foreground">0{index + 1}</span>
+              <li key={workflow.title} className="bg-paper p-6 sm:p-7">
+                <span className="font-mono text-[12px] text-steel">0{index + 1}</span>
                 <h3 className="mt-4 text-[17px] font-semibold tracking-tight">{workflow.title}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{workflow.body}</p>
+                <p className="mt-2 text-[15px] leading-relaxed text-steel">{workflow.body}</p>
               </li>
             ))}
           </ul>
@@ -114,7 +114,7 @@ export default async function SectorPage({ params }: PageProps<"/industries/[slu
             <li key={other.slug}>
               <Link
                 href={`/industries/${other.slug}`}
-                className="flex h-10 items-center gap-2 rounded-full border border-[#d9d9d9] bg-white px-4 text-sm font-medium transition-colors hover:border-ink"
+                className="flex h-10 items-center gap-2 rounded-full border border-line-strong bg-paper px-4 text-sm font-medium transition-colors hover:border-ink"
               >
                 <other.icon className="size-4" strokeWidth={1.75} aria-hidden />
                 {other.name}

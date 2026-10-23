@@ -69,24 +69,24 @@ export function HeroFilm() {
 
   return (
     <figure ref={root} data-running={!paused && inView} className="film">
-      <div className="overflow-hidden rounded-xl border border-line bg-white shadow-[0_24px_48px_-32px_rgba(0,0,0,0.3)]">
+      <div className="overflow-hidden rounded-xl border border-line bg-paper shadow-[0_24px_48px_-32px_rgba(0,0,0,0.3)]">
         <div className="flex h-11 items-center justify-between gap-3 border-b border-line pr-2 pl-4">
           <p key={scene.id} className="film-in flex min-w-0 items-center gap-2 text-[13px]">
             <scene.sector.icon className="size-4 shrink-0" strokeWidth={1.75} aria-hidden />
             <span className="truncate font-medium">{scene.sector.demo.business}</span>
-            <span className="hidden shrink-0 text-muted-foreground min-[400px]:inline">{scene.sector.short}</span>
+            <span className="hidden shrink-0 text-steel min-[400px]:inline">{scene.sector.short}</span>
           </p>
           <button
             type="button"
             onClick={() => setPaused((value) => !value)}
             aria-label={paused ? "Play the animation" : "Pause the animation"}
-            className="flex size-7 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-secondary hover:text-ink motion-reduce:hidden"
+            className="flex size-7 shrink-0 items-center justify-center rounded-full text-steel transition-colors hover:bg-secondary hover:text-ink motion-reduce:hidden"
           >
             {paused ? <Play className="size-3.5" aria-hidden /> : <Pause className="size-3.5" aria-hidden />}
           </button>
         </div>
 
-        <div key={scene.id} role="img" aria-label={scene.summary} className="flex h-[252px] flex-col gap-3 bg-subtle p-4 text-[13px] sm:p-5">
+        <div key={scene.id} role="img" aria-label={scene.summary} className="flex h-[252px] flex-col gap-3 bg-mist p-4 text-[13px] sm:p-5">
           {scene.id === "receive" ? <Receive scene={scene} /> : null}
           {scene.id === "sell" ? <Sell scene={scene} /> : null}
           {scene.id === "move" ? <Move scene={scene} /> : null}
@@ -105,7 +105,7 @@ export function HeroFilm() {
                 className={cn(
                   "relative flex flex-col gap-0.5 border-line px-3 pt-3 pb-2.5 text-left transition-colors sm:px-4",
                   position > 0 && "border-l",
-                  active ? "text-ink" : "text-muted-foreground hover:text-ink"
+                  active ? "text-ink" : "text-steel hover:text-ink"
                 )}
               >
                 {active ? (
@@ -116,14 +116,14 @@ export function HeroFilm() {
                     onAnimationEnd={() => setIndex((position + 1) % scenes.length)}
                   />
                 ) : null}
-                <span className="font-mono text-[11px] text-muted-foreground">0{position + 1}</span>
+                <span className="font-mono text-[11px] text-steel">0{position + 1}</span>
                 <span className="text-[13px] font-medium">{step.label}</span>
               </button>
             )
           })}
         </div>
       </div>
-      <figcaption className="mt-3 text-[13px] text-muted-foreground">Four stock movements, taken from four of the sector demos. The businesses are made up.</figcaption>
+      <figcaption className="mt-3 text-[13px] text-steel">Four stock movements, taken from four of the sector demos. The businesses are made up.</figcaption>
     </figure>
   )
 }
@@ -133,11 +133,11 @@ const delay = (ms: number) => ({ "--d": `${ms}ms` }) as CSSProperties
 function Event({ icon: Icon, title, meta }: { icon: LucideIcon; title: string; meta: string }) {
   return (
     <div className="film-in flex items-center gap-3">
-      <span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-line bg-white">
+      <span className="flex size-8 shrink-0 items-center justify-center rounded-lg border border-line bg-paper">
         <Icon className="size-4" strokeWidth={1.75} aria-hidden />
       </span>
       <span className="min-w-0 flex-1 truncate text-sm font-semibold tracking-tight">{title}</span>
-      <span className="shrink-0 font-mono text-[11px] text-muted-foreground uppercase">{meta}</span>
+      <span className="shrink-0 font-mono text-[11px] text-steel uppercase">{meta}</span>
     </div>
   )
 }
@@ -158,11 +158,11 @@ type Count = { label: string; from: number; to: number; at: number; change?: str
 
 function Ledger({ rows }: { rows: Count[] }) {
   return (
-    <ul className="film-in mt-auto divide-y divide-line rounded-lg border border-line bg-white" style={delay(160)}>
+    <ul className="film-in mt-auto divide-y divide-line rounded-lg border border-line bg-paper" style={delay(160)}>
       {rows.map((row) => (
         <li key={row.label} className="flex h-11 items-center gap-3 px-3.5">
-          <span className="flex min-w-0 flex-1 items-center gap-2 text-muted-foreground">
-            {row.alert ? <span className="pulse-dot size-1.5 shrink-0 rounded-full bg-brand" /> : null}
+          <span className="flex min-w-0 flex-1 items-center gap-2 text-steel">
+            {row.alert ? <span className="pulse-dot size-1.5 shrink-0 rounded-full bg-vault-red" /> : null}
             <span className="truncate">{row.label}</span>
           </span>
           {row.change ? (
@@ -170,7 +170,7 @@ function Ledger({ rows }: { rows: Count[] }) {
               {row.change}
             </span>
           ) : null}
-          <span className={cn("shrink-0 text-right text-[20px] font-semibold tracking-tight tabular-nums", row.alert && "text-brand")}>
+          <span className={cn("shrink-0 text-right text-[20px] font-semibold tracking-tight tabular-nums", row.alert && "text-vault-red")}>
             <Tick from={count(row.from)} to={count(row.to)} at={row.at} />
           </span>
         </li>
@@ -187,16 +187,16 @@ function Receive({ scene }: { scene: Scene }) {
   return (
     <>
       <Event icon={PackageCheck} title="Delivery received" meta={place} />
-      <div className="film-in flex flex-1 items-center gap-4 rounded-lg border border-line bg-white px-3.5" style={delay(80)}>
+      <div className="film-in flex flex-1 items-center gap-4 rounded-lg border border-line bg-paper px-3.5" style={delay(80)}>
         <div className="relative flex h-14 shrink-0 items-stretch gap-[3px]">
           {bars.map((width, position) => (
             <span key={position} className={cn("bg-ink", position > 12 && "hidden min-[440px]:block")} style={{ width }} />
           ))}
-          <span className="film-scan absolute -inset-y-1.5 w-px bg-brand" style={delay(420)} />
+          <span className="film-scan absolute -inset-y-1.5 w-px bg-vault-red" style={delay(420)} />
         </div>
         <div className="min-w-0">
           <p className="truncate font-medium">{item.name}</p>
-          <p className="mt-0.5 truncate text-muted-foreground">{details(sector, item)}</p>
+          <p className="mt-0.5 truncate text-steel">{details(sector, item)}</p>
         </div>
       </div>
       <Ledger rows={[{ label: `On hand at ${place}`, from: item.stock[at], to: item.stock[at] + qty, at: 1400, change: `+${units(sector, qty)}` }]} />
@@ -210,19 +210,19 @@ function Sell({ scene }: { scene: Scene }) {
   return (
     <>
       <Event icon={ReceiptText} title="Sale completed" meta={place} />
-      <div className="film-in rounded-lg border border-line bg-white" style={delay(80)}>
+      <div className="film-in rounded-lg border border-line bg-paper" style={delay(80)}>
         <div className="flex items-start justify-between gap-3 p-3.5">
           <div className="min-w-0">
             <p className="truncate font-medium">
               {qty} × {item.name}
             </p>
-            <p className="mt-0.5 truncate text-muted-foreground">{details(sector, item)}</p>
+            <p className="mt-0.5 truncate text-steel">{details(sector, item)}</p>
           </div>
           <span className="shrink-0 font-medium tabular-nums">{money(item.price * qty)}</span>
         </div>
         <div className="flex items-center justify-between border-t border-dashed border-line px-3.5 py-2.5">
-          <span className="text-muted-foreground">Receipt printed</span>
-          <span className="film-in inline-flex items-center gap-1 rounded-full bg-ink py-0.5 pr-2.5 pl-2 text-[11px] font-medium text-white" style={delay(760)}>
+          <span className="text-steel">Receipt printed</span>
+          <span className="film-in inline-flex items-center gap-1 rounded-full bg-ink py-0.5 pr-2.5 pl-2 text-[11px] font-medium text-paper" style={delay(760)}>
             <Check className="size-3" strokeWidth={2.5} aria-hidden />
             Paid
           </span>
@@ -240,13 +240,13 @@ function Move({ scene }: { scene: Scene }) {
   return (
     <>
       <Event icon={ArrowLeftRight} title={`${count(qty)} × ${item.name}`} meta="Transfer" />
-      <div className="film-in flex flex-1 flex-col justify-center rounded-lg border border-line bg-white px-3.5" style={delay(80)}>
-        <div className="relative mx-1.5 h-px bg-[#d4d4d4]">
-          <span className="absolute top-1/2 left-0 size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-ink bg-white" />
-          <span className="absolute top-1/2 left-full size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-ink bg-white" />
+      <div className="film-in flex flex-1 flex-col justify-center rounded-lg border border-line bg-paper px-3.5" style={delay(80)}>
+        <div className="relative mx-1.5 h-px bg-line-strong">
+          <span className="absolute top-1/2 left-0 size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-ink bg-paper" />
+          <span className="absolute top-1/2 left-full size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border border-ink bg-paper" />
           <span className="film-travel absolute top-1/2 size-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-ink" style={delay(700)} />
         </div>
-        <p className="mt-3 text-center text-muted-foreground">
+        <p className="mt-3 text-center text-steel">
           <Tick from="In transit. It belongs to neither." to={`Received at ${destination}`} at={1700} />
         </p>
       </div>
@@ -268,16 +268,16 @@ function Reorder({ scene }: { scene: Scene }) {
   return (
     <>
       <Event icon={BellRing} title="Reorder level reached" meta={item.sku} />
-      <div className="film-in rounded-lg border border-line bg-white p-3.5" style={delay(80)}>
+      <div className="film-in rounded-lg border border-line bg-paper p-3.5" style={delay(80)}>
         <p className="truncate font-medium">{item.name}</p>
-        <p className="mt-0.5 truncate text-muted-foreground">{details(sector, item)}</p>
+        <p className="mt-0.5 truncate text-steel">{details(sector, item)}</p>
         <div className="relative mt-5 h-1.5 rounded-full bg-secondary">
           <span
             className="film-drain block h-full rounded-full bg-ink"
             style={{ width: `${(onHand / scale) * 100}%`, "--from": (onHand + qty * 4) / onHand, ...delay(500) } as CSSProperties}
           />
           <span className="absolute -top-1.5 -bottom-1.5 left-1/2 w-px bg-ink" />
-          <span className="absolute -top-5 left-1/2 -translate-x-1/2 font-mono text-[10px] whitespace-nowrap text-muted-foreground">REORDER AT {count(item.reorder)}</span>
+          <span className="absolute -top-5 left-1/2 -translate-x-1/2 font-mono text-[10px] whitespace-nowrap text-steel">REORDER AT {count(item.reorder)}</span>
         </div>
       </div>
       <Ledger rows={[{ label: "On hand, all locations", from: onHand + qty, to: onHand, at: 1100, change: "On the reorder list", alert: true }]} />

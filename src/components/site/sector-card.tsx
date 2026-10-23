@@ -14,11 +14,11 @@ export function AvailabilityBadge({ sector, className }: { sector: Sector; class
     <span
       className={cn(
         "inline-flex h-6 items-center gap-1.5 rounded-full px-2.5 text-[12px] font-medium whitespace-nowrap",
-        ready ? "bg-ink text-white" : "border border-line bg-white text-muted-foreground",
+        ready ? "bg-ink text-paper" : "border border-line bg-paper text-steel",
         className
       )}
     >
-      <span aria-hidden className={cn("size-1.5 rounded-full", ready ? "bg-brand" : "bg-[#b0b0b0]")} />
+      <span aria-hidden className={cn("size-1.5 rounded-full", ready ? "bg-vault-red" : "bg-faint")} />
       {ready ? "Ready today" : "Built on request"}
     </span>
   )
@@ -33,21 +33,21 @@ export function SectorCard({ sector }: { sector: Sector }) {
     <Link
       href={`/industries/${sector.slug}`}
       transitionTypes={["nav-forward"]}
-      className="card-line group flex h-full flex-col bg-white p-6 transition-colors hover:bg-subtle sm:p-7"
+      className="card-line group flex h-full flex-col bg-paper p-6 transition-colors hover:bg-mist sm:p-7"
     >
       <div className="flex items-start justify-between">
         <ViewTransition name={`sector-${sector.slug}`} share="morph" default="none">
-          <span className="flex size-10 items-center justify-center rounded-lg border border-line bg-white transition-colors duration-200 group-hover:border-ink group-hover:bg-ink group-hover:text-white">
+          <span className="flex size-10 items-center justify-center rounded-lg border border-line bg-paper transition-colors duration-200 group-hover:border-ink group-hover:bg-ink group-hover:text-paper">
             <sector.icon className="size-[18px]" strokeWidth={1.75} aria-hidden />
           </span>
         </ViewTransition>
         <ArrowUpRight
-          className="size-4 text-[#b0b0b0] transition-[color,transform] duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand"
+          className="size-4 text-faint transition-[color,transform] duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-vault-red"
           aria-hidden
         />
       </div>
       <h3 className="mt-6 text-[17px] font-semibold tracking-tight">{sector.name}</h3>
-      <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{sector.blurb}</p>
+      <p className="mt-2 text-[15px] leading-relaxed text-steel">{sector.blurb}</p>
       <div className="mt-auto pt-5">
         <AvailabilityBadge sector={sector} />
       </div>

@@ -86,7 +86,7 @@ export default function AbuTwinsPage() {
       <Section>
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <SectionIntro eyebrow="The problem" title="High-value stock, many hands." className="reveal" />
-          <div className="reveal space-y-5 text-[17px] leading-[1.65] text-muted-foreground">
+          <div className="reveal space-y-5 text-[17px] leading-[1.65] text-steel">
             <p>
               A phone shop holds a lot of money in a small space. Units move between shops daily, customers pay in parts, old phones come in as part exchange and faulty ones go back to suppliers. Each of those is a place where a unit, or the money for it, can go missing without anyone noticing for weeks.
             </p>
@@ -101,10 +101,10 @@ export default function AbuTwinsPage() {
         <SectionIntro eyebrow="What we built" title="Their workflows, written into the system." className="reveal" />
         <ul className="reveal mt-12 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
           {built.map((item, index) => (
-            <li key={item.title} className="bg-white p-6 sm:p-7">
-              <span className="font-mono text-[12px] text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
+            <li key={item.title} className="bg-paper p-6 sm:p-7">
+              <span className="font-mono text-[12px] text-steel">{String(index + 1).padStart(2, "0")}</span>
               <h3 className="mt-4 text-[17px] font-semibold tracking-tight">{item.title}</h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{item.body}</p>
+              <p className="mt-2 text-[15px] leading-relaxed text-steel">{item.body}</p>
             </li>
           ))}
         </ul>
@@ -113,12 +113,12 @@ export default function AbuTwinsPage() {
       <Section>
         <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-16">
           <SectionIntro eyebrow="After go-live" title="The system keeps changing, because the business does." className="reveal" />
-          <div className="reveal space-y-5 text-[17px] leading-[1.65] text-muted-foreground">
+          <div className="reveal space-y-5 text-[17px] leading-[1.65] text-steel">
             <p>
               Requests come straight from the people using it: the owner, shop managers and the warehouse team. When a manager asked for the people behind each transfer to be shown, it was added. When the warehouse wanted to check a list before anything was sent to a supplier, the screen was redesigned around that.
             </p>
             <p>That is what maintenance means to us: the software follows the business, and somebody who knows the set-up is always on the other end.</p>
-            <Link href="/demo/phones-electronics" transitionTypes={["nav-forward"]} className="inline-flex items-center gap-1.5 text-[15px] font-medium text-ink hover:text-brand">
+            <Link href="/demo/phones-electronics" transitionTypes={["nav-forward"]} className="inline-flex items-center gap-1.5 text-[15px] font-medium text-ink hover:text-vault-red">
               Try the phones and electronics demo <ArrowRight className="size-4" aria-hidden />
             </Link>
           </div>

@@ -18,9 +18,9 @@ export function SignInForm() {
           autoComplete="current-password"
           required
           aria-invalid={Boolean(state.error)}
-          className="h-11 w-full rounded-lg border border-[#d9d9d9] bg-white px-3.5 text-[15px] outline-none focus-visible:border-ink"
+          className="h-11 w-full rounded-lg border border-line-strong bg-paper px-3.5 text-[15px] outline-none focus-visible:border-ink"
         />
-        {state.error ? <p className="text-sm text-brand">{state.error}</p> : null}
+        {state.error ? <p className="text-sm text-vault-red">{state.error}</p> : null}
       </div>
       <button type="submit" disabled={pending} className="btn btn-primary disabled:opacity-60">
         {pending ? "Checking" : "Sign in"}

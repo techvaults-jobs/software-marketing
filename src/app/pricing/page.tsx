@@ -26,7 +26,7 @@ export default async function PricingPage() {
 
         <Section tone="subtle">
           <Packages />
-          <p className="reveal mt-6 max-w-[90ch] text-sm leading-relaxed text-muted-foreground">
+          <p className="reveal mt-6 max-w-[90ch] text-sm leading-relaxed text-steel">
             Prices are charged in naira. Dollar figures are the same price at ₦{Math.round(dollar.rate).toLocaleString("en-US")} to the dollar, the rate on {dollar.asOf}, and move with it.{" "}
             {dollar.live ? (
               <a href="https://www.exchangerate-api.com" target="_blank" rel="noreferrer" className="link">
@@ -46,9 +46,9 @@ export default async function PricingPage() {
             <ol className="reveal reveal-children grid gap-x-10 gap-y-8 sm:grid-cols-2">
               {included.map((entry, index) => (
                 <li key={entry.title} className="border-t border-line pt-5">
-                  <span className="font-mono text-[12px] text-muted-foreground">0{index + 1}</span>
+                  <span className="font-mono text-[12px] text-steel">0{index + 1}</span>
                   <h3 className="mt-2 text-[17px] font-semibold tracking-tight">{entry.title}</h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{entry.body}</p>
+                  <p className="mt-2 text-[15px] leading-relaxed text-steel">{entry.body}</p>
                 </li>
               ))}
             </ol>
@@ -68,10 +68,10 @@ export default async function PricingPage() {
           <SectionIntro eyebrow="What owning means" title="Three things you can hold us to." className="reveal" />
           <ul className="reveal reveal-children mt-12 grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-3">
             {ownership.map((entry) => (
-              <li key={entry.title} className="bg-white p-6 sm:p-8">
-                <Check className="size-5 text-brand" aria-hidden />
+              <li key={entry.title} className="bg-paper p-6 sm:p-8">
+                <Check className="size-5 text-vault-red" aria-hidden />
                 <h3 className="mt-5 text-[19px] font-semibold tracking-tight">{entry.title}</h3>
-                <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{entry.body}</p>
+                <p className="mt-2 text-[15px] leading-relaxed text-steel">{entry.body}</p>
               </li>
             ))}
           </ul>

@@ -17,7 +17,7 @@ export function DemoSwitcher({ initial = sectors[0].slug, compact = false }: { i
   return (
     <div>
       <div className="-mx-5 mb-4 overflow-x-auto px-5 [scrollbar-width:none] sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden">
-        <div role="tablist" aria-label="Choose a sector" className="flex w-max gap-1 rounded-full border border-line bg-white p-1 sm:w-fit sm:flex-wrap sm:rounded-3xl">
+        <div role="tablist" aria-label="Choose a sector" className="flex w-max gap-1 rounded-full border border-line bg-paper p-1 sm:w-fit sm:flex-wrap sm:rounded-3xl">
           {sectors.map((sector) => {
             const active = sector.slug === slug
             return (
@@ -30,7 +30,7 @@ export function DemoSwitcher({ initial = sectors[0].slug, compact = false }: { i
                 onClick={() => setSlug(sector.slug)}
                 className={cn(
                   "relative flex h-8 items-center gap-2 rounded-full px-3 text-sm whitespace-nowrap transition-colors",
-                  active ? "text-white" : "text-muted-foreground hover:text-ink"
+                  active ? "text-paper" : "text-steel hover:text-ink"
                 )}
               >
                 {active ? (
@@ -50,11 +50,11 @@ export function DemoSwitcher({ initial = sectors[0].slug, compact = false }: { i
 
       {compact && sector ? (
         <div key={`tracks-${slug}`} className="demo-enter mb-4 flex flex-wrap items-center gap-x-2 gap-y-2 text-[13px]">
-          <span className="mr-1 text-muted-foreground">
+          <span className="mr-1 text-steel">
             For {sector.name.toLowerCase()} {isReady(sector) ? "it keeps count by" : "your version would keep count by"}
           </span>
           {sector.tracks.map((track) => (
-            <span key={track} className="rounded-full border border-line bg-white px-2.5 py-1">
+            <span key={track} className="rounded-full border border-line bg-paper px-2.5 py-1">
               {track}
             </span>
           ))}
@@ -71,16 +71,16 @@ export function DemoSwitcher({ initial = sectors[0].slug, compact = false }: { i
       </motion.div>
 
       {compact ? (
-        <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted-foreground">
+        <p className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-steel">
           <span>
             {sector && isReady(sector)
               ? "This is a working demo. Sell something, then check the stock."
               : "This is a preview of a version built for this sector. Sell something, then check the stock."}
           </span>
-          <Link href={`/demo/${slug}`} transitionTypes={["nav-forward"]} className="inline-flex items-center gap-1 font-medium text-ink hover:text-brand">
+          <Link href={`/demo/${slug}`} transitionTypes={["nav-forward"]} className="inline-flex items-center gap-1 font-medium text-ink hover:text-vault-red">
             Open it full screen <ArrowRight className="size-3.5" aria-hidden />
           </Link>
-          <Link href={`/industries/${slug}`} transitionTypes={["nav-forward"]} className="inline-flex items-center gap-1 font-medium text-ink hover:text-brand">
+          <Link href={`/industries/${slug}`} transitionTypes={["nav-forward"]} className="inline-flex items-center gap-1 font-medium text-ink hover:text-vault-red">
             How it works for {sector?.short.toLowerCase()} <ArrowRight className="size-3.5" aria-hidden />
           </Link>
         </p>

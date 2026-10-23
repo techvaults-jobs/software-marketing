@@ -30,19 +30,19 @@ export default function ServicesPage() {
       <Section tone="subtle">
         <ul className="grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-2">
           {services.map((service, index) => (
-            <li key={service.id} id={service.id} className="reveal scroll-mt-24 bg-white p-7 sm:p-9">
+            <li key={service.id} id={service.id} className="reveal scroll-mt-24 bg-paper p-7 sm:p-9">
               <div className="flex items-center justify-between">
                 <span className="flex size-10 items-center justify-center rounded-lg border border-line">
                   <service.icon className="size-[18px]" strokeWidth={1.75} aria-hidden />
                 </span>
-                <span className="font-mono text-[12px] text-muted-foreground">0{index + 1}</span>
+                <span className="font-mono text-[12px] text-steel">0{index + 1}</span>
               </div>
               <h2 className="mt-7 text-[26px] font-semibold tracking-[-0.03em]">{service.name}</h2>
-              <p className="mt-3 text-[16px] leading-relaxed text-muted-foreground">{service.summary}</p>
+              <p className="mt-3 text-[16px] leading-relaxed text-steel">{service.summary}</p>
               <ul className="mt-6 space-y-3 border-t border-line pt-6">
                 {service.points.map((point) => (
                   <li key={point} className="flex gap-3 text-[15px] leading-relaxed">
-                    <Check className="mt-1 size-4 shrink-0 text-brand" aria-hidden />
+                    <Check className="mt-1 size-4 shrink-0 text-vault-red" aria-hidden />
                     {point}
                   </li>
                 ))}
@@ -59,9 +59,9 @@ export default function ServicesPage() {
         <ol className="reveal mt-12 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {process.map((step) => (
             <li key={step.step} className="border-t border-ink pt-5">
-              <span className="font-mono text-[12px] text-brand">{step.step}</span>
+              <span className="font-mono text-[12px] text-vault-red">{step.step}</span>
               <h3 className="mt-3 text-[19px] font-semibold tracking-tight">{step.title}</h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{step.body}</p>
+              <p className="mt-2 text-[15px] leading-relaxed text-steel">{step.body}</p>
             </li>
           ))}
         </ol>
@@ -82,7 +82,7 @@ export default function ServicesPage() {
             ].map(([role, covers]) => (
               <li key={role} className="grid gap-1 py-4 sm:grid-cols-[14rem_1fr] sm:gap-6">
                 <span className="font-medium">{role}</span>
-                <span className="text-muted-foreground">{covers}</span>
+                <span className="text-steel">{covers}</span>
               </li>
             ))}
           </ul>

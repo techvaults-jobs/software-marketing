@@ -30,7 +30,7 @@ export function Header() {
     <header
       style={{ viewTransitionName: "site-header" }}
       className={cn(
-        "sticky top-0 z-40 border-b bg-white/85 backdrop-blur-md transition-colors duration-200",
+        "sticky top-0 z-40 border-b bg-paper/85 backdrop-blur-md transition-colors duration-200",
         scrolled ? "border-line" : "border-transparent"
       )}
     >
@@ -50,7 +50,7 @@ export function Header() {
               aria-current={isActive(item.href) ? "page" : undefined}
               className={cn(
                 "relative rounded-full px-2.5 py-2 text-sm whitespace-nowrap transition-colors xl:px-3.5",
-                isActive(item.href) ? "text-ink" : "text-muted-foreground hover:text-ink"
+                isActive(item.href) ? "text-ink" : "text-steel hover:text-ink"
               )}
             >
               {hovered === item.href ? (
@@ -67,7 +67,7 @@ export function Header() {
 
         <div className="ml-auto flex items-center gap-2 lg:ml-0">
           {signIn ? (
-            <a href={signIn} className="hidden px-2 text-sm whitespace-nowrap text-muted-foreground transition-colors hover:text-ink xl:inline">
+            <a href={signIn} className="hidden px-2 text-sm whitespace-nowrap text-steel transition-colors hover:text-ink xl:inline">
               Sign in
             </a>
           ) : null}
@@ -80,13 +80,13 @@ export function Header() {
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger
               aria-label="Open menu"
-              className="flex size-9 items-center justify-center rounded-full border border-[#d9d9d9] transition-colors hover:border-ink lg:hidden"
+              className="flex size-9 items-center justify-center rounded-full border border-line-strong transition-colors hover:border-ink lg:hidden"
             >
               <Menu className="size-4" />
             </SheetTrigger>
             <SheetContent side="right" className="w-[86%] gap-0 p-0">
               <SheetHeader className="border-b border-line px-5 py-4">
-                <SheetTitle className="text-left text-sm font-medium text-muted-foreground">Menu</SheetTitle>
+                <SheetTitle className="text-left text-sm font-medium text-steel">Menu</SheetTitle>
               </SheetHeader>
               <nav aria-label="Mobile" className="flex flex-col px-2 py-3">
                 {[...nav, { href: "/demo", label: "Try the demo" }, { href: "/contact", label: "Talk to us" }, ...(signIn ? [{ href: signIn, label: "Sign in" }] : [])].map((item) => (
@@ -95,7 +95,7 @@ export function Header() {
                     render={<Link href={item.href} />}
                     className={cn(
                       "rounded-lg px-3 py-3 text-left text-[17px] font-medium tracking-tight transition-colors hover:bg-secondary",
-                      isActive(item.href) && "text-brand"
+                      isActive(item.href) && "text-vault-red"
                     )}
                   >
                     {item.label}

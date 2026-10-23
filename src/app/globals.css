@@ -35,15 +35,24 @@
   --color-secondary: var(--secondary);
   --color-primary-foreground: var(--primary-foreground);
   --color-primary: var(--primary);
-  --color-brand: var(--brand);
-  --color-brand-dark: var(--brand-dark);
-  --color-line: var(--line);
+  --color-vault-red: var(--vault-red);
+  --color-vault-red-hover: var(--vault-red-hover);
   --color-ink: var(--ink);
-  --color-subtle: var(--subtle);
+  --color-ink-hover: var(--ink-hover);
+  --color-paper: var(--paper);
+  --color-mist: var(--mist);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-faint: var(--faint);
+  --color-steel: var(--steel);
+  --color-body-muted: var(--body-muted);
+  --color-on-dark-muted: var(--on-dark-muted);
+  --color-positive: var(--positive);
   --color-popover-foreground: var(--popover-foreground);
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
+  --shadow-float: 0 1px 2px rgb(10 10 10 / 0.04), 0 24px 48px -24px rgb(10 10 10 / 0.22);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -51,44 +60,55 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --radius-card: 18px;
 }
 
 :root {
-  /* TechVaults: red, black and white. Greys are neutral, never tinted. */
-  --brand: #bc0004;
-  --brand-dark: #a00003;
+  /* Vault Ledger. Red marks one action or one alert per screen; greys are neutral, never tinted. */
+  --vault-red: #bc0004;
+  --vault-red-hover: #8a0003;
   --ink: #0a0a0a;
-  --subtle: #fafafa;
+  --ink-hover: #2b2b2b;
+  --paper: #ffffff;
+  --mist: #fafafa;
   --line: #eaeaea;
+  --line-strong: #d4d4d4;
+  /* Decorative only: idle icons and dividers, never text. */
+  --faint: #a3a3a3;
+  --steel: #666666;
+  --body-muted: #555555;
+  --on-dark-muted: #bdbdbd;
+  /* A rise against last week. Used for that one figure in the hero. */
+  --positive: #1f7a3a;
 
-  --background: #ffffff;
+  --background: var(--paper);
   --foreground: var(--ink);
-  --card: #ffffff;
+  --card: var(--paper);
   --card-foreground: var(--ink);
-  --popover: #ffffff;
+  --popover: var(--paper);
   --popover-foreground: var(--ink);
   --primary: var(--ink);
-  --primary-foreground: #ffffff;
+  --primary-foreground: var(--paper);
   --secondary: #f5f5f5;
   --secondary-foreground: var(--ink);
   --muted: #f5f5f5;
-  --muted-foreground: #666666;
+  --muted-foreground: var(--steel);
   --accent: #f5f5f5;
   --accent-foreground: var(--ink);
-  --destructive: var(--brand);
+  --destructive: var(--vault-red);
   --border: var(--line);
-  --input: #e0e0e0;
+  --input: var(--line-strong);
   --ring: #8f8f8f;
-  --chart-1: #0a0a0a;
-  --chart-2: #666666;
-  --chart-3: #a3a3a3;
-  --chart-4: #d4d4d4;
-  --chart-5: var(--brand);
+  --chart-1: var(--ink);
+  --chart-2: var(--steel);
+  --chart-3: var(--faint);
+  --chart-4: var(--line-strong);
+  --chart-5: var(--vault-red);
   --radius: 0.5rem;
-  --sidebar: #fafafa;
+  --sidebar: var(--mist);
   --sidebar-foreground: var(--ink);
   --sidebar-primary: var(--ink);
-  --sidebar-primary-foreground: #ffffff;
+  --sidebar-primary-foreground: var(--paper);
   --sidebar-accent: #f5f5f5;
   --sidebar-accent-foreground: var(--ink);
   --sidebar-border: var(--line);
@@ -100,8 +120,6 @@
   --duration-move: 380ms;
 }
 
-
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -112,13 +130,13 @@
     -webkit-text-size-adjust: 100%;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-paper text-[16px] leading-[1.5] text-ink;
     font-feature-settings: "ss01", "cv11";
     text-rendering: optimizeLegibility;
   }
   ::selection {
-    background: var(--brand);
-    color: #fff;
+    background: var(--vault-red);
+    color: var(--paper);
   }
   :focus-visible {
     outline: 2px solid var(--ink);
@@ -135,53 +153,60 @@
 }
 
 @layer components {
-  /* Page column. Sections draw their own hairlines against it. */
-  .shell {
-    @apply mx-auto w-full max-w-[1200px] px-5 sm:px-8;
+  /* The page column: 1200px of content with 24px either side. */
+  .frame {
+    @apply mx-auto w-full max-w-[1248px];
+  }
+  .pad {
+    @apply px-6;
   }
   .eyebrow {
-    @apply font-mono text-[12px] tracking-[0.08em] text-muted-foreground uppercase;
+    @apply font-mono text-[13px] leading-none tracking-[0.08em] text-vault-red uppercase;
+  }
+  /* For labels that sit beside the one red thing on a screen. */
+  .eyebrow-quiet {
+    @apply text-steel;
   }
   .display {
-    @apply text-[40px] leading-[1.02] font-semibold tracking-[-0.045em] sm:text-[56px] lg:text-[72px];
+    @apply text-[clamp(2.6rem,5vw,4.25rem)] leading-[1.05] font-semibold tracking-[-0.03em];
   }
   .title {
-    @apply text-[30px] leading-[1.08] font-semibold tracking-[-0.035em] sm:text-[40px];
+    @apply text-[clamp(2rem,3.6vw,3rem)] leading-[1.05] font-semibold tracking-[-0.03em];
   }
   .lede {
-    @apply text-[17px] leading-[1.6] text-muted-foreground sm:text-[19px];
+    @apply text-[18px] leading-[1.5] text-body-muted sm:text-[20px];
+  }
+  .card {
+    @apply rounded-card border border-line bg-paper;
   }
   .btn {
-    @apply inline-flex h-11 items-center justify-center gap-2 rounded-full px-5 text-[15px] font-medium whitespace-nowrap transition-[background-color,border-color,color,transform] duration-150 select-none active:translate-y-px;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-[15px] font-medium whitespace-nowrap transition-[background-color,border-color,color,transform] duration-150 select-none active:translate-y-px;
   }
   .btn-sm {
-    @apply h-9 px-4 text-sm;
+    @apply min-h-9 px-4 text-sm;
   }
   .btn-primary {
-    @apply bg-ink text-white hover:bg-[#2b2b2b];
+    @apply bg-vault-red text-paper hover:bg-vault-red-hover active:bg-vault-red-hover;
   }
-  .btn-brand {
-    @apply bg-brand text-white hover:bg-brand-dark;
+  .btn-ink {
+    @apply bg-ink text-paper hover:bg-ink-hover;
   }
   .btn-outline {
-    @apply border border-[#d9d9d9] bg-white text-ink hover:border-ink;
+    @apply border border-line-strong bg-paper text-ink hover:border-ink;
   }
   .btn-inverse {
-    @apply bg-white text-ink hover:bg-[#e6e6e6];
+    @apply bg-paper text-ink hover:bg-secondary;
   }
   .btn-ghost-inverse {
-    @apply border border-white/25 text-white hover:border-white;
+    @apply border border-paper/40 text-paper hover:border-paper;
   }
   .link {
-    @apply underline decoration-[#c9c9c9] underline-offset-4 transition-colors hover:decoration-ink;
+    @apply underline decoration-line-strong underline-offset-4 transition-colors hover:decoration-ink;
   }
-}
-
-/* Faint dot grid behind the hero. One texture, used once. */
-.dot-grid {
-  background-image: radial-gradient(#d4d4d4 1px, transparent 1px);
-  background-size: 24px 24px;
-  mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 100%);
+  /* A text link that carries a whole block, like "See everything StockVaults does". */
+  .link-rule {
+    @apply inline-flex items-center gap-1.5 border-b border-ink pb-1 text-[15px] font-medium transition-colors hover:border-vault-red hover:text-vault-red;
+  }
 }
 
 /* ---------------------------------------------------------------
@@ -279,41 +304,14 @@
   }
 }
 
-/* The framed column every section sits in. The side rules only show on
-   screens wide enough to have margins. */
-.frame {
-  margin-inline: auto;
-  width: 100%;
-  max-width: 1200px;
-}
-.pad {
-  padding-inline: 1.25rem;
-}
-@media (min-width: 640px) {
-  .pad {
-    padding-inline: 2rem;
-  }
-}
-@media (min-width: 1024px) {
-  .frame {
-    border-inline: 1px solid var(--line);
-  }
-  .frame-dark {
-    border-color: rgb(255 255 255 / 0.1);
-  }
-  .pad {
-    padding-inline: 3rem;
-  }
-}
-
 /* Scroll reveals. Off until RevealObserver switches them on, so content is
    never hidden from someone without JavaScript or with reduced motion. */
 html[data-reveal="on"] .reveal {
   opacity: 0;
-  translate: 0 18px;
+  translate: 0 12px;
   transition:
-    opacity 600ms var(--ease-out),
-    translate 700ms var(--ease-out);
+    opacity 320ms var(--ease-out),
+    translate 380ms var(--ease-out);
 }
 html[data-reveal="on"] .reveal.is-in {
   opacity: 1;
@@ -326,10 +324,10 @@ html.reveal-snap .reveal-children > * {
 /* Children of a revealed grid follow one another in. */
 html[data-reveal="on"] .reveal-children > * {
   opacity: 0;
-  translate: 0 14px;
+  translate: 0 10px;
   transition:
-    opacity 500ms var(--ease-out),
-    translate 600ms var(--ease-out);
+    opacity 300ms var(--ease-out),
+    translate 360ms var(--ease-out);
 }
 html[data-reveal="on"] .reveal-children.is-in > * {
   opacity: 1;
@@ -339,65 +337,54 @@ html[data-reveal="on"] .reveal-children.reveal {
   opacity: 1;
   translate: 0 0;
 }
-.reveal-children > *:nth-child(2) { transition-delay: 60ms; }
-.reveal-children > *:nth-child(3) { transition-delay: 120ms; }
-.reveal-children > *:nth-child(4) { transition-delay: 180ms; }
-.reveal-children > *:nth-child(5) { transition-delay: 240ms; }
-.reveal-children > *:nth-child(6) { transition-delay: 300ms; }
-.reveal-children > *:nth-child(7) { transition-delay: 360ms; }
-.reveal-children > *:nth-child(8) { transition-delay: 420ms; }
-.reveal-children > *:nth-child(n + 9) { transition-delay: 480ms; }
+.reveal-children > *:nth-child(2) { transition-delay: 40ms; }
+.reveal-children > *:nth-child(3) { transition-delay: 80ms; }
+.reveal-children > *:nth-child(4) { transition-delay: 120ms; }
+.reveal-children > *:nth-child(5) { transition-delay: 160ms; }
+.reveal-children > *:nth-child(6) { transition-delay: 200ms; }
+.reveal-children > *:nth-child(n + 7) { transition-delay: 240ms; }
 
 /* The hero arrives in order: label, headline, text, buttons, product. */
 @media (prefers-reduced-motion: no-preference) {
   .rise {
-    animation: rise 800ms var(--ease-out) both;
-    animation-delay: calc(var(--i, 0) * 80ms);
+    animation: rise 360ms var(--ease-out) both;
+    animation-delay: calc(var(--i, 0) * 50ms);
+  }
+  /* The hero's floating cards settle onto the dashboard once it is in. */
+  .float-in {
+    animation: float-in 300ms var(--ease-out) both;
+    animation-delay: var(--d, 300ms);
   }
 }
 @keyframes rise {
   from {
     opacity: 0;
-    translate: 0 20px;
+    translate: 0 12px;
+  }
+}
+@keyframes float-in {
+  from {
+    opacity: 0;
+    translate: 0 8px;
   }
 }
 
 /* An arrow inside a button or link leans forward on hover. */
 .btn svg,
-.nudge svg {
+.nudge svg,
+.link-rule svg {
   transition: translate 200ms var(--ease-out);
 }
 .btn:hover svg,
-.nudge:hover svg {
+.nudge:hover svg,
+.link-rule:hover svg {
   translate: 3px 0;
-}
-
-/* A red rule that draws across the top of a card on hover. */
-.card-line {
-  position: relative;
-}
-.card-line::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 2px;
-  background: var(--brand);
-  scale: 0 1;
-  transform-origin: left;
-  transition: scale 350ms var(--ease-out);
-}
-.card-line:hover::before,
-.card-line:focus-visible::before {
-  scale: 1 1;
 }
 
 /* The scan line in the unit-tracking illustration. */
 @media (prefers-reduced-motion: no-preference) {
   .scan-line {
     animation: scan 2.6s ease-in-out infinite;
-  }
-  .pulse-dot {
-    animation: pulse-dot 2s ease-out infinite;
   }
 }
 @keyframes scan {
@@ -408,26 +395,6 @@ html[data-reveal="on"] .reveal-children.reveal {
   50% {
     translate: 0 44px;
   }
-}
-@keyframes pulse-dot {
-  0% {
-    box-shadow: 0 0 0 0 rgb(188 0 4 / 0.45);
-  }
-  70%,
-  100% {
-    box-shadow: 0 0 0 7px rgb(188 0 4 / 0);
-  }
-}
-
-/* The outlined product name that closes the page. */
-.wordmark {
-  font-size: clamp(3.5rem, 15.5vw, 12.5rem);
-  line-height: 0.82;
-  font-weight: 600;
-  letter-spacing: -0.06em;
-  color: transparent;
-  -webkit-text-stroke: 1px #d6d6d6;
-  user-select: none;
 }
 
 /* A demo screen settling in after a tab change. */
@@ -443,104 +410,6 @@ html[data-reveal="on"] .reveal-children.reveal {
 @media (prefers-reduced-motion: reduce) {
   .demo-enter {
     animation: none;
-  }
-}
-
-/* The banner film. Every resting style is the finished state, so with reduced
-   motion each scene is shown complete and nothing plays by itself. */
-.film-progress {
-  transform-origin: left;
-}
-.film-scan {
-  left: 100%;
-  opacity: 0;
-}
-.film-travel {
-  left: 100%;
-}
-.film-drain {
-  transform-origin: left;
-}
-.tick {
-  display: inline-flex;
-  height: 1.25em;
-  overflow: hidden;
-  vertical-align: bottom;
-}
-.tick-reel {
-  display: flex;
-  flex: none;
-  flex-direction: column;
-  align-self: flex-start;
-  translate: 0 -1.25em;
-}
-.tick-reel > * {
-  flex: none;
-  height: 1.25em;
-  line-height: 1.25;
-  white-space: nowrap;
-}
-@media (prefers-reduced-motion: no-preference) {
-  .film-in {
-    animation: film-in 360ms var(--ease-out) var(--d, 0ms) both;
-  }
-  .tick-reel {
-    animation: tick 380ms var(--ease-out) var(--d, 0ms) both;
-  }
-  .film-scan {
-    animation: film-scan 900ms ease-in-out var(--d, 0ms) both;
-  }
-  .film-travel {
-    animation: film-travel 900ms ease-in-out var(--d, 0ms) both;
-  }
-  .film-drain {
-    animation: film-drain 380ms var(--ease-out) var(--d, 0ms) both;
-  }
-  .film-progress {
-    animation: film-progress linear both;
-  }
-  .film[data-running="false"] .film-progress {
-    animation-play-state: paused;
-  }
-  @media (hover: hover) {
-    .film:hover .film-progress {
-      animation-play-state: paused;
-    }
-  }
-}
-@keyframes film-in {
-  from {
-    opacity: 0;
-    translate: 0 8px;
-  }
-}
-@keyframes tick {
-  from {
-    translate: 0 0;
-  }
-}
-@keyframes film-scan {
-  from {
-    left: 0;
-    opacity: 1;
-  }
-  85% {
-    opacity: 1;
-  }
-}
-@keyframes film-travel {
-  from {
-    left: 0;
-  }
-}
-@keyframes film-drain {
-  from {
-    scale: var(--from, 1) 1;
-  }
-}
-@keyframes film-progress {
-  from {
-    scale: 0 1;
   }
 }
 

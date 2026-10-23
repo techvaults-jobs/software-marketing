@@ -32,12 +32,12 @@ export default async function DemoPage({ params }: PageProps<"/demo/[slug]">) {
     <Page>
       <div className="mx-auto w-full max-w-[1440px] px-4 pt-4 pb-10 sm:px-6">
         <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2">
-          <Link href="/demo" transitionTypes={["nav-back"]} className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-ink">
+          <Link href="/demo" transitionTypes={["nav-back"]} className="inline-flex items-center gap-1.5 text-sm text-steel transition-colors hover:text-ink">
             <ArrowLeft className="size-4" aria-hidden />
             All demos
           </Link>
           <h1 className="text-sm font-medium">
-            StockVaults <span className="text-muted-foreground">for {sector.name.toLowerCase()}</span>
+            StockVaults <span className="text-steel">for {sector.name.toLowerCase()}</span>
           </h1>
           <AvailabilityBadge sector={sector} />
           <div className="ml-auto flex items-center gap-2">
@@ -49,20 +49,20 @@ export default async function DemoPage({ params }: PageProps<"/demo/[slug]">) {
                 Open the full system
               </a>
             ) : null}
-            <Link href="/contact" className="btn btn-sm btn-brand">
+            <Link href="/contact" className="btn btn-sm btn-primary">
               Get this for my business
             </Link>
           </div>
         </div>
         <DemoApp slug={sector.slug} />
-        <p className="mt-4 text-sm text-muted-foreground">
+        <p className="mt-4 text-sm text-steel">
           {sector.demo.business} is a made-up business.{" "}
           {isReady(sector)
             ? "The demo shows the core screens; your system is fitted with the workflows, roles and reports your business needs."
             : `This is a preview: StockVaults runs phone and electronics shops today, and the ${sector.name.toLowerCase()} parts are built into your version before you go live.`}
         </p>
         {fullSystem ? (
-          <p className="mt-2 text-sm text-muted-foreground">
+          <p className="mt-2 text-sm text-steel">
             This page saves nothing. <a href={fullSystem} className="font-medium text-ink underline underline-offset-4">Open the full system</a> for your own copy of StockVaults with made-up stock, sales and reports. It is kept for 24 hours and nobody else sees it.
           </p>
         ) : null}

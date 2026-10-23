@@ -82,7 +82,7 @@ export default function StockVaultsPage() {
             <li key={day.time} className="border-t border-ink pt-5">
               <p className="eyebrow">{day.time}</p>
               <h3 className="mt-3 text-[17px] font-semibold tracking-tight">{day.title}</h3>
-              <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{day.body}</p>
+              <p className="mt-2 text-[15px] leading-relaxed text-steel">{day.body}</p>
             </li>
           ))}
         </ol>
@@ -114,7 +114,7 @@ export default function StockVaultsPage() {
           <ul className="reveal grid gap-x-8 gap-y-4 sm:grid-cols-2">
             {included.map((line) => (
               <li key={line} className="flex gap-3 text-[15px] leading-relaxed">
-                <Check className="mt-1 size-4 shrink-0 text-brand" aria-hidden />
+                <Check className="mt-1 size-4 shrink-0 text-vault-red" aria-hidden />
                 {line}
               </li>
             ))}

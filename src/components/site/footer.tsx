@@ -38,7 +38,7 @@ export async function Footer() {
         <div className="pad grid gap-10 py-14 md:grid-cols-[1.3fr_1fr_1fr_1.4fr]">
           <div>
             <Logo className="h-8 w-auto" />
-            <p className="mt-4 max-w-[30ch] text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-4 max-w-[30ch] text-sm leading-relaxed text-steel">
               StockVaults is inventory software built around your business, with the training and care to keep it working.
             </p>
             <ul className="mt-4 space-y-1.5 text-sm">
@@ -53,7 +53,7 @@ export async function Footer() {
                 </a>
               </li>
             </ul>
-            <address className="mt-4 text-sm leading-relaxed text-muted-foreground not-italic">
+            <address className="mt-4 text-sm leading-relaxed text-steel not-italic">
               {site.address.map((line) => (
                 <span key={line} className="block">
                   {line}
@@ -67,7 +67,7 @@ export async function Footer() {
               <ul className="space-y-2.5 text-sm">
                 {column.links.map((link) => (
                   <li key={link.href}>
-                    <Link href={link.href} className="text-muted-foreground transition-colors hover:text-ink">
+                    <Link href={link.href} className="text-steel transition-colors hover:text-ink">
                       {link.label}
                     </Link>
                   </li>
@@ -80,7 +80,7 @@ export async function Footer() {
             <ul className="grid grid-cols-1 gap-2.5 text-sm">
               {sectors.map((sector) => (
                 <li key={sector.slug}>
-                  <Link href={`/industries/${sector.slug}`} className="text-muted-foreground transition-colors hover:text-ink">
+                  <Link href={`/industries/${sector.slug}`} className="text-steel transition-colors hover:text-ink">
                     {sector.name}
                   </Link>
                 </li>
@@ -91,7 +91,7 @@ export async function Footer() {
         <div className="overflow-hidden border-t border-line px-3 pt-8 text-center sm:pt-10" aria-hidden>
           <p className="wordmark translate-y-[0.14em]">{site.product}</p>
         </div>
-        <div className="pad flex flex-col gap-2 border-t border-line py-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+        <div className="pad flex flex-col gap-2 border-t border-line py-6 text-sm text-steel sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {year} {site.legalName}
           </p>

@@ -55,16 +55,16 @@ function DemoWorkspace({ config, compact }: { config: DemoConfig; compact: boole
   return (
     <div
       className={cn(
-        "flex flex-col overflow-hidden rounded-xl border border-[#dcdcdc] bg-white text-[13px] text-ink shadow-[0_1px_0_rgba(0,0,0,0.04),0_24px_48px_-24px_rgba(0,0,0,0.18)]",
+        "flex flex-col overflow-hidden rounded-card border border-line bg-paper text-[13px] text-ink",
         compact ? "h-[560px] sm:h-[600px]" : "h-[calc(100dvh-10.5rem)] min-h-[560px]"
       )}
     >
       <div className="flex h-12 shrink-0 items-center gap-3 border-b border-line px-3 sm:px-4">
-        <span className="flex size-6 shrink-0 items-center justify-center rounded-md bg-ink text-[11px] font-semibold text-white">
+        <span className="flex size-6 shrink-0 items-center justify-center rounded-md bg-ink text-[11px] font-semibold text-paper">
           {config.business.charAt(0)}
         </span>
         <span className="truncate font-medium">{config.business}</span>
-        <span className="hidden rounded-full border border-line px-2 py-0.5 font-mono text-[10px] tracking-wide text-muted-foreground uppercase sm:inline">
+        <span className="hidden rounded-full border border-line px-2 py-0.5 font-mono text-[10px] tracking-wide text-steel uppercase sm:inline">
           StockVaults · sample data
         </span>
         <div className="ml-auto flex items-center gap-2">
@@ -75,7 +75,7 @@ function DemoWorkspace({ config, compact }: { config: DemoConfig; compact: boole
             id="demo-location"
             value={location}
             onChange={(event) => setLocation(Number(event.target.value))}
-            className="h-8 max-w-[9.5rem] rounded-md border border-line bg-white px-2 text-[13px] outline-none hover:border-[#bdbdbd] focus-visible:border-ink"
+            className="h-8 max-w-[9.5rem] rounded-md border border-line bg-paper px-2 text-[13px] outline-none hover:border-on-dark-muted focus-visible:border-ink"
           >
             {config.locations.map((name, index) => (
               <option key={name} value={index}>
@@ -89,7 +89,7 @@ function DemoWorkspace({ config, compact }: { config: DemoConfig; compact: boole
               dispatch({ type: "reset" })
               setPrefill(null)
             }}
-            className="flex h-8 items-center gap-1.5 rounded-md border border-line px-2 text-muted-foreground transition-colors hover:border-[#bdbdbd] hover:text-ink"
+            className="flex h-8 items-center gap-1.5 rounded-md border border-line px-2 text-steel transition-colors hover:border-on-dark-muted hover:text-ink"
           >
             <RotateCcw className="size-3.5" aria-hidden />
             <span className="hidden sm:inline">Reset</span>
@@ -101,7 +101,7 @@ function DemoWorkspace({ config, compact }: { config: DemoConfig; compact: boole
       <div className="flex min-h-0 flex-1 flex-col md:flex-row">
         <nav
           aria-label="Demo screens"
-          className="flex shrink-0 gap-1 overflow-x-auto border-b border-line bg-subtle p-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:w-44 md:flex-col md:overflow-visible md:border-r md:border-b-0"
+          className="flex shrink-0 gap-1 overflow-x-auto border-b border-line bg-mist p-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:w-44 md:flex-col md:overflow-visible md:border-r md:border-b-0"
         >
           {tabs.map((tab) => {
             const active = tab.id === screen
@@ -113,13 +113,13 @@ function DemoWorkspace({ config, compact }: { config: DemoConfig; compact: boole
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "relative flex h-8 shrink-0 items-center gap-2 rounded-md px-2.5 text-left transition-colors",
-                  active ? "text-ink" : "text-muted-foreground hover:text-ink"
+                  active ? "text-ink" : "text-steel hover:text-ink"
                 )}
               >
                 {active ? (
                   <motion.span
                     layoutId={`demo-tab-${config.business}`}
-                    className="absolute inset-0 rounded-md border border-line bg-white"
+                    className="absolute inset-0 rounded-md border border-line bg-paper"
                     transition={still ? { duration: 0 } : { type: "spring", stiffness: 520, damping: 42 }}
                   />
                 ) : null}

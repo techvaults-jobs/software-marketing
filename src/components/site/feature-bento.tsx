@@ -23,10 +23,10 @@ export function FeatureBento() {
       </Tile>
       <ul className="grid gap-px bg-line sm:grid-cols-2 md:col-span-6 lg:grid-cols-5">
         {more.map((item) => (
-          <li key={item.name} className="bg-white p-5 sm:p-6">
+          <li key={item.name} className="bg-paper p-5 sm:p-6">
             <item.icon className="size-[18px]" strokeWidth={1.75} aria-hidden />
             <h3 className="mt-4 text-[15px] font-semibold tracking-tight">{item.name}</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{item.body}</p>
+            <p className="mt-1.5 text-sm leading-relaxed text-steel">{item.body}</p>
           </li>
         ))}
       </ul>
@@ -44,13 +44,13 @@ const more = [
 
 function Tile({ title, body, children, className }: { title: string; body: string; children: ReactNode; className?: string }) {
   return (
-    <article className={cn("flex flex-col bg-white", className)}>
-      <div className="flex min-h-[188px] flex-1 items-center justify-center bg-subtle px-6 py-7 sm:px-8" aria-hidden>
+    <article className={cn("flex flex-col bg-paper", className)}>
+      <div className="flex min-h-[188px] flex-1 items-center justify-center bg-mist px-6 py-7 sm:px-8" aria-hidden>
         {children}
       </div>
       <div className="border-t border-line p-6 sm:p-7">
         <h3 className="text-[17px] font-semibold tracking-tight">{title}</h3>
-        <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{body}</p>
+        <p className="mt-2 text-[15px] leading-relaxed text-steel">{body}</p>
       </div>
     </article>
   )
@@ -58,25 +58,25 @@ function Tile({ title, body, children, className }: { title: string; body: strin
 
 function LocationsArt() {
   const rows = [
-    { name: "High Street", units: 128, share: 46 },
-    { name: "Mall Kiosk", units: 56, share: 20, low: true },
-    { name: "Vault", units: 296, share: 100 },
+    { name: "Iwo Road", units: 128, share: 46 },
+    { name: "Dugbe", units: 56, share: 20, low: true },
+    { name: "Warehouse", units: 296, share: 100 },
   ]
   return (
-    <div className="w-full max-w-[460px] rounded-lg border border-line bg-white text-[13px] shadow-[0_12px_32px_-20px_rgba(0,0,0,0.25)]">
+    <div className="w-full max-w-[460px] rounded-lg border border-line bg-paper text-[13px]">
       <div className="flex items-center justify-between border-b border-line px-4 py-2.5">
         <span className="font-medium">Apex 15 Pro</span>
-        <span className="font-mono text-[11px] text-muted-foreground">480 UNITS</span>
+        <span className="font-mono text-[11px] text-steel">480 UNITS</span>
       </div>
       <ul className="divide-y divide-line">
         {rows.map((row) => (
           <li key={row.name} className="grid grid-cols-[6.5rem_1fr_2.5rem] items-center gap-3 px-4 py-2.5">
             <span className="flex items-center gap-2">
-              {row.low ? <span className="pulse-dot size-1.5 rounded-full bg-brand" /> : <span className="size-1.5 rounded-full bg-[#cfcfcf]" />}
+              {row.low ? <span className="size-1.5 rounded-full bg-vault-red" /> : <span className="size-1.5 rounded-full bg-line-strong" />}
               {row.name}
             </span>
             <span className="h-1.5 overflow-hidden rounded-full bg-secondary">
-              <span className={cn("block h-full rounded-full", row.low ? "bg-brand" : "bg-ink")} style={{ width: `${row.share}%` }} />
+              <span className={cn("block h-full rounded-full", row.low ? "bg-vault-red" : "bg-ink")} style={{ width: `${row.share}%` }} />
             </span>
             <span className="text-right font-medium tabular-nums">{row.units}</span>
           </li>
@@ -89,18 +89,18 @@ function LocationsArt() {
 function ScanArt() {
   return (
     <div className="w-full max-w-[230px] text-[12px]">
-      <div className="relative overflow-hidden rounded-lg border border-line bg-white px-4 py-3 shadow-[0_12px_32px_-20px_rgba(0,0,0,0.25)]">
-        <div className="scan-line pointer-events-none absolute inset-x-3 top-2 h-px bg-brand" />
+      <div className="relative overflow-hidden rounded-lg border border-line bg-paper px-4 py-3">
+        <div className="scan-line pointer-events-none absolute inset-x-3 top-2 h-px bg-vault-red" />
         <div className="flex h-12 items-stretch gap-[3px]">
           {[2, 1, 3, 1, 1, 2, 1, 3, 2, 1, 1, 3, 1, 2, 2, 1, 3, 1, 2, 1, 1, 2, 3, 1].map((width, index) => (
             <span key={index} className="bg-ink" style={{ width, opacity: index % 2 ? 1 : 0.85 }} />
           ))}
         </div>
-        <p className="mt-2 font-mono tracking-wider text-muted-foreground">3567 8210 4459 017</p>
+        <p className="mt-2 font-mono tracking-wider text-steel">3567 8210 4459 017</p>
       </div>
-      <div className="mt-2 flex items-center justify-between rounded-lg border border-line bg-white px-3 py-2">
-        <span className="font-medium">In stock · High Street</span>
-        <span className="rounded-full bg-ink px-2 py-0.5 text-[10px] font-medium text-white">Found</span>
+      <div className="mt-2 flex items-center justify-between rounded-lg border border-line bg-paper px-3 py-2">
+        <span className="font-medium">In stock · Iwo Road</span>
+        <span className="rounded-full bg-ink px-2 py-0.5 text-[10px] font-medium text-paper">Found</span>
       </div>
     </div>
   )
@@ -114,18 +114,18 @@ function AuditArt() {
   ]
   return (
     <ol className="relative w-full max-w-[400px] space-y-2 text-[13px]">
-      <span className="absolute top-3 bottom-3 left-[13px] w-px bg-[#d9d9d9]" />
+      <span className="absolute top-3 bottom-3 left-[13px] w-px bg-line-strong" />
       {rows.map((row, index) => (
         <li key={row.what} className="relative flex items-center gap-3">
-          <span className={cn("relative z-10 flex size-[27px] shrink-0 items-center justify-center rounded-full border bg-white font-mono text-[10px]", index === 0 ? "border-ink" : "border-line text-muted-foreground")}>
+          <span className={cn("relative z-10 flex size-[27px] shrink-0 items-center justify-center rounded-full border bg-paper font-mono text-[10px]", index === 0 ? "border-ink" : "border-line text-steel")}>
             {String(3 - index).padStart(2, "0")}
           </span>
-          <span className="flex min-w-0 flex-1 items-center justify-between gap-3 rounded-lg border border-line bg-white px-3 py-2">
+          <span className="flex min-w-0 flex-1 items-center justify-between gap-3 rounded-lg border border-line bg-paper px-3 py-2">
             <span className="min-w-0">
               <span className="block truncate font-medium">{row.what}</span>
-              <span className="block text-muted-foreground">{row.who}</span>
+              <span className="block text-steel">{row.who}</span>
             </span>
-            <span className="shrink-0 font-mono text-[11px] text-muted-foreground">{row.when}</span>
+            <span className="shrink-0 font-mono text-[11px] text-steel">{row.when}</span>
           </span>
         </li>
       ))}
@@ -136,10 +136,10 @@ function AuditArt() {
 function ReportArt() {
   const bars = [44, 38, 57, 49, 71, 88, 63]
   return (
-    <div className="w-full max-w-[400px] rounded-lg border border-line bg-white p-4 text-[13px] shadow-[0_12px_32px_-20px_rgba(0,0,0,0.25)]">
+    <div className="w-full max-w-[400px] rounded-lg border border-line bg-paper p-4 text-[13px]">
       <div className="flex items-start justify-between">
         <div>
-          <p className="text-muted-foreground">Sales, last 7 days</p>
+          <p className="text-steel">Sales, last 7 days</p>
           <p className="mt-0.5 text-[20px] font-semibold tracking-tight tabular-nums">37,290</p>
         </div>
         <span className="flex h-7 items-center gap-1.5 rounded-md border border-line px-2 text-[12px] font-medium">
@@ -149,7 +149,7 @@ function ReportArt() {
       </div>
       <div className="mt-3 flex h-16 items-end gap-1.5">
         {bars.map((height, index) => (
-          <span key={index} className={cn("flex-1 rounded-sm", index === bars.length - 1 ? "bg-brand" : "bg-[#d9d9d9]")} style={{ height: `${height}%` }} />
+          <span key={index} className={cn("flex-1 rounded-sm", index === bars.length - 1 ? "bg-vault-red" : "bg-line-strong")} style={{ height: `${height}%` }} />
         ))}
       </div>
     </div>

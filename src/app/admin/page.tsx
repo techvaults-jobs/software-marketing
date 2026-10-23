@@ -16,7 +16,7 @@ export default function AdminPage() {
         <div className="pad min-h-[60vh] py-12 sm:py-16">
           <p className="eyebrow mb-4">Team only</p>
           <h1 className="title">Enquiries</h1>
-          <Suspense fallback={<p className="mt-8 text-muted-foreground">Loading</p>}>
+          <Suspense fallback={<p className="mt-8 text-steel">Loading</p>}>
             <Inbox />
           </Suspense>
         </div>
@@ -65,15 +65,15 @@ const when = new Intl.DateTimeFormat("en-GB", { dateStyle: "medium", timeStyle: 
 function EnquiryCard({ enquiry }: { enquiry: Enquiry }) {
   const handled = Boolean(enquiry.handledAt)
   return (
-    <li className={`rounded-xl border border-line p-5 sm:p-6 ${handled ? "bg-subtle" : "bg-white"}`}>
+    <li className={`rounded-xl border border-line p-5 sm:p-6 ${handled ? "bg-mist" : "bg-paper"}`}>
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="flex items-center gap-2 text-[17px] font-semibold tracking-tight">
-            {handled ? null : <span className="size-1.5 shrink-0 rounded-full bg-brand" aria-label="Waiting" />}
+            {handled ? null : <span className="size-1.5 shrink-0 rounded-full bg-vault-red" aria-label="Waiting" />}
             {enquiry.name}
-            {enquiry.company ? <span className="font-normal text-muted-foreground">· {enquiry.company}</span> : null}
+            {enquiry.company ? <span className="font-normal text-steel">· {enquiry.company}</span> : null}
           </p>
-          <p className="mt-1 text-sm text-muted-foreground">
+          <p className="mt-1 text-sm text-steel">
             <a href={`mailto:${enquiry.email}`} className="link text-ink">
               {enquiry.email}
             </a>

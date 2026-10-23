@@ -28,7 +28,7 @@ export function PageHero({
             <Link
               href={back.href}
               transitionTypes={["nav-back"]}
-              className="mb-10 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-ink"
+              className="mb-10 inline-flex items-center gap-1.5 text-sm text-steel transition-colors hover:text-ink"
             >
               <ArrowLeft className="size-4" aria-hidden />
               {back.label}
