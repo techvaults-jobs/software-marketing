@@ -61,7 +61,7 @@ export default function StockVaultsPage() {
             <Link href="/demo" transitionTypes={["nav-forward"]} className="btn btn-primary">
               Try the demo <ArrowRight className="size-4" aria-hidden />
             </Link>
-            <Link href="/contact" className="btn btn-outline">
+            <Link href="/contact" className="btn btn-secondary">
               Book a walkthrough
             </Link>
           </>

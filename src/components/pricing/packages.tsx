@@ -36,7 +36,7 @@ export function Packages() {
               "First year of care included. After that, a care plan agreed with you."
             )}
           </p>
-          <Link href={`/contact?package=${plan.id}`} className={cn("btn mt-6", plan.featured ? "btn-primary" : "btn-outline")}>
+          <Link href={`/contact?package=${plan.id}`} className={cn("btn mt-6", plan.featured ? "btn-primary" : "btn-secondary")}>
             {plan.from ? "Ask for a quote" : "Start with a discovery call"}
             <ArrowRight className="size-4" aria-hidden />
           </Link>

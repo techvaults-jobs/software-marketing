@@ -25,7 +25,7 @@ export function PricingFaq() {
             <Link href="/contact" className="btn btn-primary">
               Get a quote
             </Link>
-            <a href={whatsappLink()} target="_blank" rel="noreferrer" className="btn btn-outline">
+            <a href={whatsappLink()} target="_blank" rel="noreferrer" className="btn btn-secondary">
               Chat on WhatsApp
             </a>
           </div>

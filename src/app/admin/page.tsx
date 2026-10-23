@@ -46,7 +46,7 @@ async function Inbox() {
           {enquiries.length ? `${open} waiting, ${enquiries.length - open} handled.` : "No messages yet. They will appear here as soon as someone writes in."}
         </p>
         <form action={signOut}>
-          <button type="submit" className="btn btn-sm btn-outline">
+          <button type="submit" className="btn btn-sm btn-secondary">
             Sign out
           </button>
         </form>
@@ -83,7 +83,7 @@ function EnquiryCard({ enquiry }: { enquiry: Enquiry }) {
         <form action={markHandled}>
           <input type="hidden" name="id" value={enquiry.id} />
           <input type="hidden" name="handled" value={String(!handled)} />
-          <button type="submit" className={`btn btn-sm ${handled ? "btn-outline" : "btn-ink"}`}>
+          <button type="submit" className={`btn btn-sm ${handled ? "btn-secondary" : "btn-secondary"}`}>
             {handled ? "Reopen" : "Mark handled"}
           </button>
         </form>

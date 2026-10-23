@@ -47,11 +47,11 @@ export default async function SectorPage({ params }: PageProps<"/industries/[slu
             <Link href={`/demo/${sector.slug}`} transitionTypes={["nav-forward"]} className="btn btn-primary">
               {ready ? "Open the full demo" : "Open the preview"} <ArrowRight className="size-4" aria-hidden />
             </Link>
-            <Link href="/contact" className="btn btn-outline">
+            <Link href="/contact" className="btn btn-secondary">
               Book a walkthrough
             </Link>
             {sector.setup && appLink("/") ? (
-              <a href={appLink(`/demo/${sector.setup}`) ?? undefined} className="btn btn-outline">
+              <a href={appLink(`/demo/${sector.setup}`) ?? undefined} className="btn btn-secondary">
                 Open the full system
               </a>
             ) : null}

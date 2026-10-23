@@ -188,11 +188,8 @@
   .btn-primary {
     @apply bg-vault-red text-paper hover:bg-vault-red-hover active:bg-vault-red-hover;
   }
-  .btn-ink {
+  .btn-secondary {
     @apply bg-ink text-paper hover:bg-ink-hover;
-  }
-  .btn-outline {
-    @apply border border-line-strong bg-paper text-ink hover:border-ink;
   }
   .btn-inverse {
     @apply bg-paper text-ink hover:bg-secondary;

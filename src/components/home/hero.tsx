@@ -26,7 +26,7 @@ export function Hero() {
               {hero.primary}
               <ArrowRight className="size-4" aria-hidden />
             </Link>
-            <Link href="/contact" className="btn btn-outline">
+            <Link href="/contact" className="btn btn-secondary">
               {hero.secondary}
             </Link>
           </div>

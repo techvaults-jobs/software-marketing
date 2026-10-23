@@ -42,11 +42,11 @@ export default function ContactPage() {
               <div className="mt-10 border-t border-line pt-8">
                 <p className="font-medium">Quicker by phone</p>
                 <div className="mt-4 flex flex-wrap gap-3">
-                  <a href={whatsappLink()} target="_blank" rel="noreferrer" className="btn btn-ink">
+                  <a href={whatsappLink()} target="_blank" rel="noreferrer" className="btn btn-secondary">
                     <MessageCircle className="size-4" aria-hidden />
                     Chat on WhatsApp
                   </a>
-                  <a href={`tel:${site.phone.e164}`} className="btn btn-outline">
+                  <a href={`tel:${site.phone.e164}`} className="btn btn-secondary">
                     <Phone className="size-4" aria-hidden />
                     {site.phone.display}
                   </a>

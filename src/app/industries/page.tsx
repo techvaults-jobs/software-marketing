@@ -27,7 +27,7 @@ export default function IndustriesPage() {
               These are the ones with a demo or preview. If you hold stock of any kind, we can fit the core to it.
             </p>
           </div>
-          <Link href="/contact" className="btn btn-outline shrink-0 self-start sm:self-auto">
+          <Link href="/contact" className="btn btn-secondary shrink-0 self-start sm:self-auto">
             Tell us what you stock
           </Link>
         </div>

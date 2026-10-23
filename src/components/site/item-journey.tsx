@@ -109,7 +109,7 @@ export function ItemJourney() {
               {at + 1} of {journey.length}
             </p>
             <div className="flex gap-2">
-              <button type="button" onClick={() => setAt(Math.max(0, at - 1))} disabled={at === 0} aria-label="Previous step" className="btn btn-outline btn-sm w-9 px-0 disabled:opacity-40">
+              <button type="button" onClick={() => setAt(Math.max(0, at - 1))} disabled={at === 0} aria-label="Previous step" className="btn btn-secondary btn-sm w-9 px-0 disabled:opacity-40">
                 <ArrowLeft className="size-4" aria-hidden />
               </button>
               <button type="button" onClick={() => setAt(at === last ? 0 : at + 1)} className="btn btn-primary btn-sm">

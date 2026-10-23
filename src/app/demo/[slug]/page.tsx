@@ -41,11 +41,11 @@ export default async function DemoPage({ params }: PageProps<"/demo/[slug]">) {
           </h1>
           <AvailabilityBadge sector={sector} />
           <div className="ml-auto flex items-center gap-2">
-            <Link href={`/industries/${sector.slug}`} className="btn btn-sm btn-outline hidden sm:inline-flex">
+            <Link href={`/industries/${sector.slug}`} className="btn btn-sm btn-secondary hidden sm:inline-flex">
               About this system
             </Link>
             {fullSystem ? (
-              <a href={fullSystem} className="btn btn-sm btn-outline">
+              <a href={fullSystem} className="btn btn-sm btn-secondary">
                 Open the full system
               </a>
             ) : null}
