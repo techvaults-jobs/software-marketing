@@ -5,7 +5,7 @@
  */
 export const journeyUnit = { sector: "phones-electronics", item: "p1", serial: "IMEI ending 2074" } as const
 
-export const journeyPlaces = ["Vault", "In transit", "High Street", "With customer"] as const
+export const journeyPlaces = ["Warehouse", "In transit", "Dugbe", "With customer"] as const
 
 export type JourneyStop = {
   step: string
@@ -32,7 +32,7 @@ export const journey: JourneyStop[] = [
     title: "The vault sends it to a shop.",
     body: "It leaves the vault's count the moment it is sent. Until the shop accepts it, it is in transit and belongs to neither.",
     place: 1,
-    record: { what: "Sent to High Street", who: "L. Okoye", when: "Mon 14:30" },
+    record: { what: "Sent to Dugbe", who: "L. Okoye", when: "Mon 14:30" },
     refuses: "Sending a unit the vault does not hold.",
   },
   {
@@ -40,7 +40,7 @@ export const journey: JourneyStop[] = [
     title: "The shop confirms it arrived.",
     body: "A second person puts their name to the movement. If the box is one short, you know which hand-over to ask about.",
     place: 2,
-    record: { what: "Received from Vault", who: "A. Mensah", when: "Mon 16:05" },
+    record: { what: "Received from Warehouse", who: "A. Mensah", when: "Mon 16:05" },
     refuses: "Selling it before somebody has accepted it.",
   },
   {

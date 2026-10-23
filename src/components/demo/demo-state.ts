@@ -1,4 +1,5 @@
 import type { DemoConfig, DemoItem } from "@/content/sectors"
+import { naira } from "@/lib/naira"
 
 export type Line = { itemId: string; qty: number }
 
@@ -34,10 +35,9 @@ export function outWording(config: DemoConfig) {
   return config.out ?? SALE_WORDING
 }
 
-export const money = (value: number) =>
-  value.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: value % 1 === 0 ? 0 : 2 })
+export const money = naira
 
-export const count = (value: number) => value.toLocaleString("en-US")
+export const count = (value: number) => value.toLocaleString("en-NG")
 
 export const total = (levels: number[]) => levels.reduce((sum, level) => sum + level, 0)
 
