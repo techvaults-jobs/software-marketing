@@ -410,6 +410,105 @@ html[data-reveal="on"] .reveal-children.reveal {
   }
 }
 
+/* The product spot moves one made-up phone through three recorded steps. */
+.ad-stage {
+  min-height: 300px;
+}
+.ad-scene {
+  position: absolute;
+  inset: 76px 16px 54px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+  opacity: 0;
+  translate: 0 6px;
+  animation: ad-scene 12s ease-in-out infinite both;
+  animation-delay: var(--ad-delay, 0s);
+}
+.ad-scene-receive { --ad-delay: 0s; }
+.ad-scene-transfer { --ad-delay: 4s; }
+.ad-scene-sale { --ad-delay: 8s; }
+.ad-device {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: var(--steel);
+  font-family: var(--font-geist-mono);
+  font-size: 12px;
+}
+.ad-phone {
+  display: flex;
+  width: 47px;
+  height: 78px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--ink);
+  border-radius: 9px;
+}
+.ad-phone span {
+  width: 29px;
+  height: 52px;
+  border: 1px solid var(--line-strong);
+  border-radius: 3px;
+}
+.ad-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border-top: 1px solid var(--line);
+  padding-top: 13px;
+  font-size: 13px;
+}
+.ad-route {
+  display: grid;
+  grid-template-columns: 1fr minmax(36px, 0.6fr) 1fr;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+.ad-route > div { display: grid; justify-items: center; gap: 5px; }
+.ad-route strong, .ad-sale-row strong { font-size: 13px; font-weight: 600; }
+.ad-route small, .ad-sale-row small { color: var(--steel); font-size: 11px; }
+.ad-location {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid var(--line-strong);
+  border-radius: 50%;
+}
+.ad-route-line {
+  position: relative;
+  height: 1px;
+  background: var(--line-strong);
+}
+.ad-moving-unit {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  animation: ad-travel 350ms ease-in-out 2 alternate;
+}
+.ad-sale-row { display: flex; align-items: center; gap: 10px; }
+.ad-sale-row > div { display: grid; gap: 3px; }
+.ad-timeline { color: var(--steel); font-family: var(--font-geist-mono); font-size: 10px; }
+.ad-timeline i { height: 1px; flex: 1; background: var(--line-strong); }
+@keyframes ad-scene {
+  0% { opacity: 0; translate: 0 6px; }
+  3% { opacity: 1; translate: 0 0; }
+  26% { opacity: 1; translate: 0 0; }
+  29%, 100% { opacity: 0; translate: 0 -4px; }
+}
+@keyframes ad-travel {
+  to { translate: calc(100% - 20px) 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ad-scene, .ad-moving-unit { animation: none; }
+  .ad-scene-receive { opacity: 1; translate: 0 0; }
+  .ad-scene-transfer, .ad-scene-sale { display: none; }
+}
+
 /* An in-page link lands below the sticky header, not under it. */
 section[id] {
   scroll-margin-top: 4.5rem;

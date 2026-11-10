@@ -1,5 +1,6 @@
 import { CustomerStory } from "@/components/home/customer-story"
 import { Hero } from "@/components/home/hero"
+import { ProductAd } from "@/components/home/product-ad"
 import { PricingFaq } from "@/components/home/pricing-faq"
 import { SectorPicker } from "@/components/home/sector-picker"
 import { ServiceBand } from "@/components/home/service-band"
@@ -15,6 +16,7 @@ export default function HomePage() {
     <Page>
       <Hero />
       <TrustStrip />
+      <ProductAd />
 
       <Section id="sectors">
         <SectionIntro eyebrow={picker.eyebrow} title={picker.title} layout="split" className="reveal">
