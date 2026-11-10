@@ -50,7 +50,7 @@ export default function DemoIndexPage() {
       {appUrl ? (
         <Section className="py-12 lg:py-16">
           <SectionIntro eyebrow="Full system" title="Or open StockVaults itself.">
-            The demos above are quick previews. The full system gives you your own made-up business inside the real StockVaults, set up for your trade: stock, sales, transfers, batches, serial numbers and reports. It is kept for 24 hours and nobody else sees it.
+            The demos above are quick previews. The full system gives you your own made-up business inside the real StockVaults, set up for your trade: stock, sales, transfers, batches, serial numbers and reports. It is kept for 24 hours and nobody else sees it. To try it with your own stock and your team, <a href={appLink("/trial") ?? undefined} className="font-medium text-ink underline underline-offset-4">open a free 10-day sandbox</a> for your sector.
           </SectionIntro>
           <ul className="mt-8 grid gap-px overflow-hidden rounded-card border border-line bg-line sm:grid-cols-2 lg:grid-cols-3">
             {[...sectors.filter((sector) => sector.setup).map((sector) => ({ key: sector.slug, name: sector.name, setup: sector.setup })), ...otherSetups.map((other) => ({ key: other.setup, ...other }))].map((entry) => (

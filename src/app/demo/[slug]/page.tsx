@@ -27,6 +27,7 @@ export default async function DemoPage({ params }: PageProps<"/demo/[slug]">) {
   const sector = getSector((await params).slug)
   if (!sector) notFound()
   const fullSystem = sector.setup ? appLink(`/demo/${sector.setup}`) : null
+  const sandbox = sector.setup ? appLink(`/trial/${sector.setup}`) : null
 
   return (
     <Page>
@@ -49,9 +50,15 @@ export default async function DemoPage({ params }: PageProps<"/demo/[slug]">) {
                 Open the full system
               </a>
             ) : null}
-            <Link href="/contact" className="btn btn-sm btn-primary">
-              Get this for my business
-            </Link>
+            {sandbox ? (
+              <a href={sandbox} className="btn btn-sm btn-primary">
+                Try it free for 10 days
+              </a>
+            ) : (
+              <Link href="/contact" className="btn btn-sm btn-primary">
+                Get this for my business
+              </Link>
+            )}
           </div>
         </div>
         <DemoApp slug={sector.slug} />
@@ -64,6 +71,12 @@ export default async function DemoPage({ params }: PageProps<"/demo/[slug]">) {
         {fullSystem ? (
           <p className="mt-2 text-sm text-steel">
             This page saves nothing. <a href={fullSystem} className="font-medium text-ink underline underline-offset-4">Open the full system</a> for your own copy of StockVaults with made-up stock, sales and reports. It is kept for 24 hours and nobody else sees it.
+            {sandbox ? (
+              <>
+                {" "}
+                To try it on your own stock with your team, <a href={sandbox} className="font-medium text-ink underline underline-offset-4">open a free 10-day sandbox</a> set up for {sector.name.toLowerCase()}.
+              </>
+            ) : null}
           </p>
         ) : null}
       </div>

@@ -51,8 +51,8 @@ export default async function SectorPage({ params }: PageProps<"/industries/[slu
               Book a walkthrough
             </Link>
             {sector.setup && appLink("/") ? (
-              <a href={appLink(`/demo/${sector.setup}`) ?? undefined} className="btn btn-secondary">
-                Open the full system
+              <a href={appLink(`/trial/${sector.setup}`) ?? undefined} className="btn btn-secondary">
+                Try it free for 10 days
               </a>
             ) : null}
           </>
