@@ -17,8 +17,8 @@ export function Header() {
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`)
 
   return (
-    <header style={{ viewTransitionName: "site-header" }} className="sticky top-0 z-40 border-b border-line bg-paper/92 backdrop-blur-md">
-      <div className="frame pad flex h-16 items-center gap-6">
+    <header style={{ viewTransitionName: "site-header" }} className="sticky top-0 z-40 border-b border-line bg-paper">
+      <div className="frame pad flex h-16 items-center gap-6 lg:h-[72px]">
         <Link href="/" aria-label="StockVaults by TechVaults, home" className="shrink-0">
           <Logo />
         </Link>
@@ -30,8 +30,8 @@ export function Header() {
               href={item.href}
               aria-current={isActive(item.href) ? "page" : undefined}
               className={cn(
-                "rounded-full px-3.5 py-2 text-sm whitespace-nowrap transition-colors",
-                isActive(item.href) ? "text-ink" : "text-steel hover:text-ink"
+                "relative px-3.5 py-2 text-[15px] font-medium whitespace-nowrap transition-colors after:absolute after:inset-x-3.5 after:-bottom-4 after:h-0.5 after:bg-transparent",
+                isActive(item.href) ? "text-ink after:bg-vault-red" : "text-body-muted hover:text-ink"
               )}
             >
               {item.label}
@@ -45,13 +45,16 @@ export function Header() {
               Sign in
             </a>
           ) : null}
+          <Link href="/contact" className="btn btn-sm hidden border border-line-strong text-ink hover:border-ink md:inline-flex">
+            Get a quote
+          </Link>
           <Link href="/demo" className="btn btn-sm btn-primary">
             Try the demo
           </Link>
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger
               aria-label="Open menu"
-              className="flex size-11 items-center justify-center rounded-full border border-line-strong transition-colors hover:border-ink lg:hidden"
+              className="flex size-11 items-center justify-center rounded-md border border-line-strong transition-colors hover:border-ink lg:hidden"
             >
               <Menu className="size-4" aria-hidden />
             </SheetTrigger>

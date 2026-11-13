@@ -26,8 +26,8 @@ export function HeroDashboard() {
 
   return (
     <figure className="relative" aria-label={`Sample dashboard for ${demo.business}, a made-up phone shop`}>
-      <div className="rounded-[22px] border border-line bg-mist p-2.5 shadow-float sm:p-3">
-        <div className="overflow-hidden rounded-[16px] border border-line bg-paper">
+      <div className="rounded-[14px] border border-paper/15 bg-paper/8 p-2 sm:p-2.5">
+        <div className="overflow-hidden rounded-[10px] bg-paper">
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-4 py-3">
             <p className="flex items-center gap-2.5 text-[14px]">
               <span aria-hidden className="flex size-6 items-center justify-center rounded-md bg-ink font-mono text-[11px] text-paper">
@@ -82,7 +82,7 @@ export function HeroDashboard() {
 
       {alert ? (
         <div
-          className="float-in relative mx-4 -mt-6 rounded-[14px] border border-line bg-paper p-3.5 text-[13px] shadow-float sm:absolute sm:bottom-8 sm:-left-6 sm:mx-0 sm:mt-0 sm:w-[260px]"
+          className="float-in relative mx-4 -mt-6 rounded-[10px] border border-line bg-paper p-3.5 text-[13px] shadow-float sm:absolute sm:bottom-8 sm:-left-6 sm:mx-0 sm:mt-0 sm:w-[260px]"
           style={{ "--d": "360ms" } as React.CSSProperties}
         >
           <p className="flex items-center gap-2 font-semibold">
@@ -97,11 +97,11 @@ export function HeroDashboard() {
       ) : null}
 
       <div
-        className="float-in absolute -top-14 right-3 hidden rounded-[12px] bg-ink px-3.5 py-2.5 text-paper shadow-float sm:block lg:-right-4"
+        className="float-in absolute -top-14 right-3 hidden rounded-[10px] border border-line bg-paper px-3.5 py-2.5 text-ink shadow-float sm:block lg:-right-4"
         style={{ "--d": "460ms" } as React.CSSProperties}
       >
         <p className="font-mono text-[12px]">IMEI {hero.received.imei} received</p>
-        <p className="mt-0.5 text-[11px] text-on-dark-muted">
+        <p className="mt-0.5 text-[11px] text-steel">
           by {hero.received.by} · {hero.received.at}
         </p>
       </div>

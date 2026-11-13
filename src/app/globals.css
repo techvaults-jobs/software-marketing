@@ -60,7 +60,7 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
-  --radius-card: 18px;
+  --radius-card: 10px;
 }
 
 :root {
@@ -160,8 +160,13 @@
   .pad {
     @apply px-6;
   }
+  /* An uppercase label led by a short red rule, the way every TechVaults site opens a section. */
   .eyebrow {
-    @apply font-mono text-[13px] leading-none tracking-[0.08em] text-vault-red uppercase;
+    @apply inline-flex items-center gap-3 text-[12.5px] leading-none font-semibold tracking-[0.14em] text-vault-red uppercase;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-0.5 w-6 shrink-0 bg-current;
   }
   /* For labels that sit beside the one red thing on a screen. */
   .eyebrow-quiet {
@@ -180,7 +185,7 @@
     @apply rounded-card border border-line bg-paper;
   }
   .btn {
-    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-5 text-[15px] font-medium whitespace-nowrap transition-[background-color,border-color,color,transform] duration-150 select-none active:translate-y-px;
+    @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-md px-5 text-[15px] font-medium whitespace-nowrap transition-[background-color,border-color,color,transform] duration-150 select-none active:translate-y-px;
   }
   .btn-sm {
     @apply min-h-9 px-4 text-sm;
@@ -511,5 +516,5 @@ html[data-reveal="on"] .reveal-children.reveal {
 
 /* An in-page link lands below the sticky header, not under it. */
 section[id] {
-  scroll-margin-top: 4.5rem;
+  scroll-margin-top: 5.5rem;
 }

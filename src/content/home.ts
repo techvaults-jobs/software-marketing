@@ -1,3 +1,5 @@
+import { sectors } from "./sectors"
+
 /**
  * Words on the home page that are not a sector, a service or an FAQ entry.
  * Those have their own files.
@@ -13,6 +15,31 @@ export const hero = {
   sector: "phones-electronics",
   /** A unit from the sample stock table, just booked in. Made up, like the rest of the demo. */
   received: { imei: "…2074", by: "L. Okoye", at: "09:12" },
+} as const
+
+/**
+ * The figures under the hero. Each one restates a fact the site already
+ * commits to elsewhere (the sector list, pricing, the care plan), so none of
+ * them can drift into a claim nobody has checked.
+ */
+export const heroStats = [
+  { value: `${sectors.length} trades`, label: "Each with a demo to click through" },
+  { value: "First year", label: "Of care included" },
+  { value: "Your server or ours", label: "Runs where you choose" },
+] as const
+
+/** The services section: what a customer buys besides the software. */
+export const servicesIntro = {
+  eyebrow: "What we do",
+  title: "We build it, train your people and stay.",
+  body: "A system nobody was trained on gets abandoned in a month. Software is one part of the job. TechVaults does the rest from our office in Ikeja.",
+  link: "How we work",
+} as const
+
+export const processBand = {
+  eyebrow: "Working process",
+  title: "Six steps, with you in the room for each.",
+  body: "You see working software early and often. Nothing is a surprise on go-live day.",
 } as const
 
 export const picker = {
@@ -45,11 +72,6 @@ export const discipline = {
     sells: 799_000,
   },
   link: "See everything StockVaults does",
-} as const
-
-export const serviceBand = {
-  title: "We build it, train your people and stay.",
-  body: "A system nobody was trained on gets abandoned in a month. Software is one part of the job.",
 } as const
 
 export const pricingTeaser = {

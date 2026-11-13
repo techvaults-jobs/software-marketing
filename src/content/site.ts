@@ -33,13 +33,13 @@ export function appLink(path: string) {
 export const nav = [
   { href: "/industries", label: "Industries" },
   { href: "/stockvaults", label: "Features" },
+  { href: "/services", label: "Services" },
   { href: "/customers/abu-twins", label: "Customers" },
   { href: "/pricing", label: "Pricing" },
 ] as const
 
 /** In the mobile menu and the footer, not the top bar. */
 export const moreNav = [
-  { href: "/services", label: "Services" },
   { href: "/systems", label: "Other systems" },
   { href: "/contact", label: "Contact" },
 ] as const

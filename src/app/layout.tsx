@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google"
 import { Footer } from "@/components/site/footer"
 import { Header } from "@/components/site/header"
 import { RevealObserver } from "@/components/site/reveal-observer"
+import { TopBar } from "@/components/site/top-bar"
 import { site } from "@/content/site"
 import "./globals.css"
 
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-sm focus:text-paper">
           Skip to content
         </a>
+        <TopBar />
         <Header />
         {children}
         <Footer />

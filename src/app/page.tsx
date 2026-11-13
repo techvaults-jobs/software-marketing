@@ -1,10 +1,10 @@
 import { CustomerStory } from "@/components/home/customer-story"
 import { Hero } from "@/components/home/hero"
-import { ProductAd } from "@/components/home/product-ad"
 import { PricingFaq } from "@/components/home/pricing-faq"
+import { ProcessBand } from "@/components/home/process-band"
+import { ProductAd } from "@/components/home/product-ad"
 import { SectorPicker } from "@/components/home/sector-picker"
-import { ServiceBand } from "@/components/home/service-band"
-import { TrustStrip } from "@/components/home/trust-strip"
+import { ServicesGrid } from "@/components/home/services-grid"
 import { CtaBand } from "@/components/site/cta-band"
 import { DisciplineBento } from "@/components/site/discipline-bento"
 import { Page } from "@/components/site/page"
@@ -15,8 +15,6 @@ export default function HomePage() {
   return (
     <Page>
       <Hero />
-      <TrustStrip />
-      <ProductAd />
 
       <Section id="sectors">
         <SectionIntro eyebrow={picker.eyebrow} title={picker.title} layout="split" className="reveal">
@@ -27,18 +25,22 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section className="pt-0 lg:pt-0">
+      <ProductAd />
+
+      <Section>
         <SectionIntro eyebrow={discipline.eyebrow} title={discipline.title} className="reveal" />
         <div className="mt-10">
           <DisciplineBento />
         </div>
       </Section>
 
-      <Section className="pt-0 lg:pt-0" label="Customer story">
+      <ServicesGrid />
+      <ProcessBand />
+
+      <Section label="Customer story">
         <CustomerStory />
       </Section>
 
-      <ServiceBand />
       <PricingFaq />
       <CtaBand />
     </Page>

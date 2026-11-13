@@ -65,7 +65,7 @@ export function SectorTabs({
             onClick={() => onChange(sector.slug)}
             onKeyDown={(event) => onKeyDown(event, index)}
             className={cn(
-              "inline-flex min-h-11 items-center gap-2 rounded-full border px-4 text-sm font-medium whitespace-nowrap transition-colors duration-150",
+              "inline-flex min-h-11 items-center gap-2 rounded-md border px-4 text-sm font-medium whitespace-nowrap transition-colors duration-150",
               selected ? "border-ink bg-ink text-paper" : "border-line-strong bg-paper text-ink hover:border-ink"
             )}
           >
